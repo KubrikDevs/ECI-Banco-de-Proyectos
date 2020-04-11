@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:shiro="http://shiro.apache.org/tags"
+lang="es">
+
+<h:head>
+
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+  <meta name="description" content=""></meta>
+  <meta name="author" content=""></meta>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+  <title>Banco de proyectos ECI - Cuenta</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'/>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'/>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet"/>
+  <h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
+  <h:outputScript target="body" library="algaworks" name="javascripts/app.js" />
+
+</h:head>
+
+<h:body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="http://www.escuelaing.edu.co"><img class="logoEscuela" src="img/logoEscuela.jpg" alt="Logo Escuela" height="150" width="300"/></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/index.xhtml">Inicio</a>
+          </li>
+          <shiro:hasRole name="Admin">
+            <li class="nav-item">
+              <a class="nav-link" href="/registrarIniciativa.xhtml">Administrar Iniciativas</a>
+            </li>
+          </shiro:hasRole>
+          <li class="nav-item">
+            <a class="nav-link" href="/visualizarIniciativasPersona.xhtml">Visualizar Iniciativas</a>
+          </li>
+          <li class="nav-item">
+            <h:form name="sentMessage" id="logoutForm" class="nav-item">
+                <p:commandLink class="nav-link" id="superLogout" ajax="true" action="#{LoginBean.logout}" style="color:white;font-size: 12px;font-weight: 800;">
+                  <h:outputText value="LOGOUT"/>
+                </p:commandLink>
+            </h:form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/background.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>CONSULTA DE INICIATIVAS</h1>
+            <span class="subheading">Proyecto CVDS 2020</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    
+    <div class="row">
+      <h:form id="recursosDisponibles">
+      <p:dataTable id="itemRentadoRetarded" var="recurso" widgetVar="recursosTable" value="#{ReservaRecursosBean.consultarRecursosDisponibles()}"
+                         paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rows="10" filterValue="#{ReservaRecursosBean.recursosFiltrados}" style="text-align: center;">
+              <f:facet name="header">
+                    Iniciativas disponibles
+                    <p:outputPanel>
+                      <h:outputText value="Busqueda general:" />
+                      <p:inputText id="globalFilter" onkeyup="PF('recursosTable').filter()" style="width:150px" placeholder="Ingresa algun elemento"/>
+                  </p:outputPanel>
+                </f:facet>
+                <p:column headerText="ID Iniciativa" filterBy="#{recurso.id}" filterMatchMode="contains">
+                    <h:outputText value="#{iniciativas.id}" />
+                </p:column>
+
+                <p:column headerText="Nombre" filterBy="#{recurso.nombre}" filterMatchMode="contains">
+                    <h:outputText value="#{iniciativas.nombre}" />
+                </p:column>
+
+                <p:column headerText="Estado" filterBy="#{recurso.ubicacion}" filterMatchMode="contains">
+                    <h:outputText value="#{iniciativas.ubicacion}" />
+                </p:column>
+
+            </p:dataTable>
+    </h:form>
+    </div>
+  </div>
+
+  <hr/>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="https://github.com/KubrikDevs/ECI-Banco-de-Proyectos">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright Escuela Colombiana de Ingeniería Julio Garavito</p>
+          <p class="copyright text-muted">Equipo conformado por:</p>
+          <p class="copyright text-muted">Juan Ortiz - Davor Cortes - Laura Bernal - Juan Diaz</p>  
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <h:outputScript name = "bootstrap-3.3.7-dist/js/bootstrap.min.js" />
+  <h:outputScript name = "js/template.js" />
+</h:body>
+
+</html>
