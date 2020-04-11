@@ -1,11 +1,15 @@
 package edu.eci.cvds.persistence.mybatisimpl.mappers;
 
 
-import edu.eci.cvds.entities.Usuario;
+
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import edu.eci.cvds.entities.Usuario;
 
 public interface UsuarioMapper {
 
-    public Usuario consultarUsuario(@Param("correo") String correo);
+	public void insertarUsuario(@Param("usuario") Usuario usuario);
+
+	public Usuario consultarUsuario(@Param("correo") String correo);
 
 }
