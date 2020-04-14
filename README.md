@@ -6,5 +6,5 @@
 
 ## Diagrama Entidad Relacion
 - Modelado Físico de la Base de Datos
-![](ER.PNG)
+![](ER.png)
 
