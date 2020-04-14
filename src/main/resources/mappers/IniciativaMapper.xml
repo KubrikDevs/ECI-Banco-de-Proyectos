@@ -10,12 +10,15 @@
         #{iniciativa.id},
         #{iniciativa.nombre},
         #{iniciativa.estado},
-        #{iniciativa.numVotos},
-        #{iniciativa.usuarioProponente},
+        #{iniciativa.votos},
+        #{iniciativa.palabrasClave},
+        #{iniciativa.interesados},
+        #{iniciativa.proponente},
         #{iniciativa.area},
         #{iniciativa.fechaCreacion},
         #{iniciativa.fechaFin}
         #{iniciativa.descripcion}
+        #{iniciativa.integrantesDelProyecto}
         )
     </insert>
 
@@ -25,12 +28,16 @@
         i.id,
         i.nombre,
         i.estado,
-        i.numVotos,
+        i.votos,
+        i.palabrasClave,
         i.usuarioProponente,
+        i.nteresados,
+        i.proponente
         i.area,
         i.fechaCreacion,
         i.fechaFin,
-        i.descripcion
+        i.descripcion,
+        i.integrantesDelProyecto
         FROM USUARIOS AS i
         WHERE u.id=#{id}
     </select>
@@ -40,7 +47,6 @@
         <id property='id' column='id' />
         <result property='nombre' column='nombre' />
         <result property='estado' column='estado' />
-        <result property='numVotos' column='numVotos' />
         <result property="usuarioProponente" column="usuarioProponente" />
         <result property='area' column='area' />
         <result property='fechaCreacion' column='fechaCreacion' />
