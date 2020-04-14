@@ -1,8 +1,37 @@
--- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2020-04-14 03:49:04.746
+CREATE TABLE Usuarios (
+    nombre varchar(50)  NOT NULL,
+    correo varchar(150)  NOT NULL,
+    contraseña varchar(50)  NOT NULL,
+    estado varchar(10)  NOT NULL,
+    rol varchar(15)  NOT NULL,
+    CONSTRAINT Usuarios_pk PRIMARY KEY (correo)
+);
+CREATE TABLE Iniciativas (
+    id int  NOT NULL,
+    nombre varchar(150)  NOT NULL,
+    area Varchar(50)  NOT NULL,
+    estado varchar(20)  NOT NULL,
+    proponente varchar(150)  NOT NULL,
+    fecha_creacion date  NOT NULL,
+    fecha_finalizacion date  NOT NULL,
+    descripcion varchar(360)  NOT NULL,
+    CONSTRAINT Iniciativas_pk PRIMARY KEY (id)
+);
 
--- tables
--- Table: Comentarios
+CREATE TABLE Palabras_clave (
+    id int  NOT NULL,
+    palabra_clave varchar(20)  NOT NULL,
+    iniciativa int  NOT NULL,
+    CONSTRAINT Palabras_clave_pk PRIMARY KEY (id)
+);
+
+CREATE TABLE Votos (
+    id int  NOT NULL,
+    Iniciativa int  NOT NULL,
+    autor varchar(150)  NOT NULL,
+    CONSTRAINT Votos_pk PRIMARY KEY (id)
+);
+
 CREATE TABLE Comentarios (
     id int  NOT NULL,
     autor varchar(150)  NOT NULL,
@@ -20,19 +49,6 @@ CREATE TABLE Estrellas (
     CONSTRAINT Estrellas_pk PRIMARY KEY (id)
 );
 
--- Table: Iniciativas
-CREATE TABLE Iniciativas (
-    id int  NOT NULL,
-    nombre varchar(150)  NOT NULL,
-    area Varchar(50)  NOT NULL,
-    estado varchar(20)  NOT NULL,
-    proponente varchar(150)  NOT NULL,
-    fecha_creacion date  NOT NULL,
-    fecha_finalizacion date  NOT NULL,
-    descripcion varchar(360)  NOT NULL,
-    CONSTRAINT Iniciativas_pk PRIMARY KEY (id)
-);
-
 -- Table: Integrantes_Proyecto
 CREATE TABLE Integrantes_Proyecto (
     id int  NOT NULL,
@@ -41,31 +57,6 @@ CREATE TABLE Integrantes_Proyecto (
     CONSTRAINT Integrantes_Proyecto_pk PRIMARY KEY (id)
 );
 
--- Table: Palabras_clave
-CREATE TABLE Palabras_clave (
-    id int  NOT NULL,
-    palabra_clave varchar(20)  NOT NULL,
-    iniciativa int  NOT NULL,
-    CONSTRAINT Palabras_clave_pk PRIMARY KEY (id)
-);
-
-
-CREATE TABLE Usuarios (
-    nombre varchar(50)  NOT NULL,
-    correo varchar(150)  NOT NULL,
-    contraseña varchar(50)  NOT NULL,
-    estado varchar(10)  NOT NULL,
-    rol varchar(15),
-    CONSTRAINT Usuarios_pk PRIMARY KEY (correo)
-);
-
--- Table: Votos
-CREATE TABLE Votos (
-    id int  NOT NULL,
-    Iniciativa int  NOT NULL,
-    autor varchar(150)  NOT NULL,
-    CONSTRAINT Votos_pk PRIMARY KEY (id)
-);
 
 -- foreign keys
 -- Reference: Comentarios_Usuarios (table: Comentarios)
@@ -148,7 +139,5 @@ ALTER TABLE Votos ADD CONSTRAINT Votos_Iniciativas
     INITIALLY IMMEDIATE
 ;
 
-
--- End of file.
 
 
