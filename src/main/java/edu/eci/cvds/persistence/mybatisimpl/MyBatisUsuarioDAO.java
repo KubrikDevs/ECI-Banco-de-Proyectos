@@ -33,5 +33,23 @@ public class MyBatisUsuarioDAO implements UsuarioDAO {
 
 	}
 
+	@Override
+	public List<Usuario> consultarUsuarios() throws PersistenceException {
+		try {
+			return usuarioMapper.consultarUsuarios();
+		} catch (org.apache.ibatis.exceptions.PersistenceException e) {
+			throw new PersistenceException("Error (P) al consultar el usuarios: ", e);
+		}
+	}
+
+	@Override
+	public void updateUsuario(String correo, String rol) throws Exception {
+		try {
+			usuarioMapper.updateUsuario(correo,rol);
+		} catch (org.apache.ibatis.exceptions.PersistenceException e) {
+			throw new PersistenceException("Error en actulizacion de rol de: " + correo, e);
+		}
+	}
+
 
 }

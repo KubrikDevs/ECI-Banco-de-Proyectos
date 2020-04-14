@@ -26,6 +26,20 @@
         WHERE u.correo=#{correo}
     </select>
 
+    <select id="consultarTodosLosUsuario" parameterType="Usuario" resultMap="UsuarioResult">
+        SELECT *
+        FROM USUARIOS
+    </select>
+
+    <update parameterType="map" id="updateUsuario">
+        UPDATE USUARIOS
+        SET rol=#{rol}
+        WHERE correo=#{correo};
+    </update>
+
+    <select parameterType="map" id="getRolUsuario" resultMap="UsuarioResult">
+        select u.Rol FROM USUARIOS as u WHERE u.correo=#{correo};
+    </select>
 
     <resultMap type='Usuario' id='UsuarioResult'>
         <id property='correo' column='correo' />

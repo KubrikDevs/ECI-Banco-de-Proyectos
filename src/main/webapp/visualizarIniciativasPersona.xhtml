@@ -55,6 +55,9 @@ lang="es">
             <li class="nav-item">
               <a class="nav-link" href="/registrarIniciativa.xhtml">Administrar Inicitivas</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/informeIniciativa.xhtml">Informes</a>
+            </li>
           </shiro:hasRole>
           <li class="nav-item">
             <h:form name="sentMessage" id="logoutForm" class="nav-item">
@@ -96,6 +99,41 @@ lang="es">
           <p id="rosa">Iniciativa Aprobada</p>
           </ul>
     </div>
+
+    <!-- Main Content -->
+    <div class="container">
+
+      <div class="row">
+        <h:form id="recursosDisponibles">
+          <p:dataTable id="itemRentadoRetarded" var="recurso" widgetVar="recursosTable" value="#{ReservaRecursosBean.consultarRecursosDisponibles()}"
+                       paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                       rows="10" filterValue="#{ReservaRecursosBean.recursosFiltrados}" style="text-align: center;">
+            <f:facet name="header">
+              Iniciativas disponibles
+              <p:outputPanel>
+                <h:outputText value="Busqueda general:" />
+                <p:inputText id="globalFilter" onkeyup="PF('recursosTable').filter()" style="width:150px" placeholder="Ingresa algun elemento"/>
+              </p:outputPanel>
+            </f:facet>
+            <p:column headerText="ID Iniciativa" filterBy="#{recurso.id}" filterMatchMode="contains">
+              <h:outputText value="#{iniciativas.id}" />
+            </p:column>
+
+            <p:column headerText="Nombre" filterBy="#{recurso.nombre}" filterMatchMode="contains">
+              <h:outputText value="#{iniciativas.nombre}" />
+            </p:column>
+
+            <p:column headerText="Estado" filterBy="#{recurso.ubicacion}" filterMatchMode="contains">
+              <h:outputText value="#{iniciativas.ubicacion}" />
+            </p:column>
+
+          </p:dataTable>
+        </h:form>
+      </div>
+    </div>
+
+
+
     <div class="row">
       <h:form id="superMessages">
       <p:messages id="messages" showDetail="true" closable="true">

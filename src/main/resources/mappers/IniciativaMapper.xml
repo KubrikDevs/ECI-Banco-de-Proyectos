@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.IniciativaMapper">
+    <insert id="insertarIniciativa" parameterType="map">
+        INSERT INTO INICIATIVA
+        VALUES (
+        #{iniciativa.id},
+        #{iniciativa.nombre},
+        #{iniciativa.estado},
+        #{iniciativa.numVotos},
+        #{iniciativa.usuarioProponente},
+        #{iniciativa.area},
+        #{iniciativa.fechaCreacion},
+        #{iniciativa.fechaFin}
+        #{iniciativa.descripcion}
+        )
+    </insert>
+
+
+    <select parameterType="map" id="consultarIniciativa" resultMap="IniciativaResult" >
+        SELECT
+        i.id,
+        i.nombre,
+        i.estado,
+        i.numVotos,
+        i.usuarioProponente,
+        i.area,
+        i.fechaCreacion,
+        i.fechaFin,
+        i.descripcion
+        FROM USUARIOS AS i
+        WHERE u.id=#{id}
+    </select>
+
+
+    <resultMap type='Iniciativa' id='IniciativaResult'>
+        <id property='id' column='id' />
+        <result property='nombre' column='nombre' />
+        <result property='estado' column='estado' />
+        <result property='numVotos' column='numVotos' />
+        <result property="usuarioProponente" column="usuarioProponente" />
+        <result property='area' column='area' />
+        <result property='fechaCreacion' column='fechaCreacion' />
+        <result property='fechaFin' column='fechaFin' />
+    </resultMap>
+</mapper>

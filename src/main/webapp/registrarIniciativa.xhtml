@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml"
-xmlns:h="http://xmlns.jcp.org/jsf/html"
-xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:p="http://primefaces.org/ui"
-xmlns:f="http://java.sun.com/jsf/core"
-xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
 
-lang="es">
+      lang="es">
 
 <h:head>
 
@@ -52,14 +52,21 @@ lang="es">
           <li class="nav-item">
             <a class="nav-link" href="/visualizarReservas.xhtml">Visualizar Iniciativas</a>
           </li>
-          <shiro:hasRole name="Admin"><li class="nav-item">
+          <shiro:hasRole name="Admin">
+            <li class="nav-item">
             <a class="nav-link" href="/registrarIniciativa.xhtml">Administrar iniciativas</a>
-          </li></shiro:hasRole>
+            </li>
+          </shiro:hasRole>
+          <shiro:hasRole name="Pmo">
+            <li class="nav-item">
+              <a class="nav-link" href="/registrarIniciativa.xhtml">Administrar iniciativas</a>
+            </li>
+          </shiro:hasRole>
           <li class="nav-item">
             <h:form name="sentMessage" id="algoForm" class="nav-item">
-                <p:commandLink id="superLogout" ajax="true" action="#{LoginBean.logout}" style="color:white;font-size: 12px;font-weight: 800;">
-                  <h:outputText value="LOGOUT"/>
-                </p:commandLink>
+              <p:commandLink id="superLogout" ajax="true" action="#{LoginBean.logout}" style="color:white;font-size: 12px;font-weight: 800;">
+                <h:outputText value="LOGOUT"/>
+              </p:commandLink>
             </h:form>
           </li>
         </ul>
@@ -86,11 +93,11 @@ lang="es">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-          <h:form name="sentMessage" id="contactForm">
-            <p:outputLabel value="Registra una nueva iniciativa"/>
-            <p:messages id="messages" showDetail="true" closable="true">
-              <p:autoUpdate />
-            </p:messages>
+        <h:form name="sentMessage" id="contactForm">
+          <p:outputLabel value="Registra una nueva iniciativa"/>
+          <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate />
+          </p:messages>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Nombre</label>
@@ -123,10 +130,10 @@ lang="es">
 
           <p:outputLabel for="tipoEstado" value="Estado:" />
           <p:selectOneRadio id="tipoEstado" binding="#{superEstado1}" unselectable="true">
-              <f:selectItem itemLabel="En espera de revisión" itemValue="1" />
-              <f:selectItem itemLabel="En revisión" itemValue="2" />
-              <f:selectItem itemLabel="Proyecto" itemValue="3" />
-              <f:selectItem itemLabel="Solucionado" itemValue="4" />
+            <f:selectItem itemLabel="En espera de revisión" itemValue="1" />
+            <f:selectItem itemLabel="En revisión" itemValue="2" />
+            <f:selectItem itemLabel="Proyecto" itemValue="3" />
+            <f:selectItem itemLabel="Solucionado" itemValue="4" />
           </p:selectOneRadio>
 
           <div class="form-group">
@@ -137,70 +144,70 @@ lang="es">
         <hr/>
         <br/>
         <h:form name="sentMessage" id="acutalizarIniciativa">
-        <p:outputLabel value="Actualiza el estado de una iniciativa"/>
-        <p:messages id="messages" showDetail="true" closable="true">
-          <p:autoUpdate />
-        </p:messages>
+          <p:outputLabel value="Actualiza el estado de una iniciativa"/>
+          <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate />
+          </p:messages>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <h:outputText value="Coloca un ID"/>
               <label>ID</label>
               <p:inputText placeholder="ID" id="id" data-validation-required-message="Ingresa el ID de la iniciativa" binding="#{superID}" value="#{RegistrarIniciativaBean.idActualEstado}">
-              <p:ajax event="keyup" update="itemRentadoRetarded" />
+                <p:ajax event="keyup" update="itemRentadoRetarded" />
               </p:inputText>
             </div>
           </div>
           <p:dataTable id="itemRentadoRetarded" var="iniciativa" value="#{RegistrarIniciativaBean.consultarIniciativa(superID.value)}" style="text-align: center;">
-              <f:facet name="header">
-                    Iniciativa seleccionada
-                </f:facet>
-                <p:column headerText="Estado">
-                    <h:outputText value="#{iniciativas.estado}" />
-                </p:column>
+            <f:facet name="header">
+              Iniciativa seleccionada
+            </f:facet>
+            <p:column headerText="Estado">
+              <h:outputText value="#{iniciativas.estado}" />
+            </p:column>
 
-                <p:column headerText="Nombre">
-                    <h:outputText value="#{iniciativas.nombre}" />
-                </p:column>
+            <p:column headerText="Nombre">
+              <h:outputText value="#{iniciativas.nombre}" />
+            </p:column>
 
 
-            </p:dataTable>
+          </p:dataTable>
           <p:outputLabel for="tipoEstado" value="Estado de la  Iniciativa:" />
           <p:selectOneRadio id="tipoEstado" binding="#{superEstado2}" unselectable="true" required="true">
-              <f:selectItem itemLabel="En espera de revisión" itemValue="1" />
-              <f:selectItem itemLabel="En revisión" itemValue="2" />
-              <f:selectItem itemLabel="Proyecto" itemValue="3" />
-              <f:selectItem itemLabel="Solucionado" itemValue="4" />
+            <f:selectItem itemLabel="En espera de revisión" itemValue="1" />
+            <f:selectItem itemLabel="En revisión" itemValue="2" />
+            <f:selectItem itemLabel="Proyecto" itemValue="3" />
+            <f:selectItem itemLabel="Solucionado" itemValue="4" />
           </p:selectOneRadio>
 
           <div class="form-group">
             <p:commandButton actionListener="#{RegistrarIniciativaBean.actualizarEstadoIniciativa(superID.value, superEstado2.value)}" value="Registrar" update="@form"></p:commandButton>
           </div>
           <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
-        <p:dataTable id="itemRentadoRetardedchas" var="iniciativa" value="#{RegistrarIniciativaBean.consultarIniciativas()}" selectionMode="single" selection="#{RegistrarIniciativaBean.idActualEstado}" rowKey="#{iniciativa}"
+            <p:dataTable id="itemRentadoRetardedchas" var="iniciativa" value="#{RegistrarIniciativaBean.consultarIniciativas()}" selectionMode="single" selection="#{RegistrarIniciativaBean.idActualEstado}" rowKey="#{iniciativa}"
                          paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                          rows="10" style="text-align: center;">
               <f:facet name="header">
-                    Iniciativas existentes
-                </f:facet>
-                <p:ajax event="rowSelect" listener="#{RegistrarIniciativaBean.onRowSelect}" update="@form" oncomplete="PF('eventDialog').hide();"/>
-                <p:column headerText="ID Iniciativa">
-                    <h:outputText value="#{iniciativas.id}" />
-                </p:column>
+                Iniciativas existentes
+              </f:facet>
+              <p:ajax event="rowSelect" listener="#{RegistrarIniciativaBean.onRowSelect}" update="@form" oncomplete="PF('eventDialog').hide();"/>
+              <p:column headerText="ID Iniciativa">
+                <h:outputText value="#{iniciativas.id}" />
+              </p:column>
 
-                <p:column headerText="Nombre">
-                    <h:outputText value="#{iniciativas.nombre}" />
-                </p:column>
+              <p:column headerText="Nombre">
+                <h:outputText value="#{iniciativas.nombre}" />
+              </p:column>
 
-                <p:column headerText="Estado">
-                    <h:outputText value="#{iniciativas.ubicacion}" />
-                </p:column>
+              <p:column headerText="Estado">
+                <h:outputText value="#{iniciativas.ubicacion}" />
+              </p:column>
 
             </p:dataTable>
-    </p:dialog>    
+          </p:dialog>
         </h:form>
         <p:commandButton oncomplete="PF('eventDialog').show();" value="Ver iniciativas existentes"/>
-        
-        
+
+
       </div>
     </div>
   </div>
@@ -213,7 +220,7 @@ lang="es">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <ul class="list-inline text-center">
-            
+
             <li class="list-inline-item">
               <a href="https://github.com/KubrikDevs/ECI-Banco-de-Proyectos">
                 <span class="fa-stack fa-lg">
@@ -225,7 +232,7 @@ lang="es">
           </ul>
           <p class="copyright text-muted">Copyright Escuela Colombiana de Ingeniería Julio Garavito</p>
           <p class="copyright text-muted">Equipo conformado por:</p>
-          <p class="copyright text-muted">Juan Ortiz - Davor Cortes - Laura Bernal - Juan Diaz</p>  
+          <p class="copyright text-muted">Juan Ortiz - Davor Cortes - Laura Bernal - Juan Diaz</p>
         </div>
       </div>
     </div>

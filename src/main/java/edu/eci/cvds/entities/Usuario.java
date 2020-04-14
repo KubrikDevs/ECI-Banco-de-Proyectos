@@ -13,6 +13,7 @@ public class Usuario{
         this.rol = rol;
     }
 
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

@@ -25,6 +25,7 @@ public class ServiciosReservaFactory {
             	install(JdbcHelper.PostgreSQL);
             	setClassPathResource(pathResource);
                 bind(UsuarioDAO.class).to(MyBatisUsuarioDAO.class);
+                bind(IniciativaDAO.class).to(MyBatisIniciativaDAO.class);
                 bind(ServiciosBancoDeProyectos.class).to(ServiciosBancoDeProyectosImpl.class);
             }
         });

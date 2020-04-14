@@ -59,6 +59,13 @@ lang="es">
               <a class="nav-link" href="/registrarIniciativa.xhtml">Administrar Iniciativas</a>
             </li>
           </shiro:hasRole>
+
+          <shiro:hasRole name="Pmo">
+            <li class="nav-item">
+              <a class="nav-link" href="/registrarIniciativa.xhtml">Administrar Iniciativas</a>
+            </li>
+          </shiro:hasRole>
+
           <li class="nav-item">
             <h:form name="sentMessage" id="logoutForm" class="nav-item">
                 <p:commandLink class="nav-link" id="superLogout" ajax="true" action="#{LoginBean.logout}" style="color:white;font-size: 12px;font-weight: 800;">

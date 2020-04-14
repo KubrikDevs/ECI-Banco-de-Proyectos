@@ -8,11 +8,14 @@ import edu.eci.cvds.services.ServiciosBancoDeProyectos;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.mybatis.guice.transactional.Transactional;
 
+import java.util.List;
+
 public class ServiciosBancoDeProyectosImpl implements ServiciosBancoDeProyectos {
     
 
 	@Inject
 	private UsuarioDAO usuarioDAO;
+	private IniciativaDAO iniciativaDAO;
 
 
 	// Usuarios
@@ -32,12 +35,45 @@ public class ServiciosBancoDeProyectosImpl implements ServiciosBancoDeProyectos 
 
 	@Override
 	public Usuario consultarUsuario(String correo) throws ExcepcionBancoDeProyectos {
-		if (correo == "")
+		if (correo == null)
 			throw new ExcepcionBancoDeProyectos("El numero de documento es inválido");
 		try {
 			return usuarioDAO.consultarUsuario(correo);
 		} catch (PersistenceException e) {
 			throw new ExcepcionBancoDeProyectos("Error al consultar el usuario" + correo, e);
+		}
+	}
+
+	@Override
+	public List<Usuario> consultarUsuarios() throws ExcepcionBancoDeProyectos {
+		return usuarioDAO.consultarUsuarios();
+	}
+
+	@Override
+	public void updateUsuario(String correo, String rol) throws Exception {
+		usuarioDAO.updateUsuario(correo, rol);
+	}
+
+	@Override
+	public Iniciativa consultarIniciativa(Integer id) throws ExcepcionBancoDeProyectos {
+		if (id < 0)
+			throw new ExcepcionBancoDeProyectos("El numero de ID inválido");
+		try {
+			return iniciativaDAO.consultarIniciativa(id);
+		} catch (PersistenceException e) {
+			throw new ExcepcionBancoDeProyectos("Error al consultar iniciativa" + id, e);
+		}
+	}
+
+	@Override
+	public void registrarIniciativa(Iniciativa iniciativa) throws ExcepcionBancoDeProyectos {
+		if (iniciativa == null)
+			throw new ExcepcionBancoDeProyectos("Error al registrar iniciativa");
+
+		try {
+			iniciativaDAO.insertarIniciativa(iniciativa);
+		} catch (PersistenceException e) {
+			throw new ExcepcionBancoDeProyectos("Error al registrar iniciativa " + iniciativa.getId(), e);
 		}
 	}
 }
