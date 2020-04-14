@@ -100,15 +100,15 @@ lang="es">
 
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
-              <label for="dateInicio">Hora inicio</label>
-              <p:datePicker id="dateInicio" timeOnly="true" pattern="HH:mm" placeholder="Hora Inicio" binding="#{superFechaInicio}"/>
+              <label for="fechaCreacion">Fecha de creación</label>
+              <p:datePicker id="fechaCreacion" monthNavigator="true" pattern="yyyy-MMM-dd" placeholder="Fecha de creación" binding="#{superFechaCreacion}"/>
             </div>
           </div>
 
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
-              <label for="dateFin">Hora Fin</label>
-              <p:datePicker id="dateFin" timeOnly="true" pattern="HH:mm" placeholder="Hora Fin" binding="#{superFechaFin}"/>
+              <label for="fechaFin">Fecha de finalización</label>
+              <p:datePicker id="fechaFin" monthNavigator="true" pattern="yyyy-MMM-dd" placeholder="Fecha de finalización" binding="#{superFechaFin}"/>
             </div>
           </div>
 
@@ -120,19 +120,24 @@ lang="es">
               <h:outputText id="display" />
             </div>
           </div>
-
-          <p:outputLabel for="tipoEstado" value="Estado:" />
-          <p:selectOneRadio id="tipoEstado" binding="#{superEstado1}" unselectable="true">
-              <f:selectItem itemLabel="En espera de revisión" itemValue="1" />
-              <f:selectItem itemLabel="En revisión" itemValue="2" />
-              <f:selectItem itemLabel="Proyecto" itemValue="3" />
-              <f:selectItem itemLabel="Solucionado" itemValue="4" />
+          
+ 
+          <p:outputLabel for="area" value="Area:" />
+          <p:selectOneRadio id="area" binding="#{superArea}" unselectable="true">
+              <f:selectItem itemLabel="Infraestructura" itemValue="infraestructura" />
+              <f:selectItem itemLabel="Bienestar" itemValue="bienestar" />
+              <f:selectItem itemLabel="Decanatura" itemValue="decanatura" />
+              <f:selectItem itemLabel="Consejo" itemValue="consejo" />
+              <f:selectItem itemLabel="Registro" itemValue="registro" />
           </p:selectOneRadio>
 
+        <hr/>
           <div class="form-group">
             <p:commandButton actionListener="#{RegistrarIniciativaBean.registrarIniciativa(superEstado1.value, superNombre.value, superUbicacion.value,superCapacidad.value,superFechaInicio.value,superFechaFin.value,superDescripcion.value)}" value="Registrar"></p:commandButton>
           </div>
         </h:form>
+        <br/>
+        <br/>
         <br/>
         <hr/>
         <br/>
@@ -146,21 +151,40 @@ lang="es">
               <h:outputText value="Coloca un ID"/>
               <label>ID</label>
               <p:inputText placeholder="ID" id="id" data-validation-required-message="Ingresa el ID de la iniciativa" binding="#{superID}" value="#{RegistrarIniciativaBean.idActualEstado}">
-              <p:ajax event="keyup" update="itemRentadoRetarded" />
+                <p:ajax event="keyup" update="iniciativaEstadoCambio" />
               </p:inputText>
             </div>
           </div>
-          <p:dataTable id="itemRentadoRetarded" var="iniciativa" value="#{RegistrarIniciativaBean.consultarIniciativa(superID.value)}" style="text-align: center;">
+          <p:dataTable id="iniciativaEstadoCambio" var="iniciativa" value="#{RegistrarIniciativaBean.consultarIniciativa(superID.value)}" style="text-align: center;">
               <f:facet name="header">
                     Iniciativa seleccionada
                 </f:facet>
+              
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{iniciativa.nombre}" />
+                </p:column>
+              
                 <p:column headerText="Estado">
-                    <h:outputText value="#{iniciativas.estado}" />
+                    <h:outputText value="#{iniciativa.estado}" />
+                </p:column>
+ 
+                <p:column headerText="Votos">
+                    <h:outputText value="#{iniciativa.numvotos}" />
+                </p:column>
+              
+                <p:column headerText="Area">
+                    <h:outputText value="#{iniciativa.area}" />
+                </p:column>
+              
+              
+                <p:column headerText="Fecha inicio">
+                    <h:outputText value="#{iniciativa.fechacreacion}" />
+                </p:column>
+              
+                <p:column headerText="Fecha fin">
+                    <h:outputText value="#{iniciativa.fechafin}" />
                 </p:column>
 
-                <p:column headerText="Nombre">
-                    <h:outputText value="#{iniciativas.nombre}" />
-                </p:column>
 
 
             </p:dataTable>
@@ -173,10 +197,10 @@ lang="es">
           </p:selectOneRadio>
 
           <div class="form-group">
-            <p:commandButton actionListener="#{RegistrarIniciativaBean.actualizarEstadoIniciativa(superID.value, superEstado2.value)}" value="Registrar" update="@form"></p:commandButton>
+            <p:commandButton actionListener="#{RegistrarIniciativaBean.actualizarEstadoIniciativa(superID.value, superEstado2.value)}" value="Actualizar" update="@form"></p:commandButton>
           </div>
           <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
-        <p:dataTable id="itemRentadoRetardedchas" var="iniciativa" value="#{RegistrarIniciativaBean.consultarIniciativas()}" selectionMode="single" selection="#{RegistrarIniciativaBean.idActualEstado}" rowKey="#{iniciativa}"
+        <p:dataTable id="iniciativaEstadoChas" var="iniciativa" value="#{RegistrarIniciativaBean.consultarIniciativas()}" selectionMode="single" selection="#{RegistrarIniciativaBean.idActualEstado}" rowKey="#{iniciativa}"
                          paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                          rows="10" style="text-align: center;">
               <f:facet name="header">
@@ -188,11 +212,31 @@ lang="es">
                 </p:column>
 
                 <p:column headerText="Nombre">
-                    <h:outputText value="#{iniciativas.nombre}" />
+                    <h:outputText value="#{iniciativa.nombre}" />
                 </p:column>
 
                 <p:column headerText="Estado">
-                    <h:outputText value="#{iniciativas.ubicacion}" />
+                    <h:outputText value="#{iniciativa.estado}" />
+                </p:column>
+                
+                <p:column headerText="Votos">
+                    <h:outputText value="#{iniciativa.numvotos}" />
+                </p:column>
+                
+                <p:column headerText="Area">
+                    <h:outputText value="#{iniciativa.area}" />
+                </p:column>
+                
+                <p:column headerText="Fecha inicio">
+                    <h:outputText value="#{iniciativa.fechacrecion}" />
+                </p:column>
+                
+                <p:column headerText="Fecha fin">
+                    <h:outputText value="#{iniciativa.fechafin}" />
+                </p:column>
+                
+                <p:column headerText="Descripcion">
+                    <h:outputText value="#{iniciativa.descripcion}" />
                 </p:column>
 
             </p:dataTable>
