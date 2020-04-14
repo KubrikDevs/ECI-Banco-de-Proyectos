@@ -11,9 +11,9 @@ import java.util.Optional;
 
 import static com.google.inject.Guice.createInjector;
 
-public class ServiciosReservaFactory {
+public class ServiciosBancoFactory {
 
-    private static ServiciosReservaFactory instance = new ServiciosReservaFactory();
+    private static ServiciosBancoFactory instance = new ServiciosBancoFactory();
 
     private static Optional<Injector> optInjector;
 
@@ -30,11 +30,11 @@ public class ServiciosReservaFactory {
         });
     }
 
-    private ServiciosReservaFactory(){
+    private ServiciosBancoFactory(){
         optInjector = Optional.empty();
     }
 
-    public ServiciosBancoDeProyectos getServiciosBiblioteca(){
+    public ServiciosBancoDeProyectos getServiciosBanco(){
         if (!optInjector.isPresent()) {
             optInjector = Optional.of(myBatisInjector("development","mybatis-config.xml"));
         }
@@ -43,7 +43,7 @@ public class ServiciosReservaFactory {
     }
 
 
-    public ServiciosBancoDeProyectos getServiciosBibliotecaTesting(){
+    public ServiciosBancoDeProyectos getServiciosBancoTesting(){
         if (!optInjector.isPresent()) {
             optInjector = Optional.of(myBatisInjector("development","mybatis-config.xml"));
         }
@@ -52,7 +52,7 @@ public class ServiciosReservaFactory {
     }
 
 
-    public static ServiciosReservaFactory getInstance(){
+    public static ServiciosBancoFactory getInstance(){
         return instance;
     }
 

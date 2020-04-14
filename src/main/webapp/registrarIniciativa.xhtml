@@ -50,7 +50,7 @@ lang="es">
             <a class="nav-link" href="/index.xhtml">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/visualizarReservas.xhtml">Visualizar Iniciativas</a>
+            <a class="nav-link" href="/visualizarIniciativasPersona.xhtml">Visualizar Iniciativas</a>
           </li>
           <shiro:hasRole name="Admin"><li class="nav-item">
             <a class="nav-link" href="/registrarIniciativa.xhtml">Administrar iniciativas</a>
@@ -133,7 +133,7 @@ lang="es">
 
         <hr/>
           <div class="form-group">
-            <p:commandButton actionListener="#{RegistrarIniciativaBean.registrarIniciativa(superEstado1.value, superNombre.value, superUbicacion.value,superCapacidad.value,superFechaInicio.value,superFechaFin.value,superDescripcion.value)}" value="Registrar"></p:commandButton>
+            <p:commandButton actionListener="#{ManejoIniciativaBean.registrarIniciativa(superEstado1.value, superNombre.value, superUbicacion.value,superCapacidad.value,superFechaInicio.value,superFechaFin.value,superDescripcion.value)}" value="Registrar"></p:commandButton>
           </div>
         </h:form>
         <br/>
@@ -150,12 +150,12 @@ lang="es">
             <div class="form-group floating-label-form-group controls">
               <h:outputText value="Coloca un ID"/>
               <label>ID</label>
-              <p:inputText placeholder="ID" id="id" data-validation-required-message="Ingresa el ID de la iniciativa" binding="#{superID}" value="#{RegistrarIniciativaBean.idActualEstado}">
+              <p:inputText placeholder="ID" id="id" data-validation-required-message="Ingresa el ID de la iniciativa" binding="#{superID}" value="#{ManejoIniciativaBean.idActualEstado}">
                 <p:ajax event="keyup" update="iniciativaEstadoCambio" />
               </p:inputText>
             </div>
           </div>
-          <p:dataTable id="iniciativaEstadoCambio" var="iniciativa" value="#{RegistrarIniciativaBean.consultarIniciativa(superID.value)}" style="text-align: center;">
+          <p:dataTable id="iniciativaEstadoCambio" var="iniciativa" value="#{ManejoIniciativaBean.consultarIniciativa(superID.value)}" style="text-align: center;">
               <f:facet name="header">
                     Iniciativa seleccionada
                 </f:facet>
@@ -197,16 +197,16 @@ lang="es">
           </p:selectOneRadio>
 
           <div class="form-group">
-            <p:commandButton actionListener="#{RegistrarIniciativaBean.actualizarEstadoIniciativa(superID.value, superEstado2.value)}" value="Actualizar" update="@form"></p:commandButton>
+            <p:commandButton actionListener="#{ManejoIniciativaBean.actualizarEstadoIniciativa(superID.value, superEstado2.value)}" value="Actualizar" update="@form"></p:commandButton>
           </div>
           <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
-        <p:dataTable id="iniciativaEstadoChas" var="iniciativa" value="#{RegistrarIniciativaBean.consultarIniciativas()}" selectionMode="single" selection="#{RegistrarIniciativaBean.idActualEstado}" rowKey="#{iniciativa}"
+        <p:dataTable id="iniciativaEstadoChas" var="iniciativa" value="#{ManejoIniciativaBean.consultarIniciativas()}" selectionMode="single" selection="#{ManejoIniciativaBean.idActualEstado}" rowKey="#{iniciativa}"
                          paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                          rows="10" style="text-align: center;">
               <f:facet name="header">
                     Iniciativas existentes
                 </f:facet>
-                <p:ajax event="rowSelect" listener="#{RegistrarIniciativaBean.onRowSelect}" update="@form" oncomplete="PF('eventDialog').hide();"/>
+                <p:ajax event="rowSelect" listener="#{ManejoIniciativaBean.onRowSelect}" update="@form" oncomplete="PF('eventDialog').hide();"/>
                 <p:column headerText="ID Iniciativa">
                     <h:outputText value="#{iniciativas.id}" />
                 </p:column>
