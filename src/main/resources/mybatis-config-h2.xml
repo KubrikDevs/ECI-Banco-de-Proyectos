@@ -10,6 +10,11 @@
 
     </typeAliases>
 
+    <typeHandlers>
+        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
+                     javaType="java.math.RoundingMode"/>
+    </typeHandlers>
+
 
     <environments default="test">
         <environment id="test">
