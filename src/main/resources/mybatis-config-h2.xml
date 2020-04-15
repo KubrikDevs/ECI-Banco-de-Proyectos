@@ -5,12 +5,9 @@
 <configuration>
 
     <typeAliases>
-
+        <typeAlias type='edu.eci.cvds.entities.Usuario' alias='Usuario'/>
     </typeAliases>
 
-    <typeHandlers>
-
-    </typeHandlers>
 
     <environments default="test">
         <environment id="test">
@@ -25,7 +22,7 @@
     </environments>
 
     <mappers>
-
+        <mapper resource="mappers/UsuarioMapper.xml"></mapper>
     </mappers>
 
 </configuration>
