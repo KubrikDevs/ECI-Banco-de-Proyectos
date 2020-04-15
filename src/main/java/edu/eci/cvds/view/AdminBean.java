@@ -14,7 +14,6 @@ import static edu.eci.cvds.view.LoginBean.setErrorMessage;
 
 public class AdminBean extends BasePageBean {
 
-    private List<String> roles = new ArrayList<>(Arrays.asList("Admin", "Pmo","Proponente"));
     private List<Usuario> listUsuarios = null;
 
     @Inject
@@ -29,6 +28,7 @@ public class AdminBean extends BasePageBean {
         }
         return listUsuarios;
     }
+
 
     public void updateUsuario(String correo, String rol) {
 

@@ -11,8 +11,7 @@
     </typeAliases>
 
     <typeHandlers>
-        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
-                     javaType="java.math.RoundingMode"/>
+        <typeHandler handler="org.mybatis.ibatis.type.EnumTypeHandler"/>
     </typeHandlers>
 
 

@@ -25,23 +25,23 @@ import edu.eci.cvds.authentication.SessionLogger;
 public class LoginBean extends BasePageBean{
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     private String correo;
     private String password;
     private boolean rememberMe;
-    
+
     @Inject
     private SessionLogger logger;
 
     public Subject getCurrentUser(){
-    	Subject currentUser = SecurityUtils.getSubject();
-		return currentUser;
+        Subject currentUser = SecurityUtils.getSubject();
+        return currentUser;
     }
-    
-  
+
+
     public boolean isRememberMe() {
         return rememberMe;
     }
@@ -65,7 +65,7 @@ public class LoginBean extends BasePageBean{
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
+
     @RequiresGuest
     public void login(String correo,String password,boolean rememberMe) throws ExcepcionBancoDeProyectos{
         try {
@@ -74,9 +74,9 @@ public class LoginBean extends BasePageBean{
         } catch (ExcepcionBancoDeProyectos excepcionBancoDeProyectos) {
             LoginBean.setErrorMessage(excepcionBancoDeProyectos);
         }catch (IOException e) {
-        	LoginBean.setErrorMessage(e);
+            LoginBean.setErrorMessage(e);
         }catch(Exception e) {
-        	LoginBean.setErrorMessage(e);
+            LoginBean.setErrorMessage(e);
         }
 
 
@@ -92,22 +92,22 @@ public class LoginBean extends BasePageBean{
         }
     }
     public boolean isLogged(){
-        
+
         return logger.isLogged();
     }
-    
-    public void logout() throws IOException {
-    	if (isLogged()) {
-    		FacesContext.getCurrentInstance().getExternalContext().redirect("/login.xhtml");
-    		SecurityUtils.getSubject().logout();
-    	}
-    }
-    
-    protected static void setErrorMessage(Exception e) {
-		String message = e.getMessage();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
-	}
 
-    
+    public void logout() throws IOException {
+        if (isLogged()) {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/login.xhtml");
+            SecurityUtils.getSubject().logout();
+        }
+    }
+
+    protected static void setErrorMessage(Exception e) {
+        String message = e.getMessage();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+    }
+
+
 
 }

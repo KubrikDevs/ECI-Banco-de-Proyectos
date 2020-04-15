@@ -8,6 +8,7 @@ import edu.eci.cvds.services.ServiciosBancoDeProyectos;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.mybatis.guice.transactional.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServiciosBancoDeProyectosImpl implements ServiciosBancoDeProyectos {
@@ -15,23 +16,13 @@ public class ServiciosBancoDeProyectosImpl implements ServiciosBancoDeProyectos 
 
 	@Inject
 	private UsuarioDAO usuarioDAO;
+
+	@Inject
 	private IniciativaDAO iniciativaDAO;
 
 
 	// Usuarios
 
-	@Override
-	@Transactional
-	public void registrarUsuario(Usuario usuario) throws ExcepcionBancoDeProyectos {
-		if (usuario == null)
-			throw new ExcepcionBancoDeProyectos("El correo no puede ser nulo");
-
-		try {
-			usuarioDAO.insertarUsuario(usuario);
-		} catch (PersistenceException e) {
-			throw new ExcepcionBancoDeProyectos("Error al registrar el correo " + usuario.getCorreo(), e);
-		}
-	}
 
 	@Override
 	public Usuario consultarUsuario(String correo) throws ExcepcionBancoDeProyectos {
@@ -49,21 +40,19 @@ public class ServiciosBancoDeProyectosImpl implements ServiciosBancoDeProyectos 
 		return usuarioDAO.consultarUsuarios();
 	}
 
+
 	@Override
 	public void updateUsuario(String correo, String rol) throws Exception {
 		usuarioDAO.updateUsuario(correo, rol);
 	}
 
+	//Iniciativa
+
 	@Override
-	public Iniciativa consultarIniciativa(Integer id) throws ExcepcionBancoDeProyectos {
-		if (id < 0)
-			throw new ExcepcionBancoDeProyectos("El numero de ID inválido");
-		try {
-			return iniciativaDAO.consultarIniciativa(id);
-		} catch (PersistenceException e) {
-			throw new ExcepcionBancoDeProyectos("Error al consultar iniciativa" + id, e);
-		}
+	public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException{
+		return iniciativaDAO.consultarIniciativas();
 	}
+
 
 	@Override
 	public void registrarIniciativa(Iniciativa iniciativa) throws ExcepcionBancoDeProyectos {
@@ -76,4 +65,17 @@ public class ServiciosBancoDeProyectosImpl implements ServiciosBancoDeProyectos 
 			throw new ExcepcionBancoDeProyectos("Error al registrar iniciativa " + iniciativa.getId(), e);
 		}
 	}
+
+	@Override
+	public void updateIniciativa(int id) throws ExcepcionBancoDeProyectos {
+		iniciativaDAO.updateIniciativa(id);
+
+	}
+
+	@Override
+	public void consultarPalabrasClaves() throws ExcepcionBancoDeProyectos {
+		iniciativaDAO.consultarPalabrasClaves();
+
+	}
+
 }

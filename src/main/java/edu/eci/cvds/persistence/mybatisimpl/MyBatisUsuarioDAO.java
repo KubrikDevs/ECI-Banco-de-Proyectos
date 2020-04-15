@@ -13,15 +13,6 @@ public class MyBatisUsuarioDAO implements UsuarioDAO {
 	@Inject
 	private UsuarioMapper usuarioMapper;
 
-	@Override
-	public void insertarUsuario(Usuario usuario) throws PersistenceException {
-		try {
-			usuarioMapper.insertarUsuario(usuario);
-		} catch (org.apache.ibatis.exceptions.PersistenceException e) {
-			throw new PersistenceException("Error (P) al registrar el usuario " + usuario.toString(), e);
-		}
-
-	}
 
 	@Override
 	public Usuario consultarUsuario(String correo) throws PersistenceException {

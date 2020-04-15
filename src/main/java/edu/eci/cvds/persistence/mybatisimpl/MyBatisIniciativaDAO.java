@@ -8,6 +8,8 @@ import edu.eci.cvds.persistence.mybatisimpl.mappers.UsuarioMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.exceptions.PersistenceException;
 
+import java.util.ArrayList;
+
 public class MyBatisIniciativaDAO implements IniciativaDAO {
     @Inject
     private IniciativaMapper iniciativaMapper;
@@ -22,11 +24,18 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
     }
 
     @Override
-    public Iniciativa consultarIniciativa(Integer id) throws PersistenceException {
-        try {
-            return iniciativaMapper.consultarIniciativa(id);
-        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
-            throw new PersistenceException("Error (P) al consultar iniciativa: " + id, e);
-        }
+    public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException {
+        return iniciativaMapper.buscarIniciativas();
+    }
+
+    @Override
+    public void updateIniciativa(int id) throws PersistenceException {
+        iniciativaMapper.updateIniciativa(id);
+    }
+
+
+    @Override
+    public ArrayList<String> consultarPalabrasClaves() throws PersistenceException {
+        return iniciativaMapper.consultarPalabrasClaves();
     }
 }

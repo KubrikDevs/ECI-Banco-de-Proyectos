@@ -32,36 +32,28 @@ public class Iniciativa {
         this.integrantesDelProyecto = integrantesDelProyecto;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    public EstadoIniciativa getEstado() {
+        return estado;
+    }
+
     public void setEstado(EstadoIniciativa estado) {
         this.estado = estado;
-    }
-
-    public void setNumVotos(Integer numVotos) {
-        this.votos = votos;
-    }
-
-    public void setProponente(Usuario proponente) {
-        this.proponente = proponente;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
     }
 
     public ArrayList<Usuario> getVotos() {
@@ -88,12 +80,36 @@ public class Iniciativa {
         this.interesados = interesados;
     }
 
-    public ArrayList<Usuario> getIntegrantesDelProyecto() {
-        return integrantesDelProyecto;
+    public Usuario getProponente() {
+        return proponente;
     }
 
-    public void setIntegrantesDelProyecto(ArrayList<Usuario> integrantesDelProyecto) {
-        this.integrantesDelProyecto = integrantesDelProyecto;
+    public void setProponente(Usuario proponente) {
+        this.proponente = proponente;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public String getDescripcion() {
@@ -104,36 +120,12 @@ public class Iniciativa {
         this.descripcion = descripcion;
     }
 
-    public Integer getId() {
-        return id;
+    public ArrayList<Usuario> getIntegrantesDelProyecto() {
+        return integrantesDelProyecto;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public EstadoIniciativa getEstado() {
-        return estado;
-    }
-
-    public ArrayList<Usuario> getNumVotos() {
-        return votos;
-    }
-
-    public Usuario getProponente() {
-        return proponente;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public Date getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public Date getFechaFin() {
-        return fechaFin;
+    public void setIntegrantesDelProyecto(ArrayList<Usuario> integrantesDelProyecto) {
+        this.integrantesDelProyecto = integrantesDelProyecto;
     }
 
     @Override
@@ -141,12 +133,17 @@ public class Iniciativa {
         return "Iniciativa{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", estado='" + estado + '\'' +
-                ", numVotos=" + votos +
+                ", estado=" + estado +
+                ", votos=" + votos +
+                ", palabrasClave=" + palabrasClave +
+                ", interesados=" + interesados +
                 ", proponente=" + proponente +
                 ", area='" + area + '\'' +
                 ", fechaCreacion=" + fechaCreacion +
                 ", fechaFin=" + fechaFin +
+                ", descripcion='" + descripcion + '\'' +
+                ", integrantesDelProyecto=" + integrantesDelProyecto +
                 '}';
     }
+
 }

@@ -3,12 +3,13 @@ package edu.eci.cvds.services;
 import edu.eci.cvds.entities.Iniciativa;
 import edu.eci.cvds.entities.Usuario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public interface ServiciosBancoDeProyectos {
 
-	public abstract void registrarUsuario(Usuario u) throws ExcepcionBancoDeProyectos;
+	//Usuario
 
 	public abstract Usuario consultarUsuario(String correo) throws ExcepcionBancoDeProyectos;
 
@@ -16,8 +17,14 @@ public interface ServiciosBancoDeProyectos {
 
 	public abstract void updateUsuario(String correo,String rol) throws Exception;
 
-	public abstract Iniciativa  consultarIniciativa(Integer id) throws ExcepcionBancoDeProyectos;
+	//Iniciativa
+
+	public abstract ArrayList<Iniciativa> consultarIniciativas() throws ExcepcionBancoDeProyectos;
+
+	public abstract void updateIniciativa(int id) throws ExcepcionBancoDeProyectos;
 
 	public abstract  void registrarIniciativa(Iniciativa i) throws  ExcepcionBancoDeProyectos;
 
-}
+	public abstract  void consultarPalabrasClaves() throws ExcepcionBancoDeProyectos;
+
+	}

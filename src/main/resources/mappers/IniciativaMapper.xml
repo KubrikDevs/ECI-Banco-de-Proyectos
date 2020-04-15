@@ -3,7 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.IniciativaMapper">
+
     <insert id="insertarIniciativa" parameterType="map">
         INSERT INTO INICIATIVA
         VALUES (
@@ -38,18 +40,81 @@
         i.fechaFin,
         i.descripcion,
         i.integrantesDelProyecto
-        FROM USUARIOS AS i
+        FROM INICIATIVAS AS i
         WHERE u.id=#{id}
     </select>
 
+    <select parameterType="map" id="consultarPalabrasClaves" resultMap="IniciativaResult" >
+        SELECT
+        palabrasClave,
+        FROM INICIATIVAS;
+    </select>
 
-    <resultMap type='Iniciativa' id='IniciativaResult'>
+    <update parameterType="map" id="updateIniciativa">
+        UPDATE iniciativas SET
+        #{iniciativa.nombre},
+        #{iniciativa.estado},
+        #{iniciativa.votos},
+        #{iniciativa.palabrasClave},
+        #{iniciativa.interesados},
+        #{iniciativa.proponente},
+        #{iniciativa.area},
+        #{iniciativa.fechaCreacion},
+        #{iniciativa.fechaFin}
+        #{iniciativa.descripcion}
+        #{iniciativa.integrantesDelProyecto}
+        WHERE id=#{id};
+    </update>
+
+
+    <resultMap type='Iniciativa' id='IniciativaResultMap'>
         <id property='id' column='id' />
         <result property='nombre' column='nombre' />
-        <result property='estado' column='estado' />
-        <result property="usuarioProponente" column="usuarioProponente" />
+        <result property="estado" column="estado" typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
+        <collection property='votos' ofType="Usuario" resultMap="usuarioResultMap"/>
+        <collection property='palabrasClave' ofType="String" resultMap="palabrasClaveResultMap" />
+        <collection property='interesados' ofType="Usuario" resultMap="usuarioResult" />
+        <result property="proponente" column="proponente" />
+        <association property='proponente' javaType="Usuario" resultMap='resultMap="edu.eci.cvds.persistence.mybatisimpl.mapper.UsuarioMapper.usuarioResultMap'/>
         <result property='area' column='area' />
         <result property='fechaCreacion' column='fechaCreacion' />
         <result property='fechaFin' column='fechaFin' />
+        <result property='descripcion' column='descripcion' />
+        <collection property='integrantesDelProyecto' ofType="Usuario" resultMap="usuarioResultMap" />
+    </ resultMap>
+
+    <resultMap type='String' id='palabrasClaveResultMap'>
+        id property='palabrasClave' column='palabrasClave' />
     </resultMap>
+
+    <resultMap type='Usuario' id='usuarioResultMap'>
+        id property='correo' column='correo' />
+        <result property='contraseña' column='contraseña' />
+        <result property='nombre' column='nombre' />
+        <result property='rol' column='rol' typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
+        <result property="estado" column="estado" typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
+    </resultMap>
+
+
+
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
