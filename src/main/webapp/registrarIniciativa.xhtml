@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:shiro="http://shiro.apache.org/tags"
+
+lang="es">
+
+<h:head>
+
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+  <meta name="description" content=""></meta>
+  <meta name="author" content=""></meta>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+  <title>Registrar Iniciativa - ECI</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'/>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'/>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet"/>
+  <h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
+  <h:outputScript target="body" library="algaworks" name="javascripts/app.js" />
+
+</h:head>
+
+<h:body>
+  <shiro:notAuthenticated><script>location.href="/index.xhtml"</script></shiro:notAuthenticated>
+  <shiro:hasRole name="U"><script>location.href="/index.xhtml"</script></shiro:hasRole>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="http://www.escuelaing.edu.co"><img class="logoEscuela" src="img/logoEscuela.jpg" alt="Logo Escuela" height="150" width="300"/></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/index.xhtml">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/visualizarReservas.xhtml">Visualizar Iniciativas</a>
+          </li>
+          <shiro:hasRole name="Admin"><li class="nav-item">
+            <a class="nav-link" href="/registrarIniciativa.xhtml">Administrar iniciativas</a>
+          </li></shiro:hasRole>
+          <li class="nav-item">
+            <h:form name="sentMessage" id="algoForm" class="nav-item">
+                <p:commandLink id="superLogout" ajax="true" action="#{LoginBean.logout}" style="color:white;font-size: 12px;font-weight: 800;">
+                  <h:outputText value="LOGOUT"/>
+                </p:commandLink>
+            </h:form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/background.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Registrar iniciativas ECI</h1>
+            <span class="subheading">Proyecto CVDS 2020</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+          <h:form name="sentMessage" id="contactForm">
+            <p:outputLabel value="Registra una nueva iniciativa"/>
+            <p:messages id="messages" showDetail="true" closable="true">
+              <p:autoUpdate />
+            </p:messages>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Nombre</label>
+              <p:inputText type="text" class="form-control" placeholder="Nombre" id="nombre" data-validation-required-message="Ingresa el nombre de la iniciativa" binding="#{superNombre}"/>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label for="dateInicio">Hora inicio</label>
+              <p:datePicker id="dateInicio" timeOnly="true" pattern="HH:mm" placeholder="Hora Inicio" binding="#{superFechaInicio}"/>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label for="dateFin">Hora Fin</label>
+              <p:datePicker id="dateFin" timeOnly="true" pattern="HH:mm" placeholder="Hora Fin" binding="#{superFechaFin}"/>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <h5>Descripcion</h5>
+              <label for="descript">Descripcion</label>
+              <p:inputTextarea id="descript" rows="5" cols="30" counter="display" maxlength="360" counterTemplate="{0} characters remaining." autoResize="false" binding="#{superDescripcion}"/>
+              <h:outputText id="display" />
+            </div>
+          </div>
+
+          <p:outputLabel for="tipoEstado" value="Estado:" />
+          <p:selectOneRadio id="tipoEstado" binding="#{superEstado1}" unselectable="true">
+              <f:selectItem itemLabel="En espera de revisión" itemValue="1" />
+              <f:selectItem itemLabel="En revisión" itemValue="2" />
+              <f:selectItem itemLabel="Proyecto" itemValue="3" />
+              <f:selectItem itemLabel="Solucionado" itemValue="4" />
+          </p:selectOneRadio>
+
+          <div class="form-group">
+            <p:commandButton actionListener="#{RegistrarIniciativaBean.registrarIniciativa(superEstado1.value, superNombre.value, superUbicacion.value,superCapacidad.value,superFechaInicio.value,superFechaFin.value,superDescripcion.value)}" value="Registrar"></p:commandButton>
+          </div>
+        </h:form>
+        <br/>
+        <hr/>
+        <br/>
+        <h:form name="sentMessage" id="acutalizarIniciativa">
+        <p:outputLabel value="Actualiza el estado de una iniciativa"/>
+        <p:messages id="messages" showDetail="true" closable="true">
+          <p:autoUpdate />
+        </p:messages>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <h:outputText value="Coloca un ID"/>
+              <label>ID</label>
+              <p:inputText placeholder="ID" id="id" data-validation-required-message="Ingresa el ID de la iniciativa" binding="#{superID}" value="#{RegistrarIniciativaBean.idActualEstado}">
+              <p:ajax event="keyup" update="itemRentadoRetarded" />
+              </p:inputText>
+            </div>
+          </div>
+          <p:dataTable id="itemRentadoRetarded" var="iniciativa" value="#{RegistrarIniciativaBean.consultarIniciativa(superID.value)}" style="text-align: center;">
+              <f:facet name="header">
+                    Iniciativa seleccionada
+                </f:facet>
+                <p:column headerText="Estado">
+                    <h:outputText value="#{iniciativas.estado}" />
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{iniciativas.nombre}" />
+                </p:column>
+
+
+            </p:dataTable>
+          <p:outputLabel for="tipoEstado" value="Estado de la  Iniciativa:" />
+          <p:selectOneRadio id="tipoEstado" binding="#{superEstado2}" unselectable="true" required="true">
+              <f:selectItem itemLabel="En espera de revisión" itemValue="1" />
+              <f:selectItem itemLabel="En revisión" itemValue="2" />
+              <f:selectItem itemLabel="Proyecto" itemValue="3" />
+              <f:selectItem itemLabel="Solucionado" itemValue="4" />
+          </p:selectOneRadio>
+
+          <div class="form-group">
+            <p:commandButton actionListener="#{RegistrarIniciativaBean.actualizarEstadoIniciativa(superID.value, superEstado2.value)}" value="Registrar" update="@form"></p:commandButton>
+          </div>
+          <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
+        <p:dataTable id="itemRentadoRetardedchas" var="iniciativa" value="#{RegistrarIniciativaBean.consultarIniciativas()}" selectionMode="single" selection="#{RegistrarIniciativaBean.idActualEstado}" rowKey="#{iniciativa}"
+                         paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rows="10" style="text-align: center;">
+              <f:facet name="header">
+                    Iniciativas existentes
+                </f:facet>
+                <p:ajax event="rowSelect" listener="#{RegistrarIniciativaBean.onRowSelect}" update="@form" oncomplete="PF('eventDialog').hide();"/>
+                <p:column headerText="ID Iniciativa">
+                    <h:outputText value="#{iniciativas.id}" />
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{iniciativas.nombre}" />
+                </p:column>
+
+                <p:column headerText="Estado">
+                    <h:outputText value="#{iniciativas.ubicacion}" />
+                </p:column>
+
+            </p:dataTable>
+    </p:dialog>    
+        </h:form>
+        <p:commandButton oncomplete="PF('eventDialog').show();" value="Ver iniciativas existentes"/>
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="https://github.com/KubrikDevs/ECI-Banco-de-Proyectos">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright Escuela Colombiana de Ingeniería Julio Garavito</p>
+          <p class="copyright text-muted">Equipo conformado por:</p>
+          <p class="copyright text-muted">Juan Ortiz - Davor Cortes - Laura Bernal - Juan Diaz</p>  
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <h:outputScript name = "bootstrap-3.3.7-dist/js/bootstrap.min.js" />
+  <h:outputScript name = "js/template.js" />
+</h:body>
+
+</html>
