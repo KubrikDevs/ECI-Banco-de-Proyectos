@@ -5,6 +5,11 @@ import javax.servlet.ServletContext;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+
+import edu.eci.cvds.services.ServiciosIniciativa;
+import edu.eci.cvds.services.ServiciosUsuario;
+import edu.eci.cvds.services.impl.ServiciosIniciativaImpl;
+import edu.eci.cvds.services.impl.ServiciosUsuarioImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 import com.google.inject.Guice;
@@ -14,8 +19,6 @@ import edu.eci.cvds.authentication.SessionLogger;
 import edu.eci.cvds.authentication.ShiroSession;
 import edu.eci.cvds.persistence.*;
 import edu.eci.cvds.persistence.mybatisimpl.*;
-import edu.eci.cvds.services.ServiciosBancoDeProyectos;
-import edu.eci.cvds.services.impl.ServiciosBancoDeProyectosImpl;
 
 
 public class GuiceContextListener implements ServletContextListener {
@@ -33,8 +36,17 @@ public class GuiceContextListener implements ServletContextListener {
 				setEnvironmentId("development");
 				setClassPathResource("mybatis-config.xml");
 				// TODO Add service class associated to Stub implementation
-				bind(ServiciosBancoDeProyectos.class).to(ServiciosBancoDeProyectosImpl.class);
+
+				//Services
+				bind(ServiciosIniciativa.class).to(ServiciosIniciativaImpl.class);
+				bind(ServiciosUsuario.class).to(ServiciosUsuarioImpl.class);
+				bind(ServiciosIniciativa.class).to(ServiciosIniciativaImpl.class);
+
+				//Persistence
 				bind(UsuarioDAO.class).to(MyBatisUsuarioDAO.class);
+				bind(IniciativaDAO.class).to(MyBatisIniciativaDAO.class);
+
+				//Authentication
 				bind(SessionLogger.class).to(ShiroSession.class);
 
 			}
