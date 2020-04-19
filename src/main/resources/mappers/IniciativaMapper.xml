@@ -29,6 +29,20 @@
         WHERE i.proponente=u.correo and p.iniciativa = i.id
     </select>
 
+    <select id="consultarIniciativasPorTag" resultMap="IniciativaResult" parameterType="map">
+        SELECT
+            i.id,
+            i.nombre as nombreI,
+            i.area,
+            i.descripcion,
+            i.estado,
+            i.fecha_creacion,
+            u.correo,
+            u.nombre
+        FROM INICIATIVAS as i, USUARIOS as u, PALABRAS_CLAVE as p
+        WHERE i.proponente=u.correo and p.iniciativa = i.id and p.palabra_clave=#{tag}
+    </select>
+
     <resultMap id="IniciativaResult" type="Iniciativa">
         <id property="id" column="id"/>
         <result property="nombre" column="nombreI"/>
