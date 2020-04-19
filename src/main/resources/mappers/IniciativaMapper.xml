@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.IniciativaMapper">
+
+    <insert id="registrarIniciativa" parameterType="Iniciativa">
+        INSERT INTO INICIATIVAS(id, nombre, area, descripcion, proponente, estado, fecha_creacion)
+        VALUES (#{i.id}, #{i.nombre}, #{i.area}, #{i.descripcion}, #{i.proponente.correo}, #{i.estado}, #{i.fechaDeInicio})
+    </insert>
+
+    <update id="modificarEstadoIniciativa">
+        UPDATE INICIATIVAS SET estado=#{estado} WHERE id=#{id}
+    </update>
+
+    <select id="consultarIniciativas" resultMap="IniciativaResult" parameterType="map">
+        SELECT
+        i.id,
+        i.nombre as nombreI,
+        i.area,
+        i.descripcion,
+        i.estado,
+        i.fecha_creacion,
+        p.palabra_clave as pclave,
+        u.correo,
+        u.nombre
+        FROM INICIATIVAS as i, USUARIOS as u, PALABRAS_CLAVE as p
+        WHERE i.proponente=u.correo and p.iniciativa = i.id
+    </select>
+
+    <select id="consultarIniciativasPorTag" resultMap="IniciativaResult" parameterType="map">
+        SELECT
+            i.id,
+            i.nombre as nombreI,
+            i.area,
+            i.descripcion,
+            i.estado,
+            i.fecha_creacion,
+            u.correo,
+            u.nombre
+        FROM INICIATIVAS as i, USUARIOS as u, PALABRAS_CLAVE as p
+        WHERE i.proponente=u.correo and p.iniciativa = i.id and p.palabra_clave=#{tag}
+    </select>
+
+    <resultMap id="IniciativaResult" type="Iniciativa">
+        <id property="id" column="id"/>
+        <result property="nombre" column="nombreI"/>
+        <result property="area" column="area"/>
+        <result property="descripcion" column="descripcion"/>
+        <result property="estado" column="estadoI" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+        <result property="fechaDeInicio" column="fecha_creacion"/>
+        <association property="proponente" javaType="Usuario" resultMap="edu.eci.cvds.persistence.mybatisimpl.mappers.UsuarioMapper.UsuarioResult"></association>
+        <collection property="palabrasClave" ofType="java.lang.String" javaType="List">
+            <result column="pclave"/>
+        </collection>
+    </resultMap>
+
+</mapper>
