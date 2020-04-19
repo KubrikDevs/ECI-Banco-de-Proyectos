@@ -40,6 +40,9 @@ public class GuiceContextListener implements ServletContextListener {
 				bind(ServiciosUsuario.class).to(ServiciosUsuarioImpl.class);
 				bind(ServiciosIniciativa.class).to(ServiciosIniciativaImpl.class);
 
+				//Persistence
+				bind(UsuarioDAO.class).to(MyBatisUsuarioDAO.class);
+				bind(IniciativaDAO.class).to(MyBatisIniciativaDAO.class);
 
 				//Authentication
 				bind(SessionLogger.class).to(ShiroSession.class);
