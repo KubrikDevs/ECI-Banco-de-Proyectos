@@ -48,4 +48,13 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
             throw new PersistenceException("Error al consultar iniciativas ", e);
         }
     }
+
+    @Override
+    public List<Iniciativa> cargarIniciativas(String tag) throws edu.eci.cvds.persistence.PersistenceException {
+        try{
+            return iniciativaMapper.consultarIniciativasPorTag(tag);
+        } catch (PersistenceException e){
+            throw new edu.eci.cvds.persistence.PersistenceException("Error al consultar iniciativas", e);
+        }
+    }
 }

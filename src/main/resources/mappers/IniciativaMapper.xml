@@ -11,7 +11,7 @@
     </insert>
 
     <update id="modificarEstadoIniciativa">
-        UPDATE INICIATIVAS SET estado=#{estado} WHERE id=#{id}
+        UPDATE INICIATIVAS SET estado=#{estado, typeHandler=org.apache.ibatis.type.EnumTypeHandler} WHERE id=#{id}
     </update>
 
     <select id="consultarIniciativas" resultMap="IniciativaResult" parameterType="map">
@@ -20,13 +20,26 @@
         i.nombre as nombreI,
         i.area,
         i.descripcion,
-        i.estado,
+        i.estado as estadoI,
         i.fecha_creacion,
-        p.palabra_clave as pclave,
         u.correo,
         u.nombre
-        FROM INICIATIVAS as i, USUARIOS as u, PALABRAS_CLAVE as p
-        WHERE i.proponente=u.correo and p.iniciativa = i.id
+        FROM INICIATIVAS as i, USUARIOS as u
+        WHERE i.proponente=u.correo
+    </select>
+
+    <select id="consultarIniciativa" resultMap="IniciativaResult" parameterType="map">
+        SELECT
+            i.id,
+            i.nombre as nombreI,
+            i.area,
+            i.descripcion,
+            i.estado as estadoI,
+            i.fecha_creacion,
+            u.correo,
+            u.nombre
+        FROM INICIATIVAS as i, USUARIOS as u
+        WHERE i.proponente=u.correo and i.id=#{id}
     </select>
 
     <select id="consultarIniciativasPorTag" resultMap="IniciativaResult" parameterType="map">
@@ -35,7 +48,7 @@
             i.nombre as nombreI,
             i.area,
             i.descripcion,
-            i.estado,
+            i.estado as estadoI,
             i.fecha_creacion,
             u.correo,
             u.nombre
@@ -44,6 +57,16 @@
     </select>
 
     <resultMap id="IniciativaResult" type="Iniciativa">
+        <id property="id" column="id"/>
+        <result property="nombre" column="nombreI"/>
+        <result property="area" column="area"/>
+        <result property="descripcion" column="descripcion"/>
+        <result property="estado" column="estadoI" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+        <result property="fechaDeInicio" column="fecha_creacion"/>
+        <association property="proponente" javaType="Usuario" resultMap="edu.eci.cvds.persistence.mybatisimpl.mappers.UsuarioMapper.UsuarioResult"></association>
+    </resultMap>
+
+    <resultMap id="IniciativaPalabrasClaveResult" type="Iniciativa">
         <id property="id" column="id"/>
         <result property="nombre" column="nombreI"/>
         <result property="area" column="area"/>

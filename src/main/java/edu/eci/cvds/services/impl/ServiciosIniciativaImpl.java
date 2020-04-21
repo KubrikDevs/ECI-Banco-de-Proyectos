@@ -54,4 +54,13 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
         }
 
     }
+
+    @Override
+    public List<Iniciativa> buscarIniciativasPorTag(String tag) throws ExcepcionBancoDeProyectos {
+        try{
+            return iniciativaDAO.cargarIniciativas(tag);
+        } catch (PersistenceException e){
+            throw new ExcepcionBancoDeProyectos("Error de Busqueda"+e.getLocalizedMessage(), e);
+        }
+    }
 }
