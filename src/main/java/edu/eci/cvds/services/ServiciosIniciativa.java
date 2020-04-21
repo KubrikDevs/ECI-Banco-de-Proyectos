@@ -17,4 +17,6 @@ public interface ServiciosIniciativa {
     Iniciativa buscarIniciativa(int id) throws ExcepcionBancoDeProyectos;
 
     List<Iniciativa> buscarIniciativas() throws ExcepcionBancoDeProyectos;
+
+    List<Iniciativa> buscarIniciativasPorTag(String tag) throws  ExcepcionBancoDeProyectos;
 }

@@ -19,4 +19,6 @@ public interface IniciativaDAO {
 
     List<Iniciativa> cargarIniciativas() throws PersistenceException;
 
+    List<Iniciativa> cargarIniciativas(String tag) throws PersistenceException;
+
 }
