@@ -5,13 +5,24 @@
 
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.UsuarioMapper">
     <select resultMap="UsuarioResult" id="consultarUsuarios" parameterType="map">
-        SELECT * FROM USUARIOS
+        SELECT
+        u.nombre,
+        u.correo,
+        u.rol,
+        u.estado
+        FROM USUARIOS as u
     </select>
-    <select id="consultarUsuario" resultMap="UsuarioResutl" parameterType="map">
-        SELECT * FROM USUARIOS WHERE CORREO=#{correo}
+    <select id="consultarUsuario" resultMap="UsuarioResult" parameterType="map">
+        SELECT
+            u.nombre,
+            u.correo,
+            u.rol,
+            u.estado
+        FROM USUARIOS as u
+        WHERE u.correo=#{correo}
     </select>
     <update id="modificarRolUsuario" >
-        UPDATE USUARIOS SET ROL=#{rol} WHERE CORREO=#{correo}
+        UPDATE USUARIOS SET ROL=#{rol, typeHandler=org.apache.ibatis.type.EnumTypeHandler} WHERE CORREO=#{correo}
     </update>
 
     <resultMap type='Usuario' id='UsuarioResult'>

@@ -1,6 +1,7 @@
 package edu.eci.cvds.entities;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Iniciativa {
@@ -19,6 +20,21 @@ public class Iniciativa {
 
     public Iniciativa(){}
 
+    public Iniciativa(int id, String nombre, String area, Usuario proponente, String descripcion, EstadoIniciativa estado, Date fechaDeInicio){
+        this.id = id;
+        this.nombre = nombre;
+        this.area = area;
+        this.proponente = proponente;
+        this.descripcion = descripcion;
+        this.estado = estado;
+        this.fechaDeInicio = fechaDeInicio;
+        this.fechaDeFin = fechaDeInicio;
+        this.interesados = new ArrayList<>();
+        this.votos = new ArrayList<>();
+        this.palabrasClave = new ArrayList<>();
+
+    }
+
     public Iniciativa(int id, String nombre, String area, Usuario proponente, String descripcion, EstadoIniciativa estado, Date fechaDeInicio, Date fechaDeFin, List<String> palabrasClave){
         this.id = id;
         this.nombre = nombre;
@@ -29,6 +45,8 @@ public class Iniciativa {
         this.fechaDeInicio = fechaDeInicio;
         this.fechaDeFin = fechaDeFin;
         this.palabrasClave = palabrasClave;
+        this.interesados = new ArrayList<>();
+        this.votos = new ArrayList<>();
 
     }
 
@@ -126,14 +144,11 @@ public class Iniciativa {
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", area='" + area + '\'' +
-                ", proponente=" + proponente.toString() +
+                ", proponente=" + proponente.getCorreo()+
                 ", descripcion='" + descripcion + '\'' +
                 ", estado=" + estado.name() +
-                ", fechaDeInicio=" + fechaDeInicio.toString() +
-                ", fechaDeFin=" + fechaDeFin.toString() +
-                ", palabrasClave=" + palabrasClave.toString() +
-                ", votos=" + votos.toString() +
-                ", interesados=" + interesados.toString() +
+                ", fechaDeInicio=" + fechaDeInicio+
+                ", fechaDeFin=" + fechaDeFin + +
                 '}';
     }
 }

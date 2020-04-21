@@ -2,6 +2,7 @@ package edu.eci.cvds.persistence.mybatisimpl.mappers;
 
 import edu.eci.cvds.entities.EstadoIniciativa;
 import edu.eci.cvds.entities.Iniciativa;
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.guice.transactional.Transactional;
 
 import java.util.List;
@@ -9,12 +10,12 @@ import java.util.List;
 public interface IniciativaMapper {
 
     @Transactional
-    void registrarIniciativa(Iniciativa i);
+    void registrarIniciativa(@Param("i") Iniciativa i);
 
     @Transactional
-    void modificarEstadoIniciativa(int id, EstadoIniciativa estado);
+    void modificarEstadoIniciativa(@Param("id") int id, @Param("estado") EstadoIniciativa estado);
 
-    Iniciativa consultarIniciativa(int id);
+    Iniciativa consultarIniciativa(@Param("id") int id);
 
     List<Iniciativa> consultarIniciativas();
 

@@ -1,11 +1,11 @@
 create table if not exists usuarios
 (
-    nombre     varchar(50)  not null,
+    nombre     varchar(50)  ,
     correo     varchar(150) not null
         constraint usuarios_pk
             primary key,
-    contraseña varchar(50)  not null,
-    estado     varchar(10)  not null,
+    contraseña varchar(50)  ,
+    estado     varchar(10)  ,
     rol        varchar(15)
 );
 
@@ -21,7 +21,7 @@ create table if not exists iniciativas
         constraint iniciativas_usuarios
             references usuarios,
     fecha_creacion     date         not null,
-    fecha_finalizacion date         not null,
+    fecha_finalizacion date,
     descripcion        varchar(360) not null
 );
 
@@ -89,3 +89,7 @@ create table if not exists integrantes_proyecto
         constraint integrantes_proyecto_iniciativas
             references iniciativas
 );
+
+insert into usuarios values ('admin', 'admin@gmail.com', 'admin', 'ACTIVO', 'ADMINISTRADOR');
+insert into usuarios values ('test', 'test@gmail.com', 'test', 'ACTIVO', 'PUBLICO');
+insert into iniciativas(id, nombre, area, estado, proponente, fecha_creacion, descripcion) values ('0', 'Prueba', 'Prueba', 'ESPERA', 'test@gmail.com', '2020-4-19', 'Iniciativa de prueba');
