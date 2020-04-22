@@ -4,32 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.UsuarioMapper">
-
-    <select parameterType="map" id="consultarUsuario" resultMap="UsuarioResult" >
-        SELECT    
-        u.correo,
-        u.contraseña,
+    <select resultMap="UsuarioResult" id="consultarUsuarios" parameterType="map">
+        SELECT
         u.nombre,
+        u.correo,
         u.rol,
         u.estado
-        FROM USUARIOS AS u 
+        FROM USUARIOS as u
+    </select>
+    <select id="consultarUsuario" resultMap="UsuarioResult" parameterType="map">
+        SELECT
+        u.nombre,
+        u.correo,
+        u.rol,
+        u.estado
+        FROM USUARIOS as u
         WHERE u.correo=#{correo}
     </select>
-
-    <select id="consultarUsuarios" parameterType="Usuario" resultMap="UsuarioResult">
-        SELECT *
-        FROM USUARIOS
-    </select>
-
-    <update parameterType="map" id="updateUsuario">
-        UPDATE USUARIOS
-        SET rol=#{rol}
-        WHERE correo=#{correo};
+    <update id="modificarRolUsuario" >
+        UPDATE USUARIOS SET ROL=#{rol, typeHandler=org.apache.ibatis.type.EnumTypeHandler} WHERE CORREO=#{correo}
     </update>
-
-    <select parameterType="map" id="getRolUsuario" resultMap="UsuarioResult">
-        select u.Rol FROM USUARIOS as u WHERE u.correo=#{correo};
-    </select>
 
     <resultMap type='Usuario' id='UsuarioResult'>
         <id property='correo' column='correo' />
@@ -38,4 +32,5 @@
         <result property='rol' column='rol' typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
         <result property="estado" column="estado" typeHandler="org.apache.ibatis.type.EnumTypeHandler" />
     </resultMap>
+
 </mapper>

@@ -13,33 +13,51 @@ public class MyBatisUsuarioDAO implements UsuarioDAO {
 	@Inject
 	private UsuarioMapper usuarioMapper;
 
-
+	/**
+	 * Actulizar el Rol de un Usuario
+	 * @param correo Identificador de un Usuario
+	 * @param r Tipo de Rol
+	 * @throws PersistenceException
+	 */
 	@Override
-	public Usuario consultarUsuario(String correo) throws PersistenceException {
+	public void modificarUsuario(String correo, Rol r) throws PersistenceException {
+		try {
+			usuarioMapper.modificarRolUsuario(correo, r);
+		} catch (org.apache.ibatis.exceptions.PersistenceException e) {
+			throw new PersistenceException("Error al modificar el usuario:" + correo, e);
+		}
+
+	}
+
+	/**
+	 * Busqueda de usuarios por su correo
+	 * @param correo Identificador de un Usuario
+	 * @return
+	 * @throws PersistenceException
+	 */
+	@Override
+	public Usuario cargarUsuario(String correo) throws PersistenceException {
 		try {
 			return usuarioMapper.consultarUsuario(correo);
 		} catch (org.apache.ibatis.exceptions.PersistenceException e) {
-			throw new PersistenceException("Error (P) al consultar el usuario: " + correo, e);
+			throw new PersistenceException("Error al consultar el usuario: " + correo, e);
 		}
 
 	}
 
+	/**
+	 * Busqueda de todos de los Usuarios
+	 * @return Listado de usuarios
+	 * @throws PersistenceException
+	 */
 	@Override
-	public List<Usuario> consultarUsuarios() throws PersistenceException {
+	public List<Usuario> cargarUsuarios() throws PersistenceException {
 		try {
 			return usuarioMapper.consultarUsuarios();
 		} catch (org.apache.ibatis.exceptions.PersistenceException e) {
-			throw new PersistenceException("Error (P) al consultar el usuarios: ", e);
+			throw new PersistenceException("Error al consultar los usuarios", e);
 		}
-	}
 
-	@Override
-	public void updateUsuario(String correo, String rol) throws Exception {
-		try {
-			usuarioMapper.updateUsuario(correo,rol);
-		} catch (org.apache.ibatis.exceptions.PersistenceException e) {
-			throw new PersistenceException("Error en actulizacion de rol de: " + correo, e);
-		}
 	}
 
 

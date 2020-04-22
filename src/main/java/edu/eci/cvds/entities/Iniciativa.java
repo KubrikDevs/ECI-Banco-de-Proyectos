@@ -1,42 +1,60 @@
 package edu.eci.cvds.entities;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 public class Iniciativa {
-    private Integer id;
-    private String nombre;
-    private EstadoIniciativa estado;
-    private ArrayList<Usuario> votos;
-    private ArrayList<String> palabrasClave;
-    private ArrayList<Usuario> interesados;
-    private Usuario proponente;
-    private String area;
-    private Date fechaCreacion;
-    private Date fechaFin;
-    private String descripcion;
-    private ArrayList<Usuario> integrantesDelProyecto;
 
-    public Iniciativa(Integer id, String nombre, EstadoIniciativa estado, ArrayList<Usuario> votos,ArrayList<String> palabrasClave, ArrayList<Usuario> interesados,Usuario proponente, String area, Date fechaCreacion, Date fechaFin, String descripcion,ArrayList<Usuario> integrantesDelProyecto) {
+    private int id;
+    private String nombre;
+    private String area;
+    private Usuario proponente;
+    private String descripcion;
+    private EstadoIniciativa estado;
+    private Date fechaDeInicio;
+    private Date fechaDeFin;
+    private List<String> palabrasClave;
+    private List<Usuario> votos;
+    private List<Usuario> interesados;
+
+    public Iniciativa(){}
+
+    public Iniciativa(int id, String nombre, String area, Usuario proponente, String descripcion, EstadoIniciativa estado, Date fechaDeInicio){
         this.id = id;
         this.nombre = nombre;
-        this.estado = estado;
-        this.votos = votos;
-        this.palabrasClave = palabrasClave;
-        this.interesados = interesados;
-        this.proponente = proponente;
         this.area = area;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaFin = fechaFin;
+        this.proponente = proponente;
         this.descripcion = descripcion;
-        this.integrantesDelProyecto = integrantesDelProyecto;
+        this.estado = estado;
+        this.fechaDeInicio = fechaDeInicio;
+        this.fechaDeFin = fechaDeInicio;
+        this.interesados = new ArrayList<>();
+        this.votos = new ArrayList<>();
+        this.palabrasClave = new ArrayList<>();
+
     }
 
-    public Integer getId() {
+    public Iniciativa(int id, String nombre, String area, Usuario proponente, String descripcion, EstadoIniciativa estado, Date fechaDeInicio, Date fechaDeFin, List<String> palabrasClave){
+        this.id = id;
+        this.nombre = nombre;
+        this.area = area;
+        this.proponente = proponente;
+        this.descripcion = descripcion;
+        this.estado = estado;
+        this.fechaDeInicio = fechaDeInicio;
+        this.fechaDeFin = fechaDeFin;
+        this.palabrasClave = palabrasClave;
+        this.interesados = new ArrayList<>();
+        this.votos = new ArrayList<>();
+
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -48,6 +66,22 @@ public class Iniciativa {
         this.nombre = nombre;
     }
 
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public EstadoIniciativa getEstado() {
         return estado;
     }
@@ -56,27 +90,43 @@ public class Iniciativa {
         this.estado = estado;
     }
 
-    public ArrayList<Usuario> getVotos() {
-        return votos;
+    public Date getFechaDeInicio() {
+        return fechaDeInicio;
     }
 
-    public void setVotos(ArrayList<Usuario> votos) {
-        this.votos = votos;
+    public void setFechaDeInicio(Date fechaDeInicio) {
+        this.fechaDeInicio = fechaDeInicio;
     }
 
-    public ArrayList<String> getPalabrasClave() {
+    public Date getFechaDeFin() {
+        return fechaDeFin;
+    }
+
+    public void setFechaDeFin(Date fechaDeFin) {
+        this.fechaDeFin = fechaDeFin;
+    }
+
+    public List<String> getPalabrasClave() {
         return palabrasClave;
     }
 
-    public void setPalabrasClave(ArrayList<String> palabrasClave) {
+    public void setPalabrasClave(List<String> palabrasClave) {
         this.palabrasClave = palabrasClave;
     }
 
-    public ArrayList<Usuario> getInteresados() {
+    public List<Usuario> getVotos() {
+        return votos;
+    }
+
+    public void setVotos(List<Usuario> votos) {
+        this.votos = votos;
+    }
+
+    public List<Usuario> getInteresados() {
         return interesados;
     }
 
-    public void setInteresados(ArrayList<Usuario> interesados) {
+    public void setInteresados(List<Usuario> interesados) {
         this.interesados = interesados;
     }
 
@@ -88,62 +138,17 @@ public class Iniciativa {
         this.proponente = proponente;
     }
 
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public Date getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public Date getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public ArrayList<Usuario> getIntegrantesDelProyecto() {
-        return integrantesDelProyecto;
-    }
-
-    public void setIntegrantesDelProyecto(ArrayList<Usuario> integrantesDelProyecto) {
-        this.integrantesDelProyecto = integrantesDelProyecto;
-    }
-
     @Override
     public String toString() {
         return "Iniciativa{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", estado=" + estado +
-                ", votos=" + votos +
-                ", palabrasClave=" + palabrasClave +
-                ", interesados=" + interesados +
-                ", proponente=" + proponente +
                 ", area='" + area + '\'' +
-                ", fechaCreacion=" + fechaCreacion +
-                ", fechaFin=" + fechaFin +
+                ", proponente=" + proponente.getCorreo()+
                 ", descripcion='" + descripcion + '\'' +
-                ", integrantesDelProyecto=" + integrantesDelProyecto +
+                ", estado=" + estado.name() +
+                ", fechaDeInicio=" + fechaDeInicio+
+                ", fechaDeFin=" + fechaDeFin + +
                 '}';
     }
-
 }

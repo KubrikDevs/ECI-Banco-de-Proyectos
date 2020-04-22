@@ -10,11 +10,11 @@ import com.google.inject.Injector;
 public abstract class BasePageBean implements Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	private Injector injector;
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
+    private Injector injector;
 
     public Injector getInjector() {
         if (injector == null) {
