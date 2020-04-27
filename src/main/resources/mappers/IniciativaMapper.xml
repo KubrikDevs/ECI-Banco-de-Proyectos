@@ -25,7 +25,7 @@
         u.correo,
         u.nombre
         FROM INICIATIVAS as i, USUARIOS as u
-        WHERE i.proponente=u.correo
+        WHERE i.proponente = u.correo
     </select>
 
     <select id="consultarIniciativa" resultMap="IniciativaResult" parameterType="map">

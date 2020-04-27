@@ -27,6 +27,7 @@ public class ServiciosIniciativaTest {
     public ServiciosIniciativaTest(){
         serviciosIniciativa = ServiciosBancoDeProyectosFactory.getInstance().getServiciosIniciativaTesting();
         serviciosUsuario = ServiciosBancoDeProyectosFactory.getInstance().getServiciosUsuarioTesting();
+
     }
 
     /**
@@ -39,7 +40,6 @@ public class ServiciosIniciativaTest {
         Usuario proponente = serviciosUsuario.buscarUsuario("test@gmail.com");
         Iniciativa iniPrueba = new Iniciativa(1, "prueba2", "prueba", proponente,"Iniciativa de prueba", EstadoIniciativa.ESPERA, Date.valueOf("2020-04-01"));
         serviciosIniciativa.crearIniciativa(iniPrueba);
-        System.out.println(iniPrueba);
         assertTrue(true);
     }
 
@@ -66,6 +66,9 @@ public class ServiciosIniciativaTest {
 
         List<Iniciativa> inisPrueba = serviciosIniciativa.buscarIniciativas();
         assertTrue (inisPrueba !=null);
+        for(Iniciativa i: inisPrueba){
+            System.out.println(i);
+        }
     }
 
     /**

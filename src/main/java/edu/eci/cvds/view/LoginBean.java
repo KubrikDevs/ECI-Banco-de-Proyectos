@@ -6,6 +6,7 @@ import edu.eci.cvds.services.ExcepcionBancoDeProyectos;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.shiro.SecurityUtils;
@@ -18,24 +19,27 @@ import edu.eci.cvds.authentication.SessionLogger;
 
 
 @SuppressWarnings("deprecation")
-@ManagedBean(name="LoginBean")
-
+@ManagedBean(name="loginBean")
+@SessionScoped
 
 
 public class LoginBean extends BasePageBean{
 
     /**
 	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	 **/
+    private static final long serialVersionUID = 3594009161252782831L;
 	
-    private String correo;
+    private String email;
     private String password;
     private boolean rememberMe;
     
     @Inject
     private SessionLogger logger;
 
+    public LoginBean(){
+        rememberMe = false;
+    }
     public Subject getCurrentUser(){
     	Subject currentUser = SecurityUtils.getSubject();
 		return currentUser;
@@ -58,19 +62,19 @@ public class LoginBean extends BasePageBean{
         this.password = password;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getemail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setemail(String email) {
+        this.email = email;
     }
     
     @RequiresGuest
-    public void login(String correo,String password,boolean rememberMe) throws ExcepcionBancoDeProyectos{
+    public void login(String email,String password) throws ExcepcionBancoDeProyectos{
         try {
-            logger.login(correo,password,rememberMe);
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/index.xhtml");
+            logger.login(email, password,rememberMe);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/iniciativas.xhtml");
         } catch (ExcepcionBancoDeProyectos excepcionBancoDeProyectos) {
             LoginBean.setErrorMessage(excepcionBancoDeProyectos);
         }catch (IOException e) {
@@ -97,8 +101,9 @@ public class LoginBean extends BasePageBean{
     }
     
     public void logout() throws IOException {
+        System.out.println("aquitoy");
     	if (isLogged()) {
-    		FacesContext.getCurrentInstance().getExternalContext().redirect("/login.xhtml");
+    		FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/index.xhtml");
     		SecurityUtils.getSubject().logout();
     	}
     }

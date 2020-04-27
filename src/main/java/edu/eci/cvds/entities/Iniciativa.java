@@ -148,7 +148,6 @@ public class Iniciativa {
                 ", descripcion='" + descripcion + '\'' +
                 ", estado=" + estado.name() +
                 ", fechaDeInicio=" + fechaDeInicio+
-                ", fechaDeFin=" + fechaDeFin + +
                 '}';
     }
 }
