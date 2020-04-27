@@ -4,13 +4,17 @@ public class Usuario{
     private String nombre;
     private String correo;
     private String contraseña;
-    private String rol;
+    private Rol rol;
+    private Estado estado;
 
-    private Usuario(String nombre, String correo, String contraseña, String rol){
+    public Usuario(){}
+
+    public Usuario(String nombre, String correo, String contraseña, Rol rol, Estado estado){
         this.nombre = nombre;
         this.correo = correo;
         this.contraseña = contraseña;
         this.rol = rol;
+        this.estado = estado;
     }
 
     public void setNombre(String nombre) {
@@ -25,7 +29,7 @@ public class Usuario{
         this.contraseña = contraseña;
     }
 
-    public void setRol(String rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 
@@ -41,8 +45,16 @@ public class Usuario{
         return contraseña;
     }
 
-    public String getRol() {
+    public Rol getRol() {
         return rol;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
     @Override
@@ -51,7 +63,8 @@ public class Usuario{
                 "nombre='" + nombre + '\'' +
                 ", correo='" + correo + '\'' +
                 ", contraseña='" + contraseña + '\'' +
-                ", rol='" + rol + '\'' +
+                ", rol='" + rol.name() + '\'' +
+                ", estado='" + estado.name() + '\'' +
                 '}';
     }
 }
