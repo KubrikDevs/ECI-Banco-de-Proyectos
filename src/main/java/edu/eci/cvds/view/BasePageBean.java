@@ -12,7 +12,7 @@ public abstract class BasePageBean implements Serializable {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 3594009161252782831L;
 	
 	private Injector injector;
 

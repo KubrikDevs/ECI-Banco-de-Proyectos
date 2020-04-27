@@ -45,7 +45,7 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
         try{
             return iniciativaMapper.consultarIniciativas();
         } catch (PersistenceException e){
-            throw new PersistenceException("Error al consultar iniciativas ", e);
+            throw new PersistenceException("Error al consultar iniciativas i's", e);
         }
     }
 

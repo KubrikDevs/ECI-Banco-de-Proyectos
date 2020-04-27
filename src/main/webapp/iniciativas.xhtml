@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:shiro="http://shiro.apache.org/tags">
+<h:head>
+    <meta charset="utf-8"></meta>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+
+    <title>ECIBank</title>
+    <meta content="" name="descriptison"></meta>
+    <meta content="" name="keywords"></meta>
+
+    <!-- Favicons -->
+    <link href="assets/img/tabicon.svg" rel="icon"></link>
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"></link>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"></link>
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet"></link>
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet"></link>
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"></link>
+    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet"></link>
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet"></link>
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet"></link>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet"></link>
+
+    <!-- Datatables CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,r-2.0.0,sc-1.4.0/datatables.min.css" />
+
+
+
+</h:head>
+<h:body >
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="index.xhtml"><span><span style="color:#3498db;">ECI</span>Bank</span></a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            </div>
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="#header">Home</a></li>
+                    <!--
+                    <li><a href="iniciativas.xhtml">Iniciativas</a></li>
+
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    -->
+                    <li class="drop-down"><a href="">Opciones</a>
+                        <ul>
+                            <li><a href="#">Ver Iniciativas</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="get-started">
+                        <form method="POST" jsf:id="formulario" novalidate="">
+                            <a type="submit" jsf:actionListener="#{loginBean.logout()}">Cerrar Sesión</a>
+                        </form>
+                    </li>
+                </ul>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Iniciativas</h2>
+                <ol>
+                    <li><a href="index.xhtml">Home</a></li>
+                    <li>Iniciativas</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <div class="table-responsive" style="margin-top:0px;">
+        <table id="examples" class="table  table-striped row-border order-column">
+            <thead class="thead-dark" >
+            <tr>
+                <th class="th-sm"></th>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Area</th>
+                <th>Estado</th>
+                <th>Fecha de inicio</th>
+                <th>Descripción</th>
+            </tr>
+            </thead>
+            <tbody>
+                <ui:repeat var="iniciativa" value="#{iniciativaBean.iniciativas}">
+                    <tr>
+                        <td>
+                            <!--
+                            <div style="text-align: center;">
+                                <i class="far fa-plus-square fa-2x"></i>
+                            </div>
+                            -->
+                        </td>
+                        <td>#{iniciativa.id}</td>
+                        <td>#{iniciativa.nombre}</td>
+                        <td>#{iniciativa.area}</td>
+                        <td>#{iniciativa.estado}</td>
+                        <td>#{iniciativa.fechaDeInicio}</td>
+                        <td>#{iniciativa.descripcion}</td>
+                    </tr>
+                </ui:repeat>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="assets/vendor/counterup/counterup.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Datatables JS CDN -->
+    <script src='https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,fh-3.1.0,r-2.0.0,sc-1.4.0/datatables.min.js'></script>
+</h:body>
+
+</html>
