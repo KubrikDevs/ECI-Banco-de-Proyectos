@@ -12,6 +12,11 @@ import javax.faces.bean.SessionScoped;
 import java.util.List;
 
 import static edu.eci.cvds.entities.Rol.PUBLICO;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "usuarioBean")
@@ -32,7 +37,9 @@ public class UsuarioBean extends BasePageBean {
 
     private String nombre;
 
-    private Rol rol;
+    private String rol;
+    
+    private String mensaje = "Correcto";
 
     public Usuario getUsuario(){
         return this.usuario;
@@ -58,9 +65,9 @@ public class UsuarioBean extends BasePageBean {
         this.nombre = nombre;
     }
 
-    public Rol getRol() { return rol; }
+    public String getRol() { return rol; }
 
-    public void setRol(Rol rol) { this.rol = rol; }
+    public void setRol(String rol) { this.rol = rol; }
 
     public List<Usuario> getUsuarios() throws Exception{
         try {
@@ -78,13 +85,20 @@ public class UsuarioBean extends BasePageBean {
         }
 
     }
+    
 
-    public void modificarUsuario(String correo, Rol rol) throws  Exception{
+    public void modificarUsuario(String correo, String rol) throws  Exception{
+        Rol rolexample = Rol.valueOf(rol);
         try{
-            serviciosUsuario.modificarUsuario(correo, rol);
+            serviciosUsuario.modificarUsuario(correo, rolexample);
         }catch (ExcepcionBancoDeProyectos e){
+            this.mensaje = "error al modificarUsuario";
             throw e;
         }
+    }
+    
+    public void mensaje(String user) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, this.mensaje, "Usuario "+user+ " actualizado"));
     }
 
 
