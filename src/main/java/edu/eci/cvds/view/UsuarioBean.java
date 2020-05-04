@@ -88,11 +88,11 @@ public class UsuarioBean extends BasePageBean {
     
 
     public void modificarUsuario(String correo, String rol) throws  Exception{
-        Rol rolexample = Rol.valueOf(rol);
+            Rol rolexample = Rol.valueOf(rol);
         try{
             serviciosUsuario.modificarUsuario(correo, rolexample);
         }catch (ExcepcionBancoDeProyectos e){
-            this.mensaje = "error al modificarUsuario";
+            this.mensaje = "error al modificar Usuario";
             throw e;
         }
     }

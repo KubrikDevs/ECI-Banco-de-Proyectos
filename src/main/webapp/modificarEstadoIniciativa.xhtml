@@ -87,10 +87,10 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Usuarios</h2>
+                <h2>Iniciativas</h2>
                 <ol>
                     <li><a href="index.xhtml">Home</a></li>
-                    <li>Usuarios</li>
+                    <li>Iniciativas</li>
                 </ol>
             </div>
 
@@ -99,79 +99,84 @@
 <tbody>
     
     <p></p>
-<div  class="table-responsive" style="margin-top:0px; font-size: 20px ; text-align:center ">
+<div  class="table-responsive" style="margin-top:0px; font-size: 20px ; text-align:center">
+    
+
                     
 <h:form id="form" class="" >
     <p:growl id="msgs" showDetail="true"   />
-        <p:dataTable  id="singleDT" var="usuario" value="#{usuarioBean.usuarios}" selectionMode="single" selection="#{usuarioBean.usuario}" rowKey="#{usuario.correo}" widgetVar="usersTable1" emptyMessage="No se encontraron coincidencias" >
+        <p:dataTable  class="table table-dark" id="singleDTiniciativa" var="iniciativa" value="#{iniciativaBean.iniciativas}" selectionMode="single" selection="#{iniciativaBean.iniciativa}" rowKey="#{iniciativa.id}" widgetVar="iniciativasTable1" emptyMessage="No se encontraron coincidencias" sortOrder="DESCENDING" >
             <f:facet name="header">
-                TABLA DE USUARIOS
+                TABLA DE INICIATIVAS
             </f:facet>
 
-            <p:column width="20%" headerText="Correo" style="text-align:center">
-                <h:outputText value="#{usuario.correo}"  />
+            <p:column headerText="Id" width="5%" style="text-align:center">
+                <h:outputText value="#{iniciativa.id}" />
             </p:column>
-            <p:column filterBy="#{usuario.nombre}" headerText="Nombre"  filterMatchMode="contains" style="text-align:center">
-                <h:outputText value="#{usuario.nombre}" />
+
+            <p:column filterBy="#{iniciativa.nombre}" headerText="Nombre"  filterMatchMode="contains" style="text-align:center">
+                <h:outputText value="#{iniciativa.nombre}" />
             </p:column>
             
-            <p:column filterBy="#{usuario.rol}" headerText="Rol" filterMatchMode="contains" style="text-align:center">
+            <p:column filterBy="#{iniciativa.estado}" headerText="Estado" filterMatchMode="contains" style="text-align:center">
                 <f:facet name="filter">
-                    <p:selectOneButton onchange="PF('usersTable1').filter()" styleClass="custom-filter">
+                    <p:selectOneButton onchange="PF('iniciativasTable1').filter()" styleClass="custom-filter">
                         <f:selectItem itemLabel="TODOS" itemValue="" />
-                        <f:selectItem itemLabel="ADMINISTRADOR" itemValue="ADMINISTRADOR" />
-                        <f:selectItem itemLabel="PERSONAL_PMO" itemValue="PERSONAL_PMO" />
-                        <f:selectItem itemLabel="PROPONENTE" itemValue="PROPONENTE" />
-                        <f:selectItem itemLabel="PUBLICO" itemValue="PUBLICO" />
+                        <f:selectItem itemLabel="ESPERA" itemValue="ESPERA" />
+                        <f:selectItem itemLabel="REVISION" itemValue="REVISION" />
+                        <f:selectItem itemLabel="PROYECTO" itemValue="PROYECTO" />
+                        <f:selectItem itemLabel="SOLUCIONADO" itemValue="SOLUCIONADO" />
                     </p:selectOneButton>
                 </f:facet>
-                <h:outputText value="#{usuario.rol}" />
+                <h:outputText value="#{iniciativa.estado}" />
             </p:column>
 
-            <p:column filterBy="#{usuario.estado}" headerText="Estado" filterMatchMode="contains" style="text-align:center">
-                <f:facet name="filter">
-                    <p:selectOneButton onchange="PF('usersTable1').filter()" styleClass="custom-filter">
-                        <f:selectItem itemLabel="TODOS" itemValue="" />
-                        <f:selectItem itemLabel="ACTIVO" itemValue="ACTIVO" />
-                        <f:selectItem itemLabel="INACTIVO" itemValue="INACTIVO" />
-                    </p:selectOneButton>
-                </f:facet>
-                <h:outputText value="#{usuario.estado}" />
-            </p:column>
             <f:facet name="footer">
-                <p:commandButton process="singleDT" update=":form:usuarioDetail" value="Visualizar" oncomplete="PF('usuarioDialog').show()" />
+                <p:commandButton process="singleDTiniciativa" update=":form:iniciativaDetail" value="Visualizar" oncomplete="PF('iniciativaDialog').show()" />
             </f:facet>
         </p:dataTable>
-        <p:dialog header="Edicion de Usuario" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-        <p:outputPanel id="usuarioDetail" style="margin-top:0px; font-size: 20px ; text-align:center ">
-            <p:panelGrid  columns="2" rendered="#{not empty usuarioBean.usuario}">
+        <p:dialog header="Edicion de Iniciativa" widgetVar="iniciativaDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="iniciativaDetail">
+            <p:panelGrid  columns="2" rendered="#{not empty iniciativaBean.iniciativa}" >
                  
-                <h:outputText value="Correo:" />
-                <h:outputText value="#{usuarioBean.usuario.correo}" />
- 
+                <h:outputText value="ID:" />
+                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
                 <h:outputText value="Nombre:" />
-                <h:outputText value="#{usuarioBean.usuario.nombre}" />
+                <h:outputText value="#{iniciativaBean.iniciativa.nombre}" />               
  
-                <h:outputText value="Rol Actual:" />
-                <h:outputText value="#{usuarioBean.usuario.rol}" />
+                <h:outputText value="Area:" />
+                <h:outputText value="#{iniciativaBean.iniciativa.area}" />
+
+                <h:outputText value="Estado Actual:" />
+                <h:outputText value="#{iniciativaBean.iniciativa.estado}" />
                 
-                <h:outputText value="Rol Nuevo:" />
-                <p:selectOneMenu id="rol" value="#{usuarioBean.rol}" style="{width:200px position: absolute}" >
+                <h:outputText value="Proponente:" />
+                <h:outputText value="#{iniciativaBean.iniciativa.proponente.correo}" />
+
+                <h:outputText value="Fecha de Creación:" />
+                <h:outputText value="#{iniciativaBean.iniciativa.fechaDeInicio}" />
+                
+                <h:outputText value="Descripción:"  />
+                <h:outputText value="#{iniciativaBean.iniciativa.descripcion}"  style="width: 200px; overflow-x: scroll; display:block;" />
+
+                
+                <h:outputText value="Modificar Estado:" />
+                
+                <p:selectOneMenu id="estado" value="#{iniciativaBean.iniciativa.estado}" style="{width:200px position: absolute}" >
                     <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-                    <f:selectItem itemLabel="PROPONENTE" itemValue="PROPONENTE"/>
-                    <f:selectItem itemLabel="PUBLICO" itemValue="PUBLICO" />
-                    <f:selectItem itemLabel="PERSONAL_PMO" itemValue="PERSONAL_PMO" />
-                    <f:selectItem itemLabel="ADMINISTRADOR" itemValue="ADMINISTRADOR" />
+                    <f:selectItem itemLabel="ESPERA" itemValue="ESPERA"/>
+                    <f:selectItem itemLabel="REVISION" itemValue="REVISION" />
+                    <f:selectItem itemLabel="PROYECTO" itemValue="PROYECTO" />
+                    <f:selectItem itemLabel="SOLUCIONADO" itemValue="SOLUCIONADO" />
 
                 </p:selectOneMenu>
              
-                <h:outputText value="Estado" />
-                <h:outputText value="#{usuarioBean.usuario.estado}" />
+
                 
                 
             </p:panelGrid>
             <p></p>
-            <p:commandButton value ="Guardar" actionListener="#{usuarioBean.modificarUsuario(usuarioBean.usuario.correo, usuarioBean.rol)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{usuarioBean.mensaje(usuarioBean.usuario.correo)}"/>
+            <p:commandButton value ="Guardar" actionListener="#{iniciativaBean.modificarIniciativa(iniciativaBean.iniciativa.id, iniciativaBean.iniciativa.estado)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{iniciativaBean.mensaje(iniciativaBean.iniciativa.nombre)}"/>
             
         </p:outputPanel>
     </p:dialog>
