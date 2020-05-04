@@ -96,7 +96,7 @@
 
         </div>
     </section><!-- End Breadcrumbs -->
-      <div style="margin-top:0px; font-size: 20px ; text-align:center ; align-items: center ">
+      <div style="margin-top:0px; font-size: 20px ; text-align:center ; align-items: center ; width: 60% ; margin: auto "> 
           
           <h:form name="sentMessage" id="contactForm">
             <br/>
@@ -124,7 +124,10 @@
           </div>
           <br/>
           <div class="form-group" align="center">
-            <p:commandButton actionListener="#{iniciativaBean.registrarIniciativa(superNombre.value, superArea.value, usuarioBean.getUsuario(loginBean.email), superDescripcion.value,iniciativaBean.getFecha())}" render="@form" value="Registrar" action="#{iniciativaBean.mensaje(superNombre.value)}"></p:commandButton>
+            <p:commandButton actionListener="#{iniciativaBean.registrarIniciativa(superNombre.value, superArea.value, usuarioBean.getUsuario(loginBean.email), superDescripcion.value,iniciativaBean.getFecha())}" id="registro" update="contactForm" value="Registrar" action="#{iniciativaBean.mensaje(superNombre.value)}"></p:commandButton>
+             <p:blockUI block="contactForm" trigger="registro">            
+                    <p:graphicImage name="assets/img/ajax-loader.gif"/>
+             </p:blockUI>  
           </div>
         </h:form>
     </div>

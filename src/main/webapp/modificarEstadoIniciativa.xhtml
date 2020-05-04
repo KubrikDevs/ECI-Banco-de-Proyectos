@@ -105,7 +105,7 @@
                     
 <h:form id="form" class="" >
     <p:growl id="msgs" showDetail="true"   />
-        <p:dataTable  class="table table-dark" id="singleDTiniciativa" var="iniciativa" value="#{iniciativaBean.iniciativas}" selectionMode="single" selection="#{iniciativaBean.iniciativa}" rowKey="#{iniciativa.id}" widgetVar="iniciativasTable1" emptyMessage="No se encontraron coincidencias" sortOrder="DESCENDING" >
+        <p:dataTable  style=" background-color: #EAECEE ; width: 90% ; margin: auto" id="singleDTiniciativa" var="iniciativa" value="#{iniciativaBean.iniciativas}" selectionMode="single" selection="#{iniciativaBean.iniciativa}" rowKey="#{iniciativa.id}" widgetVar="iniciativasTable1" emptyMessage="No se encontraron coincidencias" sortOrder="DESCENDING" >
             <f:facet name="header">
                 TABLA DE INICIATIVAS
             </f:facet>
@@ -132,7 +132,10 @@
             </p:column>
 
             <f:facet name="footer">
-                <p:commandButton process="singleDTiniciativa" update=":form:iniciativaDetail" value="Visualizar" oncomplete="PF('iniciativaDialog').show()" />
+                <p:commandButton process="singleDTiniciativa" id="VisualizarBoton" update=":form:iniciativaDetail" value="Visualizar" oncomplete="PF('iniciativaDialog').show()" />
+             <p:blockUI block="form" trigger="VisualizarBoton">            
+                    <p:graphicImage name="assets/img/ajax-loader.gif"/>
+             </p:blockUI>  
             </f:facet>
         </p:dataTable>
         <p:dialog header="Edicion de Iniciativa" widgetVar="iniciativaDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
@@ -157,7 +160,7 @@
                 <h:outputText value="#{iniciativaBean.iniciativa.fechaDeInicio}" />
                 
                 <h:outputText value="Descripción:"  />
-                <h:outputText value="#{iniciativaBean.iniciativa.descripcion}"  style="width: 200px; overflow-x: scroll; display:block;" />
+                <h:outputText value="#{iniciativaBean.iniciativa.descripcion}"  style="overflow-y: auto;  overflow-x: auto; width: 200px; display:block;" />
 
                 
                 <h:outputText value="Modificar Estado:" />
@@ -177,7 +180,9 @@
             </p:panelGrid>
             <p></p>
             <p:commandButton value ="Guardar" actionListener="#{iniciativaBean.modificarIniciativa(iniciativaBean.iniciativa.id, iniciativaBean.iniciativa.estado)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{iniciativaBean.mensaje(iniciativaBean.iniciativa.nombre)}"/>
-            
+             <p:blockUI block="iniciativaDetail" trigger="iconOnly">            
+                    <p:graphicImage name="assets/img/ajax-loader.gif"/>
+             </p:blockUI>            
         </p:outputPanel>
     </p:dialog>
 </h:form>

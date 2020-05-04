@@ -103,7 +103,7 @@
                     
 <h:form id="form" class="" >
     <p:growl id="msgs" showDetail="true"   />
-        <p:dataTable  id="singleDT" var="usuario" value="#{usuarioBean.usuarios}" selectionMode="single" selection="#{usuarioBean.usuario}" rowKey="#{usuario.correo}" widgetVar="usersTable1" emptyMessage="No se encontraron coincidencias" >
+        <p:dataTable style=" background-color: #EAECEE ; width: 90% ; margin: auto"  id="singleDT" var="usuario" value="#{usuarioBean.usuarios}" selectionMode="single" selection="#{usuarioBean.usuario}" rowKey="#{usuario.correo}" widgetVar="usersTable1" emptyMessage="No se encontraron coincidencias" >
             <f:facet name="header">
                 TABLA DE USUARIOS
             </f:facet>
@@ -139,7 +139,10 @@
                 <h:outputText value="#{usuario.estado}" />
             </p:column>
             <f:facet name="footer">
-                <p:commandButton process="singleDT" update=":form:usuarioDetail" value="Visualizar" oncomplete="PF('usuarioDialog').show()" />
+                <p:commandButton id = "saveBtn1" process="singleDT" update=":form:usuarioDetail" value="Visualizar" oncomplete="PF('usuarioDialog').show()" />
+                    <p:blockUI block="form" trigger="saveBtn1">
+                        <p:graphicImage name="assets/img/ajax-loader.gif"/>
+                    </p:blockUI>
             </f:facet>
         </p:dataTable>
         <p:dialog header="Edicion de Usuario" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
@@ -172,7 +175,9 @@
             </p:panelGrid>
             <p></p>
             <p:commandButton value ="Guardar" actionListener="#{usuarioBean.modificarUsuario(usuarioBean.usuario.correo, usuarioBean.rol)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{usuarioBean.mensaje(usuarioBean.usuario.correo)}"/>
-            
+             <p:blockUI block="usuarioDetail" trigger="iconOnly">            
+                    <p:graphicImage name="assets/img/ajax-loader.gif"/>
+             </p:blockUI>
         </p:outputPanel>
     </p:dialog>
 </h:form>
