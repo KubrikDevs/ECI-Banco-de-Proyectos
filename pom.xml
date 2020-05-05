@@ -18,6 +18,13 @@
                     <name>bintray</name>
                     <url>http://dl.bintray.com/deluan/maven</url>
                 </repository>
+                
+                <repository>
+                    <snapshots/>
+                    <id>snapshots</id>
+                    <name>libs-snapshot</name>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </repository>
         </repositories>
 
   <name>ECI Banco de Proyectos Maven Webapp</name>
@@ -34,9 +41,9 @@
     <dependency>
 	    <groupId>com.github.adminfaces</groupId>
 	    <artifactId>admin-theme</artifactId>
-	    <version>1.0.2</version>
-            <classifier>without-bootstrap</classifier>
+	    <version>1.1.0</version>
 	</dependency>
+        
 
      <dependency>
             <groupId>org.slf4j</groupId>

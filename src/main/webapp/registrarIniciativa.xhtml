@@ -105,12 +105,12 @@
             </p:messages>
      
               <label>Nombre</label>
-              <p:inputText type="text" class="form-control" placeholder="Nombre" id="nombre" binding="#{superNombre}" required="true" />
+              <p:inputText style=" height: 50px ; font-size: 20px ; text-align: center" type="text" class="form-control" placeholder="Nombre" id="nombre" binding="#{superNombre}" required="true" />
    
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Area</label>
-              <p:inputText type="text" class="form-control" placeholder="Area" id="area" binding="#{superArea}" required="true"/>
+              <p:inputText style=" height: 50px ; font-size: 20px ; text-align: center" type="text" class="form-control" placeholder="Area" id="area" binding="#{superArea}" required="true"/>
             </div>
           </div>
 
@@ -118,7 +118,7 @@
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Descripción</label>
-              <p:inputTextarea class="form-control" id="descript" rows="5" cols="30" counter="display" maxlength="360"  counterTemplate="{0} caracteres restantes." autoResize="false" binding="#{superDescripcion}"/>
+              <p:inputTextarea style=" height: 200px ; font-size: 20px" class="form-control" id="descript" rows="5" cols="30" counter="display" maxlength="360"  counterTemplate="{0} caracteres restantes." autoResize="false" binding="#{superDescripcion}"/>
               <h:outputText id="display" />
             </div>
           </div>

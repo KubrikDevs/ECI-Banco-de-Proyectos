@@ -22,24 +22,29 @@
 
 <h:body class="my-login-page">
 
-    <section class="h-100">
+    <section class="h-100" style="margin:auto">
         <div class="container h-100">
             <div class="row justify-content-md-center h-100">
                 <div class="card-wrapper">
-                    <div class="brand">
-                        <img src="assets/img/logo.jpg" alt="logo"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="brand" style =" height: 250px ; width: 250px ; margin: auto">
+                        <img  src="assets/img/logo.jpg" alt="logo"/>
                     </div>
+                    <br/>
+                    
                     <div class="card fat">
                         <div class="card-body">
-                            <h4 class="card-title">Inicia sesión</h4>
+                            <h1 class="card-title" style="text-align: center">Inicia sesión</h1>
 
                             <h:form class="my-login-validation" id="formulario" >
                                 <p:messages id="messages" closable="true"/>
 
                                 <div class="form-group">
                                     <label for="email">Correo</label>
-                                    <input id="email" type="email" class="form-control" name="email" value="" required="true" autofocus="true" jsf:value="#{loginBean.email}"/>
-                                    <div class="invalid-feedback">
+                                    <input style=" height: 30px ; font-size: 18px" id="email" type="email" class="form-control" name="email" value="" required="true" autofocus="true" jsf:value="#{loginBean.email}"/>
+                                    <div class="invalid-feedback">  
                                         Introduzca Email valido.
                                     </div>
                                 </div>
@@ -47,14 +52,14 @@
                                 <div class="form-group">
                                     <label for="password">Contraseña
                                     </label>
-                                    <input id="password" type="password" class="form-control" name="password" required="true" data-eye="true" autofocus="true" jsf:value="#{loginBean.password}"/>
+                                    <input style=" height: 30px ; font-size: 18px " id="password" type="password" class="form-control" name="password" required="true" data-eye="true" autofocus="true" jsf:value="#{loginBean.password}"/>
                                     <div class="invalid-feedback">
                                         Introduzca contraseña
                                     </div>
                                 </div>
 
                                 <div class="form-group m-0">
-                                    <p:commandButton type="submit" class="btn btn-primary btn-block" value="Iniciar Sesion" actionListener="#{loginBean.login(loginBean.email, loginBean.password)}">
+                                    <p:commandButton  type="submit" class="btn btn-primary btn-block" value="Iniciar Sesion" actionListener="#{loginBean.login(loginBean.email, loginBean.password)}">
 
                                         <f:ajax execute="@form" render="email password"/>
 
