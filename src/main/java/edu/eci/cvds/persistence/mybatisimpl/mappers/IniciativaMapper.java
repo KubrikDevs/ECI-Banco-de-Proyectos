@@ -25,5 +25,7 @@ public interface IniciativaMapper {
 
     List<Iniciativa> consultarIniciativasPorTag(@Param("tag") String tag);
 
+    List<Iniciativa> consultarIniciativasRelacionadas(@Param("ini") Iniciativa i);
+
 
 }

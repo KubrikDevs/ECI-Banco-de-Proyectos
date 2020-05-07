@@ -56,6 +56,20 @@
         WHERE i.proponente=u.correo and p.iniciativa = i.id and p.palabra_clave=#{tag}
     </select>
 
+    <select id="consultarIniciativasRelacionadas" resultMap="IniciativaResult" parameterType="map">
+        SELECT
+            i.id,
+            i.nombre as nombreI,
+            i.area,
+            i.descripcion,
+            i.estado as estadoI,
+            i.fecha_creacion,
+            u.correo,
+            u.nombre
+        FROM INICIATIVAS as i, USUARIOS as u
+        WHERE i.proponente = u.correo and not(i.id=#{ini.id}) and i.nombre=#{ini.nombre} and i.area=#{ini.area}
+    </select>
+
     <resultMap id="IniciativaResult" type="Iniciativa">
         <id property="id" column="id"/>
         <result property="nombre" column="nombreI"/>

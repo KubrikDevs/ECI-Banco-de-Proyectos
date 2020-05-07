@@ -2,17 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
  
 
-<f:view xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:jsf="http://xmlns.jcp.org/jsf"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:shiro="http://shiro.apache.org/tags"
     xmlns:p="http://primefaces.org/ui">
-    
-    
-<html>
+
+
 <h:head>
+
     <meta charset="utf-8"></meta>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
 
@@ -101,87 +101,87 @@
     <p></p>
 <div  class="table-responsive" style="margin-top:0px; font-size: 20px ; text-align:center ">
                     
-<h:form id="form" class="" >
-    <p:growl id="msgs" showDetail="true"   />
-        <p:dataTable style=" background-color: #EAECEE ; width: 90% ; margin: auto"  id="singleDT" var="usuario" value="#{usuarioBean.usuarios}" selectionMode="single" selection="#{usuarioBean.usuario}" rowKey="#{usuario.correo}" widgetVar="usersTable1" emptyMessage="No se encontraron coincidencias" >
-            <f:facet name="header">
-                TABLA DE USUARIOS
-            </f:facet>
-
-            <p:column width="20%" headerText="Correo" style="text-align:center">
-                <h:outputText value="#{usuario.correo}"  />
-            </p:column>
-            <p:column filterBy="#{usuario.nombre}" headerText="Nombre"  filterMatchMode="contains" style="text-align:center">
-                <h:outputText value="#{usuario.nombre}" />
-            </p:column>
-            
-            <p:column filterBy="#{usuario.rol}" headerText="Rol" filterMatchMode="contains" style="text-align:center">
-                <f:facet name="filter">
-                    <p:selectOneButton onchange="PF('usersTable1').filter()" styleClass="custom-filter">
-                        <f:selectItem itemLabel="TODOS" itemValue="" />
-                        <f:selectItem itemLabel="ADMINISTRADOR" itemValue="ADMINISTRADOR" />
-                        <f:selectItem itemLabel="PERSONAL_PMO" itemValue="PERSONAL_PMO" />
-                        <f:selectItem itemLabel="PROPONENTE" itemValue="PROPONENTE" />
-                        <f:selectItem itemLabel="PUBLICO" itemValue="PUBLICO" />
-                    </p:selectOneButton>
+    <h:form id="form" class="" >
+        <p:growl id="msgs" showDetail="true"   />
+            <p:dataTable style=" background-color: #EAECEE ; width: 90% ; margin: auto"  id="singleDT" var="usuario" value="#{usuarioBean.usuarios}" selectionMode="single" selection="#{usuarioBean.usuario}" rowKey="#{usuario.correo}" widgetVar="usersTable1" emptyMessage="No se encontraron coincidencias" >
+                <f:facet name="header">
+                    TABLA DE USUARIOS
                 </f:facet>
-                <h:outputText value="#{usuario.rol}" />
-            </p:column>
 
-            <p:column filterBy="#{usuario.estado}" headerText="Estado" filterMatchMode="contains" style="text-align:center">
-                <f:facet name="filter">
-                    <p:selectOneButton onchange="PF('usersTable1').filter()" styleClass="custom-filter">
-                        <f:selectItem itemLabel="TODOS" itemValue="" />
-                        <f:selectItem itemLabel="ACTIVO" itemValue="ACTIVO" />
-                        <f:selectItem itemLabel="INACTIVO" itemValue="INACTIVO" />
-                    </p:selectOneButton>
+                <p:column width="20%" headerText="Correo" style="text-align:center">
+                    <h:outputText value="#{usuario.correo}"  />
+                </p:column>
+                <p:column filterBy="#{usuario.nombre}" headerText="Nombre"  filterMatchMode="contains" style="text-align:center">
+                    <h:outputText value="#{usuario.nombre}" />
+                </p:column>
+
+                <p:column filterBy="#{usuario.rol}" headerText="Rol" filterMatchMode="contains" style="text-align:center">
+                    <f:facet name="filter">
+                        <p:selectOneButton onchange="PF('usersTable1').filter()" styleClass="custom-filter">
+                            <f:selectItem itemLabel="TODOS" itemValue="" />
+                            <f:selectItem itemLabel="ADMINISTRADOR" itemValue="ADMINISTRADOR" />
+                            <f:selectItem itemLabel="PERSONAL_PMO" itemValue="PERSONAL_PMO" />
+                            <f:selectItem itemLabel="PROPONENTE" itemValue="PROPONENTE" />
+                            <f:selectItem itemLabel="PUBLICO" itemValue="PUBLICO" />
+                        </p:selectOneButton>
+                    </f:facet>
+                    <h:outputText value="#{usuario.rol}" />
+                </p:column>
+
+                <p:column filterBy="#{usuario.estado}" headerText="Estado" filterMatchMode="contains" style="text-align:center">
+                    <f:facet name="filter">
+                        <p:selectOneButton onchange="PF('usersTable1').filter()" styleClass="custom-filter">
+                            <f:selectItem itemLabel="TODOS" itemValue="" />
+                            <f:selectItem itemLabel="ACTIVO" itemValue="ACTIVO" />
+                            <f:selectItem itemLabel="INACTIVO" itemValue="INACTIVO" />
+                        </p:selectOneButton>
+                    </f:facet>
+                    <h:outputText value="#{usuario.estado}" />
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id = "saveBtn1" process="singleDT" update=":form:usuarioDetail" value="Visualizar" oncomplete="PF('usuarioDialog').show()" />
+                        <p:blockUI block="form" trigger="saveBtn1">
+                            <p:graphicImage name="assets/img/ajax-loader.gif"/>
+                        </p:blockUI>
                 </f:facet>
-                <h:outputText value="#{usuario.estado}" />
-            </p:column>
-            <f:facet name="footer">
-                <p:commandButton id = "saveBtn1" process="singleDT" update=":form:usuarioDetail" value="Visualizar" oncomplete="PF('usuarioDialog').show()" />
-                    <p:blockUI block="form" trigger="saveBtn1">
-                        <p:graphicImage name="assets/img/ajax-loader.gif"/>
-                    </p:blockUI>
-            </f:facet>
-        </p:dataTable>
-            <p:dialog header="Edicion de Usuario" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-            <p:outputPanel id="usuarioDetail" style="margin-top:0px; font-size: 20px ; text-align:center ">
-                <p:panelGrid  columns="2" rendered="#{not empty usuarioBean.usuario}">
+            </p:dataTable>
+                <p:dialog header="Edicion de Usuario" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="usuarioDetail" style="margin-top:0px; font-size: 20px ; text-align:center ">
+                    <p:panelGrid  columns="2" rendered="#{not empty usuarioBean.usuario}">
 
-                    <h:outputText value="Correo:" />
-                    <h:outputText value="#{usuarioBean.usuario.correo}" />
+                        <h:outputText value="Correo:" />
+                        <h:outputText value="#{usuarioBean.usuario.correo}" />
 
-                    <h:outputText value="Nombre:" />
-                    <h:outputText value="#{usuarioBean.usuario.nombre}" />
+                        <h:outputText value="Nombre:" />
+                        <h:outputText value="#{usuarioBean.usuario.nombre}" />
 
-                    <h:outputText value="Rol Actual:" />
-                    <h:outputText value="#{usuarioBean.usuario.rol}" />
+                        <h:outputText value="Rol Actual:" />
+                        <h:outputText value="#{usuarioBean.usuario.rol}" />
 
-                    <h:outputText value="Rol Nuevo:" />
-                    <p:selectOneMenu id="rol" value="#{usuarioBean.rol}" style="{width:200px position: absolute}" >
-                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-                        <f:selectItem itemLabel="PROPONENTE" itemValue="PROPONENTE"/>
-                        <f:selectItem itemLabel="PUBLICO" itemValue="PUBLICO" />
-                        <f:selectItem itemLabel="PERSONAL_PMO" itemValue="PERSONAL_PMO" />
-                        <f:selectItem itemLabel="ADMINISTRADOR" itemValue="ADMINISTRADOR" />
+                        <h:outputText value="Rol Nuevo:" />
+                        <p:selectOneMenu id="rol" value="#{usuarioBean.rol}" style="{width:200px position: absolute}" >
+                            <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                            <f:selectItem itemLabel="PROPONENTE" itemValue="PROPONENTE"/>
+                            <f:selectItem itemLabel="PUBLICO" itemValue="PUBLICO" />
+                            <f:selectItem itemLabel="PERSONAL_PMO" itemValue="PERSONAL_PMO" />
+                            <f:selectItem itemLabel="ADMINISTRADOR" itemValue="ADMINISTRADOR" />
 
-                    </p:selectOneMenu>
+                        </p:selectOneMenu>
 
-                    <h:outputText value="Estado" />
-                    <h:outputText value="#{usuarioBean.usuario.estado}" />
+                        <h:outputText value="Estado" />
+                        <h:outputText value="#{usuarioBean.usuario.estado}" />
 
 
-                </p:panelGrid>
-                <p></p>
-                <p:commandButton value ="Guardar" actionListener="#{usuarioBean.modificarUsuario(usuarioBean.usuario.correo, usuarioBean.rol)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{usuarioBean.mensaje(usuarioBean.usuario.correo)}"/>
-                 <p:blockUI block="usuarioDetail" trigger="iconOnly">
-                        <p:graphicImage name="assets/img/ajax-loader.gif"/>
-                 </p:blockUI>
-            </p:outputPanel>
-        </p:dialog>
-</h:form>
-                </div>
+                    </p:panelGrid>
+                    <p></p>
+                    <p:commandButton value ="Guardar" actionListener="#{usuarioBean.modificarUsuario(usuarioBean.usuario.correo, usuarioBean.rol)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{usuarioBean.mensaje(usuarioBean.usuario.correo)}"/>
+                     <p:blockUI block="usuarioDetail" trigger="iconOnly">
+                            <p:graphicImage name="assets/img/ajax-loader.gif"/>
+                     </p:blockUI>
+                </p:outputPanel>
+            </p:dialog>
+    </h:form>
+</div>
             </tbody>
 
 
@@ -214,4 +214,3 @@
 </h:body>
 
 </html>
-</f:view>

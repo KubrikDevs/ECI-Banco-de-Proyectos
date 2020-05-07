@@ -21,4 +21,6 @@ public interface ServiciosIniciativa {
     List<Iniciativa> consultarIniciativas(List<String> palabrasClaves) throws ExcepcionBancoDeProyectos;
 
     List<Iniciativa> buscarIniciativasPorTag(String tag) throws  ExcepcionBancoDeProyectos;
+
+    List<Iniciativa> buscarIniciativas(Iniciativa i) throws ExcepcionBancoDeProyectos;
 }

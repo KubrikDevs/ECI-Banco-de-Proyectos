@@ -73,4 +73,13 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
             throw new ExcepcionBancoDeProyectos("Error de Busqueda"+e.getLocalizedMessage(), e);
         }
     }
+
+    @Override
+    public List<Iniciativa> buscarIniciativas(Iniciativa i) throws ExcepcionBancoDeProyectos {
+        try {
+            return iniciativaDAO.cargarIniciativas(i);
+        }catch (PersistenceException e){
+            throw new  ExcepcionBancoDeProyectos("Error de Busqueda"+e.getLocalizedMessage(), e);
+        }
+    }
 }
