@@ -1,5 +1,6 @@
 package edu.eci.cvds.services;
 
+import edu.eci.cvds.entities.Estadistico;
 import edu.eci.cvds.entities.EstadoIniciativa;
 import edu.eci.cvds.entities.Iniciativa;
 import org.mybatis.guice.transactional.Transactional;
@@ -23,4 +24,6 @@ public interface ServiciosIniciativa {
     List<Iniciativa> buscarIniciativasPorTag(String tag) throws  ExcepcionBancoDeProyectos;
 
     List<Iniciativa> buscarIniciativas(Iniciativa i) throws ExcepcionBancoDeProyectos;
+
+    List<Estadistico> buscarEstadisticasPorArea() throws ExcepcionBancoDeProyectos;
 }

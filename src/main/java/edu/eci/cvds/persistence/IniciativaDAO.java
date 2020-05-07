@@ -1,5 +1,6 @@
 package edu.eci.cvds.persistence;
 
+import edu.eci.cvds.entities.Estadistico;
 import edu.eci.cvds.entities.EstadoIniciativa;
 import edu.eci.cvds.entities.Iniciativa;
 import edu.eci.cvds.services.ExcepcionBancoDeProyectos;
@@ -25,5 +26,7 @@ public interface IniciativaDAO {
     List<Iniciativa> cargarIniciativas(String tag) throws PersistenceException;
 
     List<Iniciativa> cargarIniciativas(Iniciativa i)throws PersistenceException;
+
+    List<Estadistico> cargarEstadisticaPorAreas()throws PersistenceException;
 
 }

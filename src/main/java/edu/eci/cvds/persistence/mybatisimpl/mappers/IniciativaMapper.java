@@ -1,5 +1,6 @@
 package edu.eci.cvds.persistence.mybatisimpl.mappers;
 
+import edu.eci.cvds.entities.Estadistico;
 import edu.eci.cvds.entities.EstadoIniciativa;
 import edu.eci.cvds.entities.Iniciativa;
 import edu.eci.cvds.services.ExcepcionBancoDeProyectos;
@@ -27,5 +28,5 @@ public interface IniciativaMapper {
 
     List<Iniciativa> consultarIniciativasRelacionadas(@Param("ini") Iniciativa i);
 
-
+    List<Estadistico> consultarEstadisticasPorArea();
 }

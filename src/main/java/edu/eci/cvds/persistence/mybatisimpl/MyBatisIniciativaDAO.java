@@ -1,6 +1,7 @@
 package edu.eci.cvds.persistence.mybatisimpl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.Estadistico;
 import edu.eci.cvds.entities.EstadoIniciativa;
 import edu.eci.cvds.entities.Iniciativa;
 import edu.eci.cvds.persistence.IniciativaDAO;
@@ -74,6 +75,15 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
             return iniciativaMapper.consultarIniciativasRelacionadas(i);
         }catch (PersistenceException e) {
             throw new edu.eci.cvds.persistence.PersistenceException("Error al consultar iniciativas", e);
+        }
+    }
+
+    @Override
+    public List<Estadistico> cargarEstadisticaPorAreas() throws edu.eci.cvds.persistence.PersistenceException {
+        try {
+            return iniciativaMapper.consultarEstadisticasPorArea();
+        }catch (PersistenceException e){
+            throw new edu.eci.cvds.persistence.PersistenceException("Error al cargar estadisticas", e);
         }
     }
 }

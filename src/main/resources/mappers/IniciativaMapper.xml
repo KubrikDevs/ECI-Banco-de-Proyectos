@@ -70,6 +70,17 @@
         WHERE i.proponente = u.correo and not(i.id=#{ini.id}) and i.nombre=#{ini.nombre} and i.area=#{ini.area}
     </select>
 
+    <select id="consultarEstadisticasPorArea" resultMap="EstadisticoResult" parameterType="map">
+        SELECT DISTINCT (i.area), COUNT(i.id) as cantidad
+        FROM INICIATIVAS as i
+        GROUP BY i.area
+    </select>
+
+    <resultMap id="EstadisticoResult" type="Estadistico">
+        <result property="area" column="area"/>
+        <result property="cantidadDeIniciativas" column="cantidad"/>
+    </resultMap>
+
     <resultMap id="IniciativaResult" type="Iniciativa">
         <id property="id" column="id"/>
         <result property="nombre" column="nombreI"/>

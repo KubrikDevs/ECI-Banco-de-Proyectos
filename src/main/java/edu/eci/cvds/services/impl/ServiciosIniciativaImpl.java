@@ -1,6 +1,7 @@
 package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.Estadistico;
 import edu.eci.cvds.entities.EstadoIniciativa;
 import edu.eci.cvds.entities.Iniciativa;
 import edu.eci.cvds.persistence.IniciativaDAO;
@@ -80,6 +81,15 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
             return iniciativaDAO.cargarIniciativas(i);
         }catch (PersistenceException e){
             throw new  ExcepcionBancoDeProyectos("Error de Busqueda"+e.getLocalizedMessage(), e);
+        }
+    }
+
+    @Override
+    public List<Estadistico> buscarEstadisticasPorArea() throws ExcepcionBancoDeProyectos {
+        try {
+            return iniciativaDAO.cargarEstadisticaPorAreas();
+        }catch (PersistenceException e){
+            throw new ExcepcionBancoDeProyectos("Error de Busqueda"+e.getLocalizedMessage(), e);
         }
     }
 }
