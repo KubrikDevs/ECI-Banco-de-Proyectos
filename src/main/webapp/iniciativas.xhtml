@@ -88,7 +88,7 @@
     </section><!-- End Breadcrumbs -->
     <br/>
         <div style="font-size: 20px ; text-align:center"   >
-            <p:dataTable style=" background-color: #EAECEE ; width: 90% ; margin: auto" var="iniciativa" value="#{iniciativaBean.iniciativas}" styleClass="thead-dark">
+            <p:dataTable id="table" style=" background-color: #EAECEE ; width: 90% ; margin: auto" var="iniciativa" value="#{iniciativaBean.iniciativas}" styleClass="thead-dark">
                     <p:column headerText="ID" >
                         <h:outputText value="#{iniciativa.id}"  />
                     </p:column>
@@ -108,7 +108,13 @@
                     <p:column headerText="Descripción">
                         <h:outputText value="#{iniciativa.descripcion}" style=" overflow-y: auto;  overflow-x: auto; display: block;  " />
                     </p:column>
-                </p:dataTable>
+                    <p:column filterBy="#{iniciativa.palabrasClave}" headerText="Palabras Clave"  filterMatchMode="contains" style="text-align:center">
+                        <h:outputText value="#{iniciativa.palabrasClave}" />
+                    </p:column>
+
+
+
+            </p:dataTable>
         </div>
 
 

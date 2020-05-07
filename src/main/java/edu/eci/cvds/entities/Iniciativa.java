@@ -35,7 +35,7 @@ public class Iniciativa {
 
     }
 
-    public Iniciativa(int id, String nombre, String area, Usuario proponente, String descripcion, EstadoIniciativa estado, Date fechaDeInicio, Date fechaDeFin, List<String> palabrasClave){
+    public Iniciativa(int id, String nombre, String area, Usuario proponente, String descripcion, EstadoIniciativa estado, Date fechaDeInicio, List<String> palabrasClave){
         this.id = id;
         this.nombre = nombre;
         this.area = area;
@@ -43,7 +43,7 @@ public class Iniciativa {
         this.descripcion = descripcion;
         this.estado = estado;
         this.fechaDeInicio = fechaDeInicio;
-        this.fechaDeFin = fechaDeFin;
+        //this.fechaDeFin = fechaDeFin;
         this.palabrasClave = palabrasClave;
         this.interesados = new ArrayList<>();
         this.votos = new ArrayList<>();

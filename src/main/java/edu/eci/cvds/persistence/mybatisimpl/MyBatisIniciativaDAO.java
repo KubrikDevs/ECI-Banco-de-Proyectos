@@ -5,6 +5,7 @@ import edu.eci.cvds.entities.EstadoIniciativa;
 import edu.eci.cvds.entities.Iniciativa;
 import edu.eci.cvds.persistence.IniciativaDAO;
 import edu.eci.cvds.persistence.mybatisimpl.mappers.IniciativaMapper;
+import edu.eci.cvds.services.ExcepcionBancoDeProyectos;
 import org.apache.ibatis.exceptions.PersistenceException;
 
 import java.util.List;
@@ -46,6 +47,15 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
             return iniciativaMapper.consultarIniciativas();
         } catch (PersistenceException e){
             throw new PersistenceException("Error al consultar iniciativas i's", e);
+        }
+    }
+
+    @Override
+    public List<Iniciativa> consultarIniciativas(List<String> palabrasClaves) throws PersistenceException {
+        try{
+            return iniciativaMapper.consultarIniciativas(palabrasClaves);
+        } catch (PersistenceException e){
+            throw new PersistenceException("Error al consultar iniciativas con palabra clave", e);
         }
     }
 

@@ -145,41 +145,41 @@
                     </p:blockUI>
             </f:facet>
         </p:dataTable>
-        <p:dialog header="Edicion de Usuario" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-        <p:outputPanel id="usuarioDetail" style="margin-top:0px; font-size: 20px ; text-align:center ">
-            <p:panelGrid  columns="2" rendered="#{not empty usuarioBean.usuario}">
-                 
-                <h:outputText value="Correo:" />
-                <h:outputText value="#{usuarioBean.usuario.correo}" />
- 
-                <h:outputText value="Nombre:" />
-                <h:outputText value="#{usuarioBean.usuario.nombre}" />
- 
-                <h:outputText value="Rol Actual:" />
-                <h:outputText value="#{usuarioBean.usuario.rol}" />
-                
-                <h:outputText value="Rol Nuevo:" />
-                <p:selectOneMenu id="rol" value="#{usuarioBean.rol}" style="{width:200px position: absolute}" >
-                    <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-                    <f:selectItem itemLabel="PROPONENTE" itemValue="PROPONENTE"/>
-                    <f:selectItem itemLabel="PUBLICO" itemValue="PUBLICO" />
-                    <f:selectItem itemLabel="PERSONAL_PMO" itemValue="PERSONAL_PMO" />
-                    <f:selectItem itemLabel="ADMINISTRADOR" itemValue="ADMINISTRADOR" />
+            <p:dialog header="Edicion de Usuario" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+            <p:outputPanel id="usuarioDetail" style="margin-top:0px; font-size: 20px ; text-align:center ">
+                <p:panelGrid  columns="2" rendered="#{not empty usuarioBean.usuario}">
 
-                </p:selectOneMenu>
-             
-                <h:outputText value="Estado" />
-                <h:outputText value="#{usuarioBean.usuario.estado}" />
-                
-                
-            </p:panelGrid>
-            <p></p>
-            <p:commandButton value ="Guardar" actionListener="#{usuarioBean.modificarUsuario(usuarioBean.usuario.correo, usuarioBean.rol)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{usuarioBean.mensaje(usuarioBean.usuario.correo)}"/>
-             <p:blockUI block="usuarioDetail" trigger="iconOnly">            
-                    <p:graphicImage name="assets/img/ajax-loader.gif"/>
-             </p:blockUI>
-        </p:outputPanel>
-    </p:dialog>
+                    <h:outputText value="Correo:" />
+                    <h:outputText value="#{usuarioBean.usuario.correo}" />
+
+                    <h:outputText value="Nombre:" />
+                    <h:outputText value="#{usuarioBean.usuario.nombre}" />
+
+                    <h:outputText value="Rol Actual:" />
+                    <h:outputText value="#{usuarioBean.usuario.rol}" />
+
+                    <h:outputText value="Rol Nuevo:" />
+                    <p:selectOneMenu id="rol" value="#{usuarioBean.rol}" style="{width:200px position: absolute}" >
+                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                        <f:selectItem itemLabel="PROPONENTE" itemValue="PROPONENTE"/>
+                        <f:selectItem itemLabel="PUBLICO" itemValue="PUBLICO" />
+                        <f:selectItem itemLabel="PERSONAL_PMO" itemValue="PERSONAL_PMO" />
+                        <f:selectItem itemLabel="ADMINISTRADOR" itemValue="ADMINISTRADOR" />
+
+                    </p:selectOneMenu>
+
+                    <h:outputText value="Estado" />
+                    <h:outputText value="#{usuarioBean.usuario.estado}" />
+
+
+                </p:panelGrid>
+                <p></p>
+                <p:commandButton value ="Guardar" actionListener="#{usuarioBean.modificarUsuario(usuarioBean.usuario.correo, usuarioBean.rol)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{usuarioBean.mensaje(usuarioBean.usuario.correo)}"/>
+                 <p:blockUI block="usuarioDetail" trigger="iconOnly">
+                        <p:graphicImage name="assets/img/ajax-loader.gif"/>
+                 </p:blockUI>
+            </p:outputPanel>
+        </p:dialog>
 </h:form>
                 </div>
             </tbody>

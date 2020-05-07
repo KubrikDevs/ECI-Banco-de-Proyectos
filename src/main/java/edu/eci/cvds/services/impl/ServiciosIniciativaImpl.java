@@ -56,6 +56,16 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
     }
 
     @Override
+    public List<Iniciativa> consultarIniciativas(List<String> palabrasClaves) throws ExcepcionBancoDeProyectos {
+        try {
+            return iniciativaDAO.consultarIniciativas(palabrasClaves);
+        }catch (PersistenceException e) {
+            throw new ExcepcionBancoDeProyectos("Error de Busqueda de palabras clave:" + e.getLocalizedMessage(), e);
+        }
+
+    }
+
+    @Override
     public List<Iniciativa> buscarIniciativasPorTag(String tag) throws ExcepcionBancoDeProyectos {
         try{
             return iniciativaDAO.cargarIniciativas(tag);

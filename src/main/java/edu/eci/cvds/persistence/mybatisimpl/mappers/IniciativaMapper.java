@@ -2,6 +2,7 @@ package edu.eci.cvds.persistence.mybatisimpl.mappers;
 
 import edu.eci.cvds.entities.EstadoIniciativa;
 import edu.eci.cvds.entities.Iniciativa;
+import edu.eci.cvds.services.ExcepcionBancoDeProyectos;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.guice.transactional.Transactional;
 
@@ -19,6 +20,10 @@ public interface IniciativaMapper {
 
     List<Iniciativa> consultarIniciativas();
 
+    List<Iniciativa> consultarIniciativas(@Param("palabrasClaves") List<String> palabrasClaves);
+
+
     List<Iniciativa> consultarIniciativasPorTag(@Param("tag") String tag);
+
 
 }

@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -41,6 +42,8 @@ public class IniciativaBean extends BasePageBean {
     private List<Iniciativa> iniciativas;
     private String mensaje = "Correcto";
     private String operacion = "Correcto";
+    //private ArrayList<String> palabrasClaveConsultar= new ArrayList<String>();
+    //private List<Iniciativa> iniciativasConClave= new ArrayList<Iniciativa>();
 
     public Iniciativa getIniciativa() {
         return iniciativa;
@@ -123,7 +126,10 @@ public class IniciativaBean extends BasePageBean {
         int idIniciativa =  (iniciativas.size());
         Date fechaInicio = Date.valueOf(fechaDeInicio);
         EstadoIniciativa estadoI = EstadoIniciativa.valueOf(estadoInicial);
-        Iniciativa iniciativa = new Iniciativa(idIniciativa,nombre,area,proponente,descripcion,estadoI,fechaInicio);
+        List<String> pruebaPC = new ArrayList<String>();
+        pruebaPC.add("pruebaPalabraClave");
+        System.out.println(pruebaPC);
+        Iniciativa iniciativa = new Iniciativa(idIniciativa,nombre,area,proponente,descripcion,estadoI,fechaInicio, pruebaPC);
         try{
             serviciosIniciativa.crearIniciativa(iniciativa);
             this.operacion = "registrada";
@@ -151,6 +157,24 @@ public class IniciativaBean extends BasePageBean {
             throw e;
         }
     }
+
+    public List<Iniciativa> consultarIniciativas(List<String> palabrasClaves) throws ExcepcionBancoDeProyectos{
+        List<Iniciativa> todasLasIniciativas = serviciosIniciativa.buscarIniciativas();
+        List<Iniciativa> iniciativasConPalClaves = new ArrayList<Iniciativa>();
+
+        for(Iniciativa i: todasLasIniciativas) {
+
+            for (String s : palabrasClaves) {
+                if (i.getPalabrasClave().contains(s) && !iniciativasConPalClaves.contains(i)) {
+                    iniciativasConPalClaves.add(i);
+                }
+            }
+        }
+        return iniciativasConPalClaves;
+    }
+
+
+
 }
 
 
