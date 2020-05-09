@@ -13,7 +13,16 @@ public interface ServiciosIniciativa {
     void crearIniciativa(Iniciativa i) throws ExcepcionBancoDeProyectos;
 
     @Transactional
+    void registrarVoto(int id, String correo) throws ExcepcionBancoDeProyectos;
+
+    @Transactional
     void modificarIniciativa(int id, EstadoIniciativa estado) throws ExcepcionBancoDeProyectos;
+
+    void cancelarVoto(int id, String correo) throws ExcepcionBancoDeProyectos;
+
+    int buscarNumeroDeVotos(int id) throws ExcepcionBancoDeProyectos;
+
+    boolean consultarSiPuedeVotar(int id, String correo) throws ExcepcionBancoDeProyectos;
 
     Iniciativa buscarIniciativa(int id) throws ExcepcionBancoDeProyectos;
 

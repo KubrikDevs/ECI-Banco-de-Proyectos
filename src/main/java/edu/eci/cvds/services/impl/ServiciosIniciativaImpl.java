@@ -92,4 +92,40 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
             throw new ExcepcionBancoDeProyectos("Error de Busqueda"+e.getLocalizedMessage(), e);
         }
     }
+
+    @Override
+    public void registrarVoto(int id, String correo) throws ExcepcionBancoDeProyectos {
+        try {
+            iniciativaDAO.insertarVoto(id, correo);
+        }catch (PersistenceException e){
+            throw new ExcepcionBancoDeProyectos("Error de Registro"+e.getLocalizedMessage(), e);
+        }
+    }
+
+    @Override
+    public void cancelarVoto(int id, String correo) throws ExcepcionBancoDeProyectos {
+        try {
+            iniciativaDAO.borrarVoto(id, correo);
+        }catch (PersistenceException e){
+            throw new ExcepcionBancoDeProyectos("Error de Eliminacion"+e.getLocalizedMessage(), e);
+        }
+    }
+
+    @Override
+    public int buscarNumeroDeVotos(int id) throws ExcepcionBancoDeProyectos {
+        try {
+            return iniciativaDAO.cagarNumeroDeVotos(id);
+        }catch (PersistenceException e){
+            throw new ExcepcionBancoDeProyectos("Error de Busqueda"+e.getLocalizedMessage(), e);
+        }
+    }
+
+    @Override
+    public boolean consultarSiPuedeVotar(int id, String correo) throws ExcepcionBancoDeProyectos {
+        try {
+            return iniciativaDAO.consultarSiPuedeVotar(id, correo) == 0;
+        }catch (PersistenceException e){
+            throw new ExcepcionBancoDeProyectos("Error de Busqueda"+e.getLocalizedMessage(), e);
+        }
+    }
 }

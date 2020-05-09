@@ -10,9 +10,29 @@
         VALUES (#{i.id}, #{i.nombre}, #{i.area}, #{i.descripcion}, #{i.proponente.correo}, #{i.estado}, #{i.fechaDeInicio})
     </insert>
 
+    <insert id="registrarVoto">
+        INSERT INTO VOTOS(iniciativa, autor) VALUES (#{id}, #{correo})
+    </insert>
+    
     <update id="modificarEstadoIniciativa">
         UPDATE INICIATIVAS SET estado=#{estado, typeHandler=org.apache.ibatis.type.EnumTypeHandler} WHERE id=#{id}
     </update>
+    
+    <delete id="eliminarVoto">
+        DELETE FROM VOTOS WHERE iniciativa=#{id} AND autor=#{correo}
+    </delete>
+
+    <select id="consultarNumeroDeVotos" resultType="int">
+        SELECT COUNT(*)
+        FROM VOTOS
+        WHERE iniciativa=#{id}
+    </select>
+
+    <select id="puedeVotar" resultType="int">
+        SELECT COUNT(*)
+        FROM VOTOS
+        WHERE iniciativa=#{id} and autor=#{correo}
+    </select>
 
     <select id="consultarIniciativas" resultMap="IniciativaResult" parameterType="map">
         SELECT

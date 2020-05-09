@@ -15,6 +15,10 @@ public interface IniciativaMapper {
     void registrarIniciativa(@Param("i") Iniciativa i);
 
     @Transactional
+
+    void registrarVoto(@Param("id")int id, @Param("correo") String correo);
+
+    @Transactional
     void modificarEstadoIniciativa(@Param("id") int id, @Param("estado") EstadoIniciativa estado);
 
     Iniciativa consultarIniciativa(@Param("id") int id);
@@ -29,4 +33,11 @@ public interface IniciativaMapper {
     List<Iniciativa> consultarIniciativasRelacionadas(@Param("ini") Iniciativa i);
 
     List<Estadistico> consultarEstadisticasPorArea();
+
+    int consultarNumeroDeVotos(@Param("id") int id);
+
+    int puedeVotar(@Param("id")int id, @Param("correo") String correo);
+
+    void eliminarVoto(@Param("id")int id, @Param("correo") String correo);
+
 }

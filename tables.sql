@@ -38,7 +38,7 @@ create table if not exists palabras_clave
 
 create table if not exists votos
 (
-    id         integer      not null
+    id         serial      not null
         constraint votos_pk
             primary key,
     iniciativa integer      not null
@@ -89,6 +89,8 @@ create table if not exists integrantes_proyecto
         constraint integrantes_proyecto_iniciativas
             references iniciativas
 );
+
+
 
 insert into usuarios values ('admin', 'admin@gmail.com', 'admin', 'ACTIVO', 'ADMINISTRADOR');
 insert into usuarios values ('test', 'test@gmail.com', 'test', 'ACTIVO', 'PUBLICO');

@@ -86,4 +86,40 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
             throw new edu.eci.cvds.persistence.PersistenceException("Error al cargar estadisticas", e);
         }
     }
+
+    @Override
+    public void insertarVoto(int id, String correo) throws edu.eci.cvds.persistence.PersistenceException {
+        try {
+            iniciativaMapper.registrarVoto(id, correo);
+        } catch (PersistenceException e){
+            throw new edu.eci.cvds.persistence.PersistenceException("Error al registrar voto", e);
+        }
+    }
+
+    @Override
+    public void borrarVoto(int id, String correo) throws edu.eci.cvds.persistence.PersistenceException {
+        try {
+            iniciativaMapper.eliminarVoto(id, correo);
+        } catch (PersistenceException e){
+            throw new edu.eci.cvds.persistence.PersistenceException("Error al borrar voto", e);
+        }
+    }
+
+    @Override
+    public int consultarSiPuedeVotar(int id, String correo) throws edu.eci.cvds.persistence.PersistenceException {
+        try{
+            return iniciativaMapper.puedeVotar(id, correo);
+        }catch (PersistenceException e){
+            throw new edu.eci.cvds.persistence.PersistenceException("Error al consultar posibilidad de voto", e);
+        }
+    }
+
+    @Override
+    public int cagarNumeroDeVotos(int id) throws edu.eci.cvds.persistence.PersistenceException {
+        try{
+            return iniciativaMapper.consultarNumeroDeVotos(id);
+        }catch (PersistenceException e){
+            throw new edu.eci.cvds.persistence.PersistenceException("Error al consultar numero de votos de la iniciativa" + id, e);
+        }
+    }
 }
