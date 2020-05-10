@@ -101,7 +101,6 @@ public class LoginBean extends BasePageBean{
     }
     
     public void logout() throws IOException {
-        System.out.println("aquitoy");
     	if (isLogged()) {
     		FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/index.xhtml");
     		SecurityUtils.getSubject().logout();

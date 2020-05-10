@@ -19,6 +19,10 @@ lang="es">
         </form>
     </ui:define>
     -->
+    
+    
+    
+    
     <ui:define name="breadcumTitle">
         <h2>Estadisticas</h2>
     </ui:define>
@@ -26,8 +30,16 @@ lang="es">
         <co:bsection sectionName="Estadisticas"/>
     </ui:define>
     <ui:define name="contenido">
-        <h1>GRAFICAS</h1>
-        <p:chart type="bar" model="#{estadisticasBean.barChart}" style="height:300px"/>
+
+
+        <div>
+            <div style="font-size: 20px ; text-align:center ; margin: auto"   >
+                <h1>GRAFICA Area</h1>
+                <p:chart type="bar" model="#{estadisticasBean.barChart}" style="height:300px"/>
+            </div>
+        </div>
+
+
     </ui:define>
 </ui:composition>
 </html>
