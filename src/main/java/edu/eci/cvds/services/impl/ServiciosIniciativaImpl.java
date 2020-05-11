@@ -10,7 +10,10 @@ import edu.eci.cvds.services.ExcepcionBancoDeProyectos;
 import edu.eci.cvds.services.ServiciosIniciativa;
 
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ServiciosIniciativaImpl implements ServiciosIniciativa {
     @Inject
@@ -57,23 +60,25 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
     }
 
     @Override
-    public List<Iniciativa> consultarIniciativas(List<String> palabrasClaves) throws ExcepcionBancoDeProyectos {
+    public List<Iniciativa> buscarIniciativas(List<String> palabrasClaves) throws ExcepcionBancoDeProyectos {
         try {
-            return iniciativaDAO.consultarIniciativas(palabrasClaves);
+            List<Iniciativa> busqueda = new ArrayList<Iniciativa>();
+            Set<Integer> ids = new HashSet<Integer>();
+            for(String palabra : palabrasClaves){
+                iniciativaDAO.cargarIniciativas(palabra).forEach(i -> {
+                    if(!ids.contains(i.getId())){
+                        ids.add(i.getId());
+                        busqueda.add(i);
+                    }
+                });
+            }
+            return busqueda;
         }catch (PersistenceException e) {
             throw new ExcepcionBancoDeProyectos("Error de Busqueda de palabras clave:" + e.getLocalizedMessage(), e);
         }
 
     }
 
-    @Override
-    public List<Iniciativa> buscarIniciativasPorTag(String tag) throws ExcepcionBancoDeProyectos {
-        try{
-            return iniciativaDAO.cargarIniciativas(tag);
-        } catch (PersistenceException e){
-            throw new ExcepcionBancoDeProyectos("Error de Busqueda"+e.getLocalizedMessage(), e);
-        }
-    }
 
     @Override
     public List<Iniciativa> buscarIniciativas(Iniciativa i) throws ExcepcionBancoDeProyectos {

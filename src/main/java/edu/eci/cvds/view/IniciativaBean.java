@@ -158,22 +158,6 @@ public class IniciativaBean extends BasePageBean {
         }
     }
 
-    public List<Iniciativa> consultarIniciativas(List<String> palabrasClaves) throws ExcepcionBancoDeProyectos{
-        List<Iniciativa> todasLasIniciativas = serviciosIniciativa.buscarIniciativas();
-        List<Iniciativa> iniciativasConPalClaves = new ArrayList<Iniciativa>();
-
-        for(Iniciativa i: todasLasIniciativas) {
-
-            for (String s : palabrasClaves) {
-                if (i.getPalabrasClave().contains(s) && !iniciativasConPalClaves.contains(i)) {
-                    iniciativasConPalClaves.add(i);
-                }
-            }
-        }
-        return iniciativasConPalClaves;
-    }
-
-
 
 }
 

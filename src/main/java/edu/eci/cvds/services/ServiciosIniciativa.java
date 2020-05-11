@@ -30,9 +30,7 @@ public interface ServiciosIniciativa {
 
     List<Iniciativa> buscarIniciativasUsuario(String correo) throws ExcepcionBancoDeProyectos;
 
-    List<Iniciativa> consultarIniciativas(List<String> palabrasClaves) throws ExcepcionBancoDeProyectos;
-
-    List<Iniciativa> buscarIniciativasPorTag(String tag) throws  ExcepcionBancoDeProyectos;
+    List<Iniciativa> buscarIniciativas(List<String> palabrasClaves) throws ExcepcionBancoDeProyectos;
 
     List<Iniciativa> buscarIniciativas(Iniciativa i) throws ExcepcionBancoDeProyectos;
 

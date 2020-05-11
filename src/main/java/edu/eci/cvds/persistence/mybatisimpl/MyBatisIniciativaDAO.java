@@ -51,14 +51,6 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
         }
     }
 
-    @Override
-    public List<Iniciativa> consultarIniciativas(List<String> palabrasClaves) throws PersistenceException {
-        try{
-            return iniciativaMapper.consultarIniciativas(palabrasClaves);
-        } catch (PersistenceException e){
-            throw new PersistenceException("Error al consultar iniciativas con palabra clave", e);
-        }
-    }
 
     @Override
     public List<Iniciativa> cargarIniciativas(String tag) throws edu.eci.cvds.persistence.PersistenceException {

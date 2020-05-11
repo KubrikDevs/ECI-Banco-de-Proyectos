@@ -32,8 +32,6 @@ public interface IniciativaDAO {
 
     List<Iniciativa> cargarIniciativasUsuario(String correo) throws PersistenceException;
 
-    List<Iniciativa> consultarIniciativas(List<String> palabrasClaves) throws PersistenceException;
-
     List<Iniciativa> cargarIniciativas(String tag) throws PersistenceException;
 
     List<Iniciativa> cargarIniciativas(Iniciativa i)throws PersistenceException;
