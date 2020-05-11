@@ -79,7 +79,7 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
     }
 
     @Override
-    public List<Estadistico> cargarEstadisticaPorAreas() throws edu.eci.cvds.persistence.PersistenceException {
+    public List<Estadistico> cargarEstadisticasPorAreas() throws edu.eci.cvds.persistence.PersistenceException {
         try {
             return iniciativaMapper.consultarEstadisticasPorArea();
         }catch (PersistenceException e){
@@ -131,4 +131,14 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
             throw new edu.eci.cvds.persistence.PersistenceException("Error al consultar iniciativas del usuario "+correo, e);
         }
     }
+
+    @Override
+    public List<Estadistico> cargarEstadisticasPorEstado() throws edu.eci.cvds.persistence.PersistenceException {
+        try {
+            return iniciativaMapper.consultarEstadisticasPorEstado();
+        }catch (PersistenceException e){
+            throw new edu.eci.cvds.persistence.PersistenceException("Error al cargar estadisticas", e);
+        }
+    }
+
 }

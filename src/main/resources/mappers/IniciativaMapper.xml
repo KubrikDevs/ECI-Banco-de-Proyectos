@@ -110,6 +110,12 @@
         GROUP BY i.area
     </select>
 
+    <select id="consultarEstadisticasPorEstado" resultMap="EstadisticoResult" parameterType="map">
+        SELECT DISTINCT (i.estado), COUNT(i.id) as cantidad
+        FROM INICIATIVAS as i
+        GROUP BY i.estado
+    </select>
+
     <resultMap id="EstadisticoResult" type="Estadistico">
         <result property="area" column="area"/>
         <result property="cantidadDeIniciativas" column="cantidad"/>

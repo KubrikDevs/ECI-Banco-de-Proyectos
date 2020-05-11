@@ -38,7 +38,9 @@ public interface IniciativaDAO {
 
     List<Iniciativa> cargarIniciativas(Iniciativa i)throws PersistenceException;
 
-    List<Estadistico> cargarEstadisticaPorAreas()throws PersistenceException;
+    List<Estadistico> cargarEstadisticasPorAreas()throws PersistenceException;
+
+    List<Estadistico> cargarEstadisticasPorEstado() throws PersistenceException;
 
 
 }

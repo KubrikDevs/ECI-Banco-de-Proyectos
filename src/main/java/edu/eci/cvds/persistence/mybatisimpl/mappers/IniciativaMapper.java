@@ -42,4 +42,6 @@ public interface IniciativaMapper {
 
     List<Iniciativa> consultarIniciativasUsuario(@Param("correo") String correo);
 
+    List<Estadistico> consultarEstadisticasPorEstado();
+
 }

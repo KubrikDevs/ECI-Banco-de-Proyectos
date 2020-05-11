@@ -37,4 +37,6 @@ public interface ServiciosIniciativa {
     List<Iniciativa> buscarIniciativas(Iniciativa i) throws ExcepcionBancoDeProyectos;
 
     List<Estadistico> buscarEstadisticasPorArea() throws ExcepcionBancoDeProyectos;
+
+    List<Estadistico> buscarEstadisticasPorEstado() throws ExcepcionBancoDeProyectos;
 }

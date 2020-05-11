@@ -87,7 +87,7 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
     @Override
     public List<Estadistico> buscarEstadisticasPorArea() throws ExcepcionBancoDeProyectos {
         try {
-            return iniciativaDAO.cargarEstadisticaPorAreas();
+            return iniciativaDAO.cargarEstadisticasPorAreas();
         }catch (PersistenceException e){
             throw new ExcepcionBancoDeProyectos("Error de Busqueda"+e.getLocalizedMessage(), e);
         }
@@ -133,6 +133,15 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
     public List<Iniciativa> buscarIniciativasUsuario(String correo) throws ExcepcionBancoDeProyectos {
         try {
             return iniciativaDAO.cargarIniciativasUsuario(correo);
+        }catch (PersistenceException e){
+            throw new ExcepcionBancoDeProyectos("Error de Busqueda"+e.getLocalizedMessage(), e);
+        }
+    }
+
+    @Override
+    public List<Estadistico> buscarEstadisticasPorEstado() throws ExcepcionBancoDeProyectos {
+        try {
+            return iniciativaDAO.cargarEstadisticasPorEstado();
         }catch (PersistenceException e){
             throw new ExcepcionBancoDeProyectos("Error de Busqueda"+e.getLocalizedMessage(), e);
         }
