@@ -40,7 +40,7 @@ public class EstadisticasBean extends BasePageBean {
     private BarChartModel initBarModel() {
         BarChartModel modelo = new BarChartModel();
         ChartSeries area= new ChartSeries();
-        area.setLabel("Numero de iniciativas");
+        area.setLabel("Número de iniciativas");
         List<Estadistico> data;
         try {
             data = serviciosIniciativa.buscarEstadisticasPorArea();

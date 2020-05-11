@@ -134,7 +134,7 @@
             <f:facet name="footer">
                 <p:commandButton process="singleDTiniciativa" id="VisualizarBoton" update=":form:iniciativaDetail" value="Visualizar" oncomplete="PF('iniciativaDialog').show()" />
              <p:blockUI block="form" trigger="VisualizarBoton">            
-                    <p:graphicImage name="resources/img/ajax-loader.gif"/>
+                    <p:graphicImage library="img" name="ajax-loader.gif"/>
              </p:blockUI>  
             </f:facet>
         </p:dataTable>
@@ -181,7 +181,7 @@
             <p></p>
             <p:commandButton value ="Guardar" actionListener="#{iniciativaBean.modificarIniciativa(iniciativaBean.iniciativa.id, iniciativaBean.iniciativa.estado)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{iniciativaBean.mensaje(iniciativaBean.iniciativa.nombre)}"/>
              <p:blockUI block="iniciativaDetail" trigger="iconOnly">            
-                    <p:graphicImage name="resources/img/ajax-loader.gif"/>
+                    <p:graphicImage library="img" name="ajax-loader.gif"/>
              </p:blockUI>            
         </p:outputPanel>
     </p:dialog>

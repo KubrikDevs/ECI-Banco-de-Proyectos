@@ -1,214 +1,227 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
- 
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:jsf="http://xmlns.jcp.org/jsf"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:shiro="http://shiro.apache.org/tags"
-    xmlns:p="http://primefaces.org/ui">
-
-
-<h:head>
-
-    <meta charset="utf-8" content=""></meta>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
-
-    <title>ECIBank</title>
-    <meta content="" name="descriptison"></meta>
-    <meta content="" name="keywords"></meta>
-
-    <!-- Favicons -->
-    <link href="resources/img/tabicon.svg" rel="icon"></link>
-    <link href="resources/img/apple-touch-icon.png" rel="apple-touch-icon"></link>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"></link>
-
-    <!-- Vendor CSS Files -->
-    <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
-    <link href="resources/vendor/icofont/icofont.min.css" rel="stylesheet"></link>
-    <link href="resources/vendor/remixicon/remixicon.css" rel="stylesheet"></link>
-    <link href="resources/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"></link>
-    <link href="resources/vendor/owl.carousel/resources/owl.carousel.min.css" rel="stylesheet"></link>
-    <link href="resources/vendor/venobox/venobox.css" rel="stylesheet"></link>
-    <link href="resources/vendor/aos/aos.css" rel="stylesheet"></link>
-
-    <!-- Template Main CSS File -->
-    <link href="resources/css/style.css" rel="stylesheet"></link>
-
-    <!-- Datatables CSS CDN -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,r-2.0.0,sc-1.4.0/datatables.min.css" />
-
-
-
-</h:head>
-<h:body >
-    <header id="header" class="fixed-top d-flex align-items-center">
-        <div class="container d-flex align-items-center">
-
-            <div class="logo mr-auto">
-                <h1 class="text-light"><a href="index.xhtml"><span><span style="color:#3498db;">ECI</span>Bank</span></a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html"><img src="resources/img/logo.png" alt="" class="img-fluid"></a>-->
-            </div>
-
-            <nav class="nav-menu d-none d-lg-block">
-                <ul>
-                    <li class="active"><a href="#header">Home</a></li>
-                    <!--
-                    <li><a href="iniciativas.xhtml">Iniciativas</a></li>
-
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    -->
-                    <li class="drop-down"><a href="">Opciones</a>
-                        <ul>
-                            <li><a href="#">Ver Iniciativas</a></li>
-                        </ul>
-                    </li>
-
-
-                    <li class="get-started">
-                        <form method="POST" jsf:id="formulario" novalidate="">
-                            <a type="submit" jsf:actionListener="#{loginBean.logout()}">Cerrar Sesión</a>
-                        </form>
-                    </li>
-                </ul>
-            </nav><!-- .nav-menu -->
-
-        </div>
-    </header><!-- End Header -->
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-        <div class="container">
-
-            <div class="d-flex justify-content-between align-items-center">
-                <h2>Usuarios</h2>
-                <ol>
-                    <li><a href="index.xhtml">Home</a></li>
-                    <li>Usuarios</li>
-                </ol>
-            </div>
-
-        </div>
-    </section><!-- End Breadcrumbs -->
-<tbody>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:co="http://xmlns.jcp.org/jsf/composite/components">
+lang="es">
+<ui:composition template="WEB-INF/facelets/template.xhtml">
+    <h:outputScript name="primefaces/jquery.js"/>
+    <!--
+    <ui:define name="headerButton">
+        <form method="POST" jsf:id="formulario" novalidate="">
+            <a type="submit" jsf:actionListener="#{loginBean.logout()}">Cerrar Sesión</a>
+        </form>
+    </ui:define>
+    -->
     
-    <p></p>
-    <div  class="table-responsive" style="margin-top:0px; font-size: 20px ; text-align:center ">
+    
 
-        <h:form id="form" class="" >
-            <p:growl id="msgs" showDetail="true"   />
-                <p:dataTable style=" background-color: #EAECEE ; width: 90% ; margin: auto"  id="singleDT" var="usuario" value="#{usuarioBean.usuarios}" selectionMode="single" selection="#{usuarioBean.usuario}" rowKey="#{usuario.correo}" widgetVar="usersTable1" emptyMessage="No se encontraron coincidencias" >
-                    <f:facet name="header">
-                        TABLA DE USUARIOS
-                    </f:facet>
 
-                    <p:column width="20%" headerText="Correo" style="text-align:center">
-                        <h:outputText value="#{usuario.correo}"  />
-                    </p:column>
-                    <p:column filterBy="#{usuario.nombre}" headerText="Nombre"  filterMatchMode="contains" style="text-align:center">
-                        <h:outputText value="#{usuario.nombre}" />
-                    </p:column>
+    <ui:define name="breadcumTitle">
+        <h2>Administrador</h2>
+    </ui:define>
+    <ui:define name="bsection">
+        <co:bsection sectionName="Administrador"/>
+    </ui:define>
+    <ui:define name="contenido">
 
-                    <p:column filterBy="#{usuario.rol}" headerText="Rol" filterMatchMode="contains" style="text-align:center">
-                        <f:facet name="filter">
-                            <p:selectOneButton onchange="PF('usersTable1').filter()" styleClass="custom-filter">
-                                <f:selectItem itemLabel="TODOS" itemValue="" />
-                                <f:selectItem itemLabel="ADMINISTRADOR" itemValue="ADMINISTRADOR" />
-                                <f:selectItem itemLabel="PERSONAL_PMO" itemValue="PERSONAL_PMO" />
-                                <f:selectItem itemLabel="PROPONENTE" itemValue="PROPONENTE" />
-                                <f:selectItem itemLabel="PUBLICO" itemValue="PUBLICO" />
-                            </p:selectOneButton>
+
+        <div>
+            <div  class="table-responsive" style="margin-top:0px; font-size: 20px ; text-align:center">
+                <h:form id="form" class="" >
+                    <p:growl id="msgs" showDetail="true"   />
+                    <p:dataTable style=" background-color: #EAECEE ; width: 90% ; margin: auto"  id="singleDT" var="usuario" value="#{usuarioBean.usuarios}" selectionMode="single" selection="#{usuarioBean.usuario}" rowKey="#{usuario.correo}" widgetVar="usersTable1" emptyMessage="No se encontraron coincidencias" >
+                        <f:facet name="header">
+                            TABLA DE USUARIOS
                         </f:facet>
-                        <h:outputText value="#{usuario.rol}" />
-                    </p:column>
 
-                    <p:column filterBy="#{usuario.estado}" headerText="Estado" filterMatchMode="contains" style="text-align:center">
-                        <f:facet name="filter">
-                            <p:selectOneButton onchange="PF('usersTable1').filter()" styleClass="custom-filter">
-                                <f:selectItem itemLabel="TODOS" itemValue="" />
-                                <f:selectItem itemLabel="ACTIVO" itemValue="ACTIVO" />
-                                <f:selectItem itemLabel="INACTIVO" itemValue="INACTIVO" />
-                            </p:selectOneButton>
-                        </f:facet>
-                        <h:outputText value="#{usuario.estado}" />
-                    </p:column>
-                    <f:facet name="footer">
-                        <p:commandButton id = "saveBtn1" process="singleDT" update=":form:usuarioDetail" value="Visualizar" oncomplete="PF('usuarioDialog').show()" />
+                        <p:column width="20%" headerText="Correo" style="text-align:center">
+                            <h:outputText value="#{usuario.correo}"  />
+                        </p:column>
+                        <p:column filterBy="#{usuario.nombre}" headerText="Nombre"  filterMatchMode="contains" style="text-align:center">
+                            <h:outputText value="#{usuario.nombre}" />
+                        </p:column>
+
+                        <p:column filterBy="#{usuario.rol}" headerText="Rol" filterMatchMode="contains" style="text-align:center">
+                            <f:facet name="filter">
+                                <p:selectOneButton onchange="PF('usersTable1').filter()" styleClass="custom-filter">
+                                    <f:selectItem itemLabel="TODOS" itemValue="" />
+                                    <f:selectItem itemLabel="ADMINISTRADOR" itemValue="ADMINISTRADOR" />
+                                    <f:selectItem itemLabel="PERSONAL_PMO" itemValue="PERSONAL_PMO" />
+                                    <f:selectItem itemLabel="PROPONENTE" itemValue="PROPONENTE" />
+                                    <f:selectItem itemLabel="PUBLICO" itemValue="PUBLICO" />
+                                </p:selectOneButton>
+                            </f:facet>
+                            <h:outputText value="#{usuario.rol}" />
+                        </p:column>
+
+                        <p:column filterBy="#{usuario.estado}" headerText="Estado" filterMatchMode="contains" style="text-align:center">
+                            <f:facet name="filter">
+                                <p:selectOneButton onchange="PF('usersTable1').filter()" styleClass="custom-filter">
+                                    <f:selectItem itemLabel="TODOS" itemValue="" />
+                                    <f:selectItem itemLabel="ACTIVO" itemValue="ACTIVO" />
+                                    <f:selectItem itemLabel="INACTIVO" itemValue="INACTIVO" />
+                                </p:selectOneButton>
+                            </f:facet>
+                            <h:outputText value="#{usuario.estado}" />
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id = "saveBtn1" process="singleDT" update=":form:usuarioDetail" value="Visualizar" oncomplete="PF('usuarioDialog').show()" />
                             <p:blockUI block="form" trigger="saveBtn1">
-                                <p:graphicImage name="resources/img/ajax-loader.gif"/>
+                                <p:graphicImage library="img" name="ajax-loader.gif"/>
                             </p:blockUI>
-                    </f:facet>
-                </p:dataTable>
-                    <p:dialog header="Edicion de Usuario" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                    <p:outputPanel id="usuarioDetail" style="margin-top:0px; font-size: 20px ; text-align:center ">
-                        <p:panelGrid  columns="2" rendered="#{not empty usuarioBean.usuario}">
+                        </f:facet>
+                    </p:dataTable>
+                    <p:dialog style="margin: auto" header="Edicion de Usuario" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="usuarioDetail" style="margin-top:0px; font-size: 20px ; text-align:center ">
+                            <p:panelGrid  columns="2" rendered="#{not empty usuarioBean.usuario}">
 
-                            <h:outputText value="Correo:" />
-                            <h:outputText value="#{usuarioBean.usuario.correo}" />
+                                <h:outputText value="Correo:" />
+                                <h:outputText value="#{usuarioBean.usuario.correo}" />
 
-                            <h:outputText value="Nombre:" />
-                            <h:outputText value="#{usuarioBean.usuario.nombre}" />
+                                <h:outputText value="Nombre:" />
+                                <h:outputText value="#{usuarioBean.usuario.nombre}" />
 
-                            <h:outputText value="Rol Actual:" />
-                            <h:outputText value="#{usuarioBean.usuario.rol}" />
+                                <h:outputText value="Rol Actual:" />
+                                <h:outputText value="#{usuarioBean.usuario.rol}" />
 
-                            <h:outputText value="Rol Nuevo:" />
-                            <p:selectOneMenu id="rol" value="#{usuarioBean.rol}" style="{width:200px position: absolute}" >
-                                <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-                                <f:selectItem itemLabel="PROPONENTE" itemValue="PROPONENTE"/>
-                                <f:selectItem itemLabel="PUBLICO" itemValue="PUBLICO" />
-                                <f:selectItem itemLabel="PERSONAL_PMO" itemValue="PERSONAL_PMO" />
-                                <f:selectItem itemLabel="ADMINISTRADOR" itemValue="ADMINISTRADOR" />
+                                <h:outputText value="Rol Nuevo:" />
+                                <p:selectOneMenu id="rol" value="#{usuarioBean.rol}" style="{width:200px position: absolute}" >
+                                    <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                    <f:selectItem itemLabel="PROPONENTE" itemValue="PROPONENTE"/>
+                                    <f:selectItem itemLabel="PUBLICO" itemValue="PUBLICO" />
+                                    <f:selectItem itemLabel="PERSONAL_PMO" itemValue="PERSONAL_PMO" />
+                                    <f:selectItem itemLabel="ADMINISTRADOR" itemValue="ADMINISTRADOR" />
 
-                            </p:selectOneMenu>
+                                </p:selectOneMenu>
 
-                            <h:outputText value="Estado" />
-                            <h:outputText value="#{usuarioBean.usuario.estado}" />
-
-
-                        </p:panelGrid>
-                        <p></p>
-                        <p:commandButton value ="Guardar" actionListener="#{usuarioBean.modificarUsuario(usuarioBean.usuario.correo, usuarioBean.rol)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{usuarioBean.mensaje(usuarioBean.usuario.correo)}"/>
-                         <p:blockUI block="usuarioDetail" trigger="iconOnly">
-                                <p:graphicImage name="resources/img/ajax-loader.gif"/>
-                         </p:blockUI>
-                    </p:outputPanel>
-                </p:dialog>
-        </h:form>
-    </div>
-</tbody>
+                                <h:outputText value="Estado" />
+                                <h:outputText value="#{usuarioBean.usuario.estado}" />
 
 
- 
+                            </p:panelGrid>
+                            <p></p>
+                            <p:commandButton value ="Guardar" actionListener="#{usuarioBean.modificarUsuario(usuarioBean.usuario.correo, usuarioBean.rol)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{usuarioBean.mensaje(usuarioBean.usuario.correo)}"/>
+                            <p:blockUI block="usuarioDetail" trigger="iconOnly">
+                                <p:graphicImage library="img" name="ajax-loader.gif"/>
+                            </p:blockUI>
+                        </p:outputPanel>
+                    </p:dialog>
+                </h:form>
+
+            </div>
+
+            <br/>
+            <br/>
+            <br/>
+            <div  class="table-responsive" style="margin-top:0px; font-size: 20px ; text-align:center ">
+
+
+                <h:form id="form2" class="" >
+                    <p:growl id="msgs" showDetail="true"   />
+                    <p:dataTable  style=" background-color: #EAECEE ; width: 90% ; margin: auto" id="singleDTiniciativa" var="iniciativa" value="#{iniciativaBean.iniciativas}" selectionMode="single" selection="#{iniciativaBean.iniciativa}" rowKey="#{iniciativa.id}" widgetVar="iniciativasTable1" emptyMessage="No se encontraron coincidencias" sortOrder="DESCENDING" >
+                        <f:facet name="header">
+                            TABLA DE INICIATIVAS
+                        </f:facet>
+
+                        <p:column headerText="Id" width="5%" style="text-align:center">
+                            <h:outputText value="#{iniciativa.id}" />
+                        </p:column>
+
+                        <p:column filterBy="#{iniciativa.nombre}" headerText="Nombre"  filterMatchMode="contains" style="text-align:center">
+                            <h:outputText value="#{iniciativa.nombre}" />
+                        </p:column>
+                        
+                        <p:column filterBy="#{iniciativa.proponente.correo}" headerText="Proponente"  filterMatchMode="contains" style="text-align:center">
+                            <h:outputText value="#{iniciativa.proponente.correo}" />
+                        </p:column>
+                        
+                        <p:column filterBy="#{iniciativa.area}" headerText="Area"  filterMatchMode="contains" style="text-align:center">
+                            <h:outputText value="#{iniciativa.area}" />
+                        </p:column>
+                        
+                        <p:column filterBy="#{iniciativa.fechaDeInicio}" headerText="fecha De Inicio"  filterMatchMode="contains" style="text-align:center">
+                            <h:outputText value="#{iniciativa.fechaDeInicio}" />
+                        </p:column>
+
+                        <p:column filterBy="#{iniciativa.estado}" headerText="Estado" filterMatchMode="contains" style="text-align:center">
+                            <f:facet name="filter">
+                                <p:selectOneButton onchange="PF('iniciativasTable1').filter()" styleClass="custom-filter">
+                                    <f:selectItem itemLabel="TODOS" itemValue="" />
+                                    <f:selectItem itemLabel="ESPERA" itemValue="ESPERA" />
+                                    <f:selectItem itemLabel="REVISION" itemValue="REVISION" />
+                                    <f:selectItem itemLabel="PROYECTO" itemValue="PROYECTO" />
+                                    <f:selectItem itemLabel="SOLUCIONADO" itemValue="SOLUCIONADO" />
+                                </p:selectOneButton>
+                            </f:facet>
+                            <h:outputText value="#{iniciativa.estado}" />
+                        </p:column>
+
+                        <f:facet name="footer">
+                            <p:commandButton process="singleDTiniciativa" id="VisualizarBoton" update=":form2:iniciativaDetail" value="Visualizar" oncomplete="PF('iniciativaDialog').show()" />
+                            <p:blockUI block="form2" trigger="VisualizarBoton">            
+                                <p:graphicImage library="img" name="ajax-loader.gif"/>
+                            </p:blockUI>  
+                        </f:facet>
+                    </p:dataTable>
+                    <p:dialog  header="Edicion de Iniciativa" widgetVar="iniciativaDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="iniciativaDetail">
+                            <p:panelGrid  columns="2" rendered="#{not empty iniciativaBean.iniciativa}" >
+
+                                <h:outputText value="ID:" />
+                                <h:outputText value="#{iniciativaBean.iniciativa.id}" />
+                                <h:outputText value="Nombre:" />
+                                <h:outputText value="#{iniciativaBean.iniciativa.nombre}" />               
+
+                                <h:outputText value="Area:" />
+                                <h:outputText value="#{iniciativaBean.iniciativa.area}" />
+
+                                <h:outputText value="Estado Actual:" />
+                                <h:outputText value="#{iniciativaBean.iniciativa.estado}" />
+
+                                <h:outputText value="Proponente:" />
+                                <h:outputText value="#{iniciativaBean.iniciativa.proponente.correo}" />
+
+                                <h:outputText value="Fecha de Creación:" />
+                                <h:outputText value="#{iniciativaBean.iniciativa.fechaDeInicio}" />
+
+                                <h:outputText value="Descripción:"  />
+                                <h:outputText value="#{iniciativaBean.iniciativa.descripcion}"  style="overflow-y: auto;  overflow-x: auto; width: 200px; display:block;" />
+
+
+                                <h:outputText value="Modificar Estado:" />
+
+                                <p:selectOneMenu id="estado" value="#{iniciativaBean.iniciativa.estado}" style="{width:200px position: absolute}" >
+                                    <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                    <f:selectItem itemLabel="ESPERA" itemValue="ESPERA"/>
+                                    <f:selectItem itemLabel="REVISION" itemValue="REVISION" />
+                                    <f:selectItem itemLabel="PROYECTO" itemValue="PROYECTO" />
+                                    <f:selectItem itemLabel="SOLUCIONADO" itemValue="SOLUCIONADO" />
+
+                                </p:selectOneMenu>
 
 
 
-    <!-- Vendor JS Files -->
-    <!--<script src="resources/vendor/jquery/jquery.min.js"></script>-->
-    
+
+                            </p:panelGrid>
+                            <p></p>
+                            <p:commandButton value ="Guardar" actionListener="#{iniciativaBean.modificarIniciativa(iniciativaBean.iniciativa.id, iniciativaBean.iniciativa.estado)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{iniciativaBean.mensaje(iniciativaBean.iniciativa.nombre)}"/>
+                            <p:blockUI block="iniciativaDetail" trigger="iconOnly">            
+                                <p:graphicImage library="img" name="ajax-loader.gif"/>
+                            </p:blockUI>            
+                        </p:outputPanel>
+                    </p:dialog>
+                </h:form>        
+            </div>
+        </div>
 
 
-    <script src="resources/vendor/jquery.easing/jquery.easing.min.js"></script>
-    <script src="resources/vendor/php-email-form/validate.js"></script>
-    <script src="resources/vendor/waypoints/jquery.waypoints.min.js"></script>
-    <script src="resources/vendor/counterup/counterup.min.js"></script>
-    <script src="resources/vendor/owl.carousel/owl.carousel.min.js" ></script>
-    <script src="resources/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="resources/vendor/venobox/venobox.min.js"></script>
-    <script src="resources/vendor/aos/aos.js"></script>
-    
-
-    <!-- Template Main JS File -->
-    <script src="resources/js/main.js" ></script>
-
-    <!-- Datatables JS CDN -->
-    <script src='https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,fh-3.1.0,r-2.0.0,sc-1.4.0/datatables.min.js'></script>
-</h:body>
-
+    </ui:define>
+</ui:composition>
 </html>
