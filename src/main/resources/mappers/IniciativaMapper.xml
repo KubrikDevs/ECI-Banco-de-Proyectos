@@ -48,6 +48,20 @@
         WHERE i.proponente = u.correo
     </select>
 
+    <select id="consultarIniciativasPorEstado" resultMap="IniciativaResult" parameterType="map">
+        SELECT
+            i.id,
+            i.nombre as nombreI,
+            i.area,
+            i.descripcion,
+            i.estado as estadoI,
+            i.fecha_creacion,
+            u.correo,
+            u.nombre
+        FROM INICIATIVAS as i, USUARIOS as u
+        WHERE i.proponente = u.correo and i.estado=#{estado, typeHandler=org.apache.ibatis.type.EnumTypeHandler}
+    </select>
+
     <select id="consultarIniciativa" resultMap="IniciativaResult" parameterType="map">
         SELECT
             i.id,

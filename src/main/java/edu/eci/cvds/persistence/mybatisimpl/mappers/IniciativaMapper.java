@@ -27,6 +27,7 @@ public interface IniciativaMapper {
 
     List<Iniciativa> consultarIniciativas(@Param("palabrasClaves") List<String> palabrasClaves);
 
+    List<Iniciativa> consultarIniciativasPorEstado(@Param("estado") EstadoIniciativa estadoIniciativa);
 
     List<Iniciativa> consultarIniciativasPorTag(@Param("tag") String tag);
 
