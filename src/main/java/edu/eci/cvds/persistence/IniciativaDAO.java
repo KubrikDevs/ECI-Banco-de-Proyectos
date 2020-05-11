@@ -30,6 +30,8 @@ public interface IniciativaDAO {
 
     List<Iniciativa> cargarIniciativas() throws PersistenceException;
 
+    List<Iniciativa> cargarIniciativasUsuario(String correo) throws PersistenceException;
+
     List<Iniciativa> consultarIniciativas(List<String> palabrasClaves) throws PersistenceException;
 
     List<Iniciativa> cargarIniciativas(String tag) throws PersistenceException;
@@ -37,5 +39,6 @@ public interface IniciativaDAO {
     List<Iniciativa> cargarIniciativas(Iniciativa i)throws PersistenceException;
 
     List<Estadistico> cargarEstadisticaPorAreas()throws PersistenceException;
+
 
 }

@@ -62,6 +62,20 @@
         WHERE i.proponente=u.correo and i.id=#{id}
     </select>
 
+    <select id="consultarIniciativasUsuario" resultMap="IniciativaResult" parameterType="map">
+        SELECT
+            i.id,
+            i.nombre as nombreI,
+            i.area,
+            i.descripcion,
+            i.estado as estadoI,
+            i.fecha_creacion,
+            u.correo,
+            u.nombre
+        FROM INICIATIVAS as i, USUARIOS as u
+        WHERE i.proponente=u.correo and u.correo=#{correo}
+    </select>
+
     <select id="consultarIniciativasPorTag" resultMap="IniciativaResult" parameterType="map">
         SELECT
             i.id,

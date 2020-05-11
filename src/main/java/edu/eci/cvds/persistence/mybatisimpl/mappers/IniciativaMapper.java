@@ -40,4 +40,6 @@ public interface IniciativaMapper {
 
     void eliminarVoto(@Param("id")int id, @Param("correo") String correo);
 
+    List<Iniciativa> consultarIniciativasUsuario(@Param("correo") String correo);
+
 }
