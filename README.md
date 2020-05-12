@@ -27,7 +27,7 @@ El sistema, más allá de facilitar el registro de las iniciativas e ideas de pr
 
 - Marco de Trabajo
 
-Se decidió implementar el framework ***SCRUM**, debido a su alta capacidad para generar productos entregables en un corto tiempo. Ademas del desarrollo colaborativo y la flexibilidad a la hora de trabajar. Por medio de las iteraciones (Sprints) que se realizan es posible tener una retroalimentación constante, para ajustar el ritmo de trabajo. 
+Se decidió implementar el framework ***SCRUM***, debido a su alta capacidad para generar productos entregables en un corto tiempo. Ademas del desarrollo colaborativo y la flexibilidad a la hora de trabajar. Por medio de las iteraciones (Sprints) que se realizan es posible tener una retroalimentación constante, para ajustar el ritmo de trabajo. 
 
 - Integrantes
 
@@ -39,7 +39,7 @@ Se decidió implementar el framework ***SCRUM**, debido a su alta capacidad para
 |`Juan Sebastian Diaz`          |`Team Developer`             |
 |`Juan Camilo Ortiz`            |`Team Developer`             |
 
-
+- Enlace a Taiga:  https://tree.taiga.io/project/d4v0r-plataforma-banco-de-iniciativas-de-proyectos/backlog
 
 
 
