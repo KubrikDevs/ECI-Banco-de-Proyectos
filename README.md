@@ -27,11 +27,12 @@ Orientada a soportar la interactividad de los usuarios con las funcionalidades b
 Esta capa permite desacoplar la interfaz de usuario del resto de capas, permitiendo que las funcionalidades de nuestra aplicación sean accesible por otras aplicaciones u servicios.
 
 
-- Diagrama de clases
+### Diagrama de clases
   + Paquete de Entidades
     ![](DClases.PNG)
+    
 
-- Diagrama Entidad Relacion
+### Diagrama Entidad Relacion
   + Modelado Físico de la Base de Datos
   ![](ER.png)
   
@@ -44,11 +45,11 @@ Esta capa permite desacoplar la interfaz de usuario del resto de capas, permitie
 
 ## Proceso de Desarrollo 
 
-- Marco de Trabajo
+### Marco de Trabajo
 
 Se decidió implementar el framework ***SCRUM***, debido a su alta capacidad para generar productos entregables en un corto tiempo. Ademas del desarrollo colaborativo y la flexibilidad a la hora de trabajar. Por medio de las iteraciones (Sprints) que se realizan es posible tener una retroalimentación constante, para ajustar el ritmo de trabajo. 
 
-- Integrantes
+### Integrantes
 
 |   *TEAM*                      |        *ROL*                |
 |-------------------------------|-----------------------------|
