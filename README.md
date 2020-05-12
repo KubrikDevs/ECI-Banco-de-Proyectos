@@ -16,10 +16,10 @@ El sistema, más allá de facilitar el registro de las iniciativas e ideas de pr
   + Modelado Físico de la Base de Datos
   ![](ER.png)
   
- - Enlace a la aplicación en Heroku
+ - Enlace a la aplicación en Heroku: 
  https://eci-banco-de-proyectos.herokuapp.com/
  
- - Enlace al Sistema de Integración Continua
+ - Enlace al Sistema de Integración Continua: 
  [![CircleCI](https://circleci.com/gh/KubrikDevs/ECI-Banco-de-Proyectos.svg?style=svg)](https://circleci.com/gh/KubrikDevs/ECI-Banco-de-Proyectos)
 
 
@@ -38,6 +38,9 @@ Se decidió implementar el framework ***SCRUM**, debido a su alta capacidad para
 |`Davor Cortés`                 |`Team Developer`             |
 |`Juan Sebastian Diaz`          |`Team Developer`             |
 |`Juan Camilo Ortiz`            |`Team Developer`             |
+
+
+
 
 
 
