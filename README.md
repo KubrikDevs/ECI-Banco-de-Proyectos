@@ -31,13 +31,13 @@ Se decidió implementar el framework ***SCRUM**, debido a su alta capacidad para
 
 - Integrantes
 
-  + Laura Bernal  (Developer Team)
-  + Davor Cortés  (Scrum Master)
-  + Juan Sebastian Diaz  (Developer Team)
-  + Juan Camilo Ortiz  (Developer Team)
-
-- Profesor
-  + Oscar Ospina (Product Owner)
+|   *TEAM*                      |        *ROL*                |
+|-------------------------------|-----------------------------|
+|`Oscar Ospina`                 |`Product Owner`              |
+|`Laura Bernal`                 |`Team Developer`             |
+|`Davor Cortés`                 |`Team Developer`             |
+|`Juan Sebastian Diaz`          |`Team Developer`             |
+|`Juan Camilo Ortiz`            |`Team Developer`             |
 
 
 
