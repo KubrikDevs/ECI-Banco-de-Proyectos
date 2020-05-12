@@ -6,7 +6,9 @@
     <properties resource="config.properties"> </properties>
 
     <typeAliases>
-        <typeAlias type="samples.entities.Usuario" alias="Usuario"/>
+        <typeAlias type="edu.eci.cvds.entities.Usuario" alias="Usuario"/>
+        <typeAlias type="edu.eci.cvds.entities.Iniciativa" alias="Iniciativa"/>
+        <typeAlias type="edu.eci.cvds.entities.Estadistico" alias="Estadistico"/>
     </typeAliases>
 
     <environments default="development">
@@ -22,8 +24,8 @@
     </environments>
 
     <mappers>
-        <mapper resource="mappers/UsuarioMapper.xml"></mapper>
+        <mapper resource="mappers/UsuarioMapper.xml"/>
+        <mapper resource="mappers/IniciativaMapper.xml"/>
     </mappers>
-
 
 </configuration>

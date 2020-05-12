@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:co="http://xmlns.jcp.org/jsf/composite/components">
+lang="es">
+<ui:composition template="WEB-INF/facelets/template.xhtml">
+    <h:outputScript name="primefaces/jquery.js"/>
+    <!--
+    <ui:define name="headerButton">
+        <form method="POST" jsf:id="formulario" novalidate="">
+            <a type="submit" jsf:actionListener="#{loginBean.logout()}">Cerrar Sesión</a>
+        </form>
+    </ui:define>
+    -->
+    
+    
+    
+    
+    <ui:define name="breadcumTitle">
+        <h2>Estadisticas</h2>
+    </ui:define>
+    <ui:define name="bsection">
+        <co:bsection sectionName="Estadisticas"/>
+    </ui:define>
+    <ui:define name="contenido">
+    
+        <p:chart type="bar" model="#{estadisticasBean.barChart}" style="height:300px"/>
+    </ui:define>
+</ui:composition>
+</html>
