@@ -10,8 +10,14 @@
         VALUES (#{i.id}, #{i.nombre}, #{i.area}, #{i.descripcion}, #{i.proponente.correo}, #{i.estado}, #{i.fechaDeInicio})
     </insert>
 
+    <insert id="registrarInteresado">
+        INSERT INTO INTERESADOS(id, interesado, iniciativa)
+        VALUES (null, #{id}, #{correo})
+    </insert>
+
     <insert id="registrarVoto">
-        INSERT INTO VOTOS(iniciativa, autor) VALUES (#{id}, #{correo})
+        INSERT INTO VOTOS(iniciativa, autor)
+        VALUES (#{id}, #{correo})
     </insert>
     
     <update id="modificarEstadoIniciativa">

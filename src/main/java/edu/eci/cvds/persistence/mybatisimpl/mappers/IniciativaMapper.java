@@ -15,6 +15,9 @@ public interface IniciativaMapper {
     void registrarIniciativa(@Param("i") Iniciativa i);
 
     @Transactional
+    void registrarInteresado(@Param("id") int id, @Param("correo") String correo);
+
+    @Transactional
 
     void registrarVoto(@Param("id")int id, @Param("correo") String correo);
 
@@ -24,8 +27,6 @@ public interface IniciativaMapper {
     Iniciativa consultarIniciativa(@Param("id") int id);
 
     List<Iniciativa> consultarIniciativas();
-
-    List<Iniciativa> consultarIniciativas(@Param("palabrasClaves") List<String> palabrasClaves);
 
     List<Iniciativa> consultarIniciativasPorEstado(@Param("estado") EstadoIniciativa estadoIniciativa);
 

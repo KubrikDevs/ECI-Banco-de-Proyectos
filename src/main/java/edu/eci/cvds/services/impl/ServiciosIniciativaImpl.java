@@ -1,9 +1,11 @@
 package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.Comentario;
 import edu.eci.cvds.entities.Estadistico;
 import edu.eci.cvds.entities.EstadoIniciativa;
 import edu.eci.cvds.entities.Iniciativa;
+import edu.eci.cvds.persistence.ComentarioDAO;
 import edu.eci.cvds.persistence.IniciativaDAO;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.ExcepcionBancoDeProyectos;
@@ -18,6 +20,9 @@ import java.util.Set;
 public class ServiciosIniciativaImpl implements ServiciosIniciativa {
     @Inject
     IniciativaDAO iniciativaDAO;
+
+    @Inject
+    ComentarioDAO comentarioDAO;
 
     @Override
     public void crearIniciativa(Iniciativa i) throws ExcepcionBancoDeProyectos {
@@ -160,5 +165,32 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
             throw new ExcepcionBancoDeProyectos("Error de Busqueda:"+e.getLocalizedMessage(), e);
         }
 
+    }
+
+    @Override
+    public void registrarInteresado(int id, String correo) throws ExcepcionBancoDeProyectos {
+        try {
+            iniciativaDAO.insertarInteresado(id, correo);
+        } catch (PersistenceException e){
+            throw new ExcepcionBancoDeProyectos("Error de Registro:"+e.getLocalizedMessage(), e);
+        }
+    }
+
+    @Override
+    public void agregarComentario(Comentario c, int idIniciativa) throws ExcepcionBancoDeProyectos{
+        try{
+            comentarioDAO.insertarComentario(c, idIniciativa);
+        }catch (PersistenceException e){
+            throw new ExcepcionBancoDeProyectos("Error de Registro:"+e.getLocalizedMessage(), e);
+        }
+    }
+
+    @Override
+    public List<Comentario> buscarComentarios(int idIniciativa) throws ExcepcionBancoDeProyectos {
+        try{
+            return comentarioDAO.cargarComentarios(idIniciativa);
+        }catch (PersistenceException e){
+            throw new ExcepcionBancoDeProyectos("Error de Busqueda:"+e.getLocalizedMessage(), e);
+        }
     }
 }

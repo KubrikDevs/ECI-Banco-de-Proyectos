@@ -17,6 +17,7 @@ public class Iniciativa {
     private List<String> palabrasClave;
     private List<Usuario> votos;
     private List<Usuario> interesados;
+    private List<Comentario> comentarios;
 
     public Iniciativa(){}
 
@@ -32,6 +33,21 @@ public class Iniciativa {
         this.interesados = new ArrayList<>();
         this.votos = new ArrayList<>();
         this.palabrasClave = new ArrayList<>();
+
+    }
+    public Iniciativa(int id, String nombre, String area, Usuario proponente, String descripcion, EstadoIniciativa estado, Date fechaDeInicio, ArrayList<Comentario> comentarios){
+        this.id = id;
+        this.nombre = nombre;
+        this.area = area;
+        this.proponente = proponente;
+        this.descripcion = descripcion;
+        this.estado = estado;
+        this.fechaDeInicio = fechaDeInicio;
+        this.fechaDeFin = fechaDeInicio;
+        this.interesados = new ArrayList<>();
+        this.votos = new ArrayList<>();
+        this.palabrasClave = new ArrayList<>();
+        this.comentarios = comentarios;
 
     }
 

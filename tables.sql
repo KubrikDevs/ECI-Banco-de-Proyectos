@@ -49,9 +49,9 @@ create table if not exists votos
             references usuarios
 );
 
-create table if not exists comentarios
+create table comentarios
 (
-    id             integer      not null
+    id             serial       not null
         constraint comentarios_pk
             primary key,
     autor          varchar(150) not null

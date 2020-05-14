@@ -16,20 +16,20 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
     private IniciativaMapper iniciativaMapper;
 
     @Override
-    public void insertarIniciativa(Iniciativa i) throws PersistenceException {
+    public void insertarIniciativa(Iniciativa i) throws edu.eci.cvds.persistence.PersistenceException {
         try{
             iniciativaMapper.registrarIniciativa(i);
         }catch (PersistenceException e){
-            throw new PersistenceException("Error al registrar iniciativa: " +i.toString(), e);
+            throw new edu.eci.cvds.persistence.PersistenceException("Error al registrar iniciativa: " +i.toString(), e);
         }
     }
 
     @Override
-    public void modificarIniciativa(int id, EstadoIniciativa estado) throws PersistenceException {
+    public void modificarIniciativa(int id, EstadoIniciativa estado) throws edu.eci.cvds.persistence.PersistenceException {
         try{
             iniciativaMapper.modificarEstadoIniciativa(id, estado);
         }catch (PersistenceException e){
-            throw new PersistenceException("Error al modificar iniciativa: " + id, e);
+            throw new edu.eci.cvds.persistence.PersistenceException("Error al modificar iniciativa: " + id, e);
         }
     }
 
@@ -43,11 +43,11 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
     }
 
     @Override
-    public List<Iniciativa> cargarIniciativas() throws PersistenceException {
+    public List<Iniciativa> cargarIniciativas() throws edu.eci.cvds.persistence.PersistenceException {
         try{
             return iniciativaMapper.consultarIniciativas();
         } catch (PersistenceException e){
-            throw new PersistenceException("Error al consultar iniciativas i's", e);
+            throw new edu.eci.cvds.persistence.PersistenceException("Error al consultar iniciativas i's", e);
         }
     }
 
@@ -139,6 +139,15 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
             return iniciativaMapper.consultarIniciativasPorEstado(estado);
         }catch (PersistenceException e) {
             throw new edu.eci.cvds.persistence.PersistenceException("Error al consultar iniciativas", e);
+        }
+    }
+
+    @Override
+    public void insertarInteresado(int id, String correo) throws edu.eci.cvds.persistence.PersistenceException {
+        try{
+            iniciativaMapper.registrarInteresado(id, correo);
+        }catch (PersistenceException e){
+            throw new edu.eci.cvds.persistence.PersistenceException("Error al registrar interesado", e);
         }
     }
 }
