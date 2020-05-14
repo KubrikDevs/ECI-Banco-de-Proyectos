@@ -55,7 +55,7 @@ Se decidió implementar el framework ***SCRUM***, debido a su alta capacidad par
 |-------------------------------|-----------------------------|
 |`Oscar Ospina`                 |`Product Owner`              |
 |`Laura Bernal`                 |`Team Developer`             |
-|`Davor Cortés`                 |`Team Developer`             |
+|`Davor Cortés`                 |`Scrum Master`               |
 |`Juan Sebastian Diaz`          |`Team Developer`             |
 |`Juan Camilo Ortiz`            |`Team Developer`             |
 
