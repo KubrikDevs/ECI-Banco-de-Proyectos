@@ -13,6 +13,7 @@ import javax.faces.bean.SessionScoped;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -140,9 +141,22 @@ public class IniciativaBean extends BasePageBean {
         }
     }
     
+      
     
-    public void mensaje(String iniciativa) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, this.mensaje, "Iniciativa "+iniciativa+ " " + this.operacion));
+        public List<Iniciativa> getIniciativasPorPalabraClave(String palabrasClave) throws  Exception{
+                    
+            String str[] = palabrasClave.split(" ");
+            List<String> al = new ArrayList<String>();
+            al = Arrays.asList(str);
+            
+            List<Iniciativa> al2 = new ArrayList<Iniciativa>();
+            try{
+                al2 = serviciosIniciativa.buscarIniciativas(al);
+            }catch (ExcepcionBancoDeProyectos e){
+                this.mensaje = "Error al consultar iniciativas por tag";
+                throw e;
+            }
+            return al2;
     }
     
     

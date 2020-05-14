@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:co="http://xmlns.jcp.org/jsf/composite/components">
+lang="es">
+<ui:composition template="WEB-INF/facelets/template.xhtml">
+    <h:outputScript name="primefaces/jquery.js"/>
+    <!--
+    <ui:define name="headerButton">
+        <form method="POST" jsf:id="formulario" novalidate="">
+            <a type="submit" jsf:actionListener="#{loginBean.logout()}">Cerrar Sesión</a>
+        </form>
+    </ui:define>
+    -->
+    
+    
+
+
+    <ui:define name="breadcumTitle">
+        <h2>Filtrar Iniciativa  por Tags</h2>
+    </ui:define>
+    <ui:define name="bsection">
+        <co:bsection sectionName="Filtrar Iniciativa  por Tags"/>
+    </ui:define>
+    <ui:define name="contenido">
+        
+        <div style="margin-top:0px; font-size: 20px ; text-align:center ; align-items: center ; width: 60% ; margin: auto ">
+            <h:form id = "form">    
+               
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            
+             <h3>Palabras clave</h3>
+                <span class="ui-float-label">
+                    <p:inputText id="palabras-clave" binding="#{superPalabrasClave}" />
+                    <div>
+                    <p:outputLabel for="@previous" value="Cada palabra tiene que ir separada con espacios, ejemplo: 'palabra1 palabra2'" />
+                    </div>
+                </span>
+                
+
+                <p:growl id="message" showDetail="true" />
+
+
+                <p:commandButton styleClass="thead-dark" process="palabras-clave" id="VisualizarBoton" update=":form:iniciativaDetail" value="Visualizar iniciativas filtradas" oncomplete="PF('iniciativaDialog').show()" />
+
+
+
+                <p:dialog style =' align-content: center ; text-align:center' header="Iniciativa filtrada por las palabras" widgetVar="iniciativaDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:outputPanel id="iniciativaDetail">
+                        <div style="font-size: 20px ; text-align:center"   >
+                            <p:dataTable id="table" style=" background-color: #EAECEE ; width: 90% ; margin: auto" var="iniciativa" value="#{iniciativaBean.getIniciativasPorPalabraClave(superPalabrasClave.value)}" styleClass="thead-dark">
+                                    <p:column headerText="ID" >
+                                        <h:outputText value="#{iniciativa.id}"/>
+                                    </p:column>
+
+                                    <p:column headerText="Nombre" >
+                                        <h:outputText value="#{iniciativa.nombre}" />
+                                    </p:column>
+
+                                    <p:column headerText="Area" >
+                                        <h:outputText value="#{iniciativa.area}" />
+                                    </p:column>
+
+                                    <p:column headerText="Fecha de Inicio" >
+                                        <h:outputText value="#{iniciativa.fechaDeInicio}" />
+                                    </p:column>
+
+                                    <p:column headerText="Descripción">
+                                        <h:outputText value="#{iniciativa.descripcion}" style=" overflow-y: auto;  overflow-x: auto; display: block;  " />
+                                    </p:column>
+
+                            </p:dataTable>
+
+                        </div>           
+                    </p:outputPanel>
+                </p:dialog>
+            </h:form>
+        </div>
+
+
+    </ui:define>
+</ui:composition>
+</html>
