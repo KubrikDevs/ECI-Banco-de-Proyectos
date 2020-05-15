@@ -150,4 +150,13 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
             throw new edu.eci.cvds.persistence.PersistenceException("Error al registrar interesado", e);
         }
     }
+
+    @Override
+    public void insertarPalabraClave(int id, String palabraClave) throws edu.eci.cvds.persistence.PersistenceException {
+        try {
+            iniciativaMapper.registrarPalabraClave(id, palabraClave);
+        }catch (PersistenceException e){
+            throw new edu.eci.cvds.persistence.PersistenceException("Error al registrar palabra clave", e);
+        }
+    }
 }

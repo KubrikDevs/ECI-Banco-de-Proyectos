@@ -10,6 +10,11 @@
         VALUES (#{i.id}, #{i.nombre}, #{i.area}, #{i.descripcion}, #{i.proponente.correo}, #{i.estado}, #{i.fechaDeInicio})
     </insert>
 
+    <insert id="registrarPalabraClave">
+        INSERT INTO PALABRAS_CLAVE(id, palabra_clave, iniciativa)
+        VALUES (null, #{tag}, #{id})
+    </insert>
+
     <insert id="registrarInteresado">
         INSERT INTO INTERESADOS(id, interesado, iniciativa)
         VALUES (null, #{id}, #{correo})

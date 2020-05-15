@@ -18,8 +18,10 @@ public interface IniciativaMapper {
     void registrarInteresado(@Param("id") int id, @Param("correo") String correo);
 
     @Transactional
-
     void registrarVoto(@Param("id")int id, @Param("correo") String correo);
+
+    @Transactional
+    void registrarPalabraClave(@Param("id") int id, @Param("tag") String palabraClave);
 
     @Transactional
     void modificarEstadoIniciativa(@Param("id") int id, @Param("estado") EstadoIniciativa estado);

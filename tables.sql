@@ -49,7 +49,7 @@ create table if not exists votos
             references usuarios
 );
 
-create table comentarios
+create table if not exists comentarios
 (
     id             serial       not null
         constraint comentarios_pk
@@ -64,9 +64,9 @@ create table comentarios
             references iniciativas
 );
 
-create table if not exists estrellas
+create table if not exists interesados
 (
-    id         integer      not null
+    id         serial       not null
         constraint estrellas_pk
             primary key,
     interesado varchar(150) not null

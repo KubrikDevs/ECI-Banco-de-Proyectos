@@ -28,6 +28,12 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
     public void crearIniciativa(Iniciativa i) throws ExcepcionBancoDeProyectos {
         try{
             iniciativaDAO.insertarIniciativa(i);
+            if(i.getPalabrasClave() != null){
+                for (String palabra: i.getPalabrasClave()
+                     ) {
+                    iniciativaDAO.insertarPalabraClave(i.getId(), palabra);
+                }
+            }
         }catch (PersistenceException e){
             throw new ExcepcionBancoDeProyectos("Error de Registro:"+e.getLocalizedMessage(), e);
         }
