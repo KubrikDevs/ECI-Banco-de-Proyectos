@@ -26,6 +26,9 @@ public interface IniciativaMapper {
     @Transactional
     void modificarEstadoIniciativa(@Param("id") int id, @Param("estado") EstadoIniciativa estado);
 
+    @Transactional
+    void  modificarIniciativa(@Param("i") Iniciativa i);
+
     Iniciativa consultarIniciativa(@Param("id") int id);
 
     List<Iniciativa> consultarIniciativas();

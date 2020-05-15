@@ -199,4 +199,13 @@ public class ServiciosIniciativaImpl implements ServiciosIniciativa {
             throw new ExcepcionBancoDeProyectos("Error de Busqueda:"+e.getLocalizedMessage(), e);
         }
     }
+
+    @Override
+    public void modificarIniciativa(Iniciativa i) throws ExcepcionBancoDeProyectos {
+        try {
+            iniciativaDAO.modificarIniciativa(i);
+        }catch (PersistenceException e){
+            throw new ExcepcionBancoDeProyectos("Error de Modificacion:"+e.getLocalizedMessage(), e);
+        }
+    }
 }

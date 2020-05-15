@@ -28,6 +28,12 @@
     <update id="modificarEstadoIniciativa">
         UPDATE INICIATIVAS SET estado=#{estado, typeHandler=org.apache.ibatis.type.EnumTypeHandler} WHERE id=#{id}
     </update>
+
+    <update id="modificarIniciativa">
+        UPDATE INICIATIVAS
+        SET nombre=#{i.nombre}, area=#{i.area}, descripcion=#{i.descripcion}
+        WHERE id=#{i.id}
+    </update>
     
     <delete id="eliminarVoto">
         DELETE FROM VOTOS WHERE iniciativa=#{id} AND autor=#{correo}

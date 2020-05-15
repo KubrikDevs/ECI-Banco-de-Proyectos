@@ -25,6 +25,9 @@ public interface ServiciosIniciativa {
     @Transactional
     void modificarIniciativa(int id, EstadoIniciativa estado) throws ExcepcionBancoDeProyectos;
 
+    @Transactional
+    void modificarIniciativa(Iniciativa i) throws ExcepcionBancoDeProyectos;
+
     void cancelarVoto(int id, String correo) throws ExcepcionBancoDeProyectos;
 
     int buscarNumeroDeVotos(int id) throws ExcepcionBancoDeProyectos;
