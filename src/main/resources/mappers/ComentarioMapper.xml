@@ -6,8 +6,8 @@
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.ComentarioMapper">
 
     <insert id="registrarComentario" parameterType="Comentario">
-        INSERT INTO COMENTARIOS(id, autor, contenido, fecha_creacion, iniciativa)
-        VALUES (null, #{c.autor.correo}, #{c.contenido}, #{c.fecha_creacion}, #{idIni})
+        INSERT INTO COMENTARIOS(autor, contenido, fecha_creacion, iniciativa)
+        VALUES (#{c.autor.correo}, #{c.contenido}, #{c.fecha_creacion}, #{idIni})
     </insert>
 
     <select id="consultarComentarios" parameterType="map" resultMap="ComentarioResult">

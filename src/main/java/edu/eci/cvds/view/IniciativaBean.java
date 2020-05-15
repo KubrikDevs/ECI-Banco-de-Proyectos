@@ -122,15 +122,15 @@ public class IniciativaBean extends BasePageBean {
         return localDate;
     }
     
-    public void registrarIniciativa(String nombre,String area,Usuario proponente,String descripcion, LocalDate fechaDeInicio, String palabraClave) throws  Exception{
+    public void registrarIniciativa(String nombre,String area,Usuario proponente,String descripcion, LocalDate fechaDeInicio, String palabrasClave) throws  Exception{
         this.iniciativas = serviciosIniciativa.buscarIniciativas();
         int idIniciativa =  (iniciativas.size());
         Date fechaInicio = Date.valueOf(fechaDeInicio);
         EstadoIniciativa estadoI = EstadoIniciativa.valueOf(estadoInicial);
-        List<String> pruebaPC = new ArrayList<String>();
-        pruebaPC.add(palabraClave);
-        System.out.println(pruebaPC);
-        Iniciativa iniciativa = new Iniciativa(idIniciativa,nombre,area,proponente,descripcion,estadoI,fechaInicio, pruebaPC);
+        List<String> listadoDePalabrasClave = new ArrayList<String>();
+        String str[] = palabrasClave.split(" ");
+        listadoDePalabrasClave = Arrays.asList(str);
+        Iniciativa iniciativa = new Iniciativa(idIniciativa,nombre,area,proponente,descripcion,estadoI,fechaInicio, listadoDePalabrasClave);
         try{
             serviciosIniciativa.crearIniciativa(iniciativa);
             this.operacion = "registrada";

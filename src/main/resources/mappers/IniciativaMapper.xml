@@ -11,13 +11,13 @@
     </insert>
 
     <insert id="registrarPalabraClave">
-        INSERT INTO PALABRAS_CLAVE(id, palabra_clave, iniciativa)
-        VALUES (null, #{tag}, #{id})
+        INSERT INTO PALABRAS_CLAVE(palabra_clave, iniciativa)
+        VALUES (#{tag}, #{id})
     </insert>
 
     <insert id="registrarInteresado">
-        INSERT INTO INTERESADOS(id, interesado, iniciativa)
-        VALUES (null, #{id}, #{correo})
+        INSERT INTO INTERESADOS(interesado, iniciativa)
+        VALUES (#{id}, #{correo})
     </insert>
 
     <insert id="registrarVoto">
