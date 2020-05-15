@@ -129,7 +129,7 @@
           </div>
           <br/>
           <div class="form-group" align="center">
-            <p:commandButton actionListener="#{iniciativaBean.registrarIniciativa(superNombre.value, superArea.value, usuarioBean.getUsuario(loginBean.email), superDescripcion.value,iniciativaBean.getFecha())}" id="registro" update="contactForm" value="Registrar" action="#{iniciativaBean.mensaje(superNombre.value)}"></p:commandButton>
+            <p:commandButton actionListener="#{iniciativaBean.registrarIniciativa(superNombre.value, superArea.value, usuarioBean.getUsuario(loginBean.email), superDescripcion.value,iniciativaBean.getFecha(),superPalabraClave.value)}" id="registro" update="contactForm" value="Registrar" action="#{iniciativaBean.mensaje(superNombre.value)}"></p:commandButton>
              <p:blockUI block="contactForm" trigger="registro">            
                     <p:graphicImage library="img" name="ajax-loader.gif"/>
              </p:blockUI>  
