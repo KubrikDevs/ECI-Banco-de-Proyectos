@@ -93,17 +93,19 @@ Se decidió implementar el framework ***SCRUM***, debido a su alta capacidad par
 
 ### Sprints
 __Sprint 1__
+En el Sprint 1 se realizaron las las historias de uso numero 1, 2, 3, 4, 5. En este sprint se relizo diseño, y codificación del proyecto, el cual tuvo constantes cambios a los largo de su ejecución. El correcto diseño del plataforma permitio un avance constante y acelerado de cada uno de los miembros del equipo.
 
 
 ![](Sprint1.jpeg)
 
 __Sprint 2__
+En el Sprint 2 se realizaron las historias de uso 6, 7, 8, 9. En este esprint se resalto por el cambio del front por uno que se acomoda esteticamente al gusto de todos y al de los futuros usuarios. Se continuo con el desarrollo dle proyecto de forma exitosa, gracias al correcto diseño del proyecto.
 
 
 ![](Sprint2.jpeg)
 
 __Sprint 3__
-
+En el Sprint 3 se realizaron los cambios y modificaciones necesarias para la implementacion de las historias de uso 10, 11, 12, 13, 14. Para esto se diseñaron y codificaron la vistas necessarias para la correcta funcionalidad.
 
 ![](Sprint3.jpeg)
 
