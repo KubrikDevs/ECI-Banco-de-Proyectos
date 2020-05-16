@@ -14,6 +14,9 @@ El sistema, más allá de facilitar el registro de las iniciativas e ideas de pr
 
 ## Arquitectura y Diseño
 Se diseñó una arquitectura de 4 capas, separando la aplicación en componentes que se sitúan en diferentes niveles funcionales.
+
+![](paquetes.PNG)
+
 ### Capas
 - Capa de Persistencia
 
