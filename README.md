@@ -15,7 +15,7 @@ El sistema, más allá de facilitar el registro de las iniciativas e ideas de pr
 ## Arquitectura y Diseño
 Se diseñó una arquitectura de 4 capas, separando la aplicación en componentes que se sitúan en diferentes niveles funcionales.
 
-![](paquetes.PNG)
+![](paquetes.png)
 
 ### Capas
 - Capa de Persistencia
@@ -27,7 +27,7 @@ En esta capa se encuentra todos aquellos componentes cuya funcionalidad está ce
 - Capa de Negocio (Modelo)
 
 
-![](DClases.PNG)
+![](DClases.png)
 Es la que soporta toda la lógica de negocio. En esta capa encontramos todas aquellas funciones que hacen algún tipo de tratamiento de los datos, se aplica las reglas de negocio, etc.
 
 
@@ -47,7 +47,7 @@ Esta capa permite desacoplar la interfaz de usuario del resto de capas, permitie
 
 ### Diagrama de clases
   + Paquete de Entidades
-    ![](DClases.PNG)
+    ![](DClases.png)
     
 
 ### Diagrama Entidad Relacion
