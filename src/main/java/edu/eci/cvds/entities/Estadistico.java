@@ -5,6 +5,10 @@ public class Estadistico {
     private EstadoIniciativa estado;
     private int cantidadDeIniciativas;
 
+    public Estadistico(){
+
+    }
+
     public String getArea() {
         return area;
     }

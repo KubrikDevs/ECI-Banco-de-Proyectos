@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.ComentarioMapper">
+
+    <insert id="registrarComentario" parameterType="Comentario">
+        INSERT INTO COMENTARIOS(autor, contenido, fecha_creacion, iniciativa)
+        VALUES (#{c.autor.correo}, #{c.contenido}, #{c.fecha_creacion}, #{idIni})
+    </insert>
+
+    <select id="consultarComentarios" parameterType="map" resultMap="ComentarioResult">
+        SELECT
+            C.ID,
+            C.CONTENIDO,
+            C.FECHA_CREACION,
+            U.NOMBRE,
+            U.CORREO,
+            U.ESTADO,
+            U.ROL
+        FROM COMENTARIOS AS C, USUARIOS AS U
+        WHERE C.AUTOR = U.CORREO AND C.INICIATIVA = #{idIni}
+    </select>
+
+    <resultMap id="ComentarioResult" type="Comentario">
+        <id column="id" property="id"/>
+        <result column="contenido" property="contenido"/>
+        <result column="fechaCreacion" property="fecha_creacion"/>
+        <association property="autor" column="autor" javaType="Usuario" resultMap="edu.eci.cvds.persistence.mybatisimpl.mappers.UsuarioMapper.UsuarioResult"/>
+    </resultMap>
+
+</mapper>

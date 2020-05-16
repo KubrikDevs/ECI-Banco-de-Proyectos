@@ -1,167 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
- 
 
-<f:view xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:jsf="http://xmlns.jcp.org/jsf"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:shiro="http://shiro.apache.org/tags"
-    xmlns:p="http://primefaces.org/ui">
-    
-    
-<html>
-<h:head>
-    <meta charset="utf-8"></meta>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:co="http://xmlns.jcp.org/jsf/composite/components">
+lang="es">
+<ui:composition template="WEB-INF/facelets/template.xhtml">
+    <h:outputScript name="primefaces/jquery.js"/>
+    <!--
+    <ui:define name="headerButton">
+        <form method="POST" jsf:id="formulario" novalidate="">
+            <a type="submit" jsf:actionListener="#{loginBean.logout()}">Cerrar Sesión</a>
+        </form>
+    </ui:define>
+    -->
 
-    <title>ECIBank</title>
-    <meta content="" name="descriptison"></meta>
-    <meta content="" name="keywords"></meta>
+    <ui:define name="breadcumTitle">
+        <h2>Registrar Iniciativa</h2>
+    </ui:define>
+    <ui:define name="bsection">
+        <co:bsection sectionName="Mis iniciativas"/>
+    </ui:define>
+    <ui:define name="contenido">
+        <div style="margin-top:0px; font-size: 20px ; text-align:center ; align-items: center ; width: 60% ; margin: auto "> 
 
-    <!-- Favicons -->
-    <link href="resources/img/tabicon.svg" rel="icon"></link>
-    <link href="resources/img/apple-touch-icon.png" rel="apple-touch-icon"></link>
+            <h:form name="sentMessage" id="contactForm">
+                <br/>
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"></link>
+                <label>Nombre</label>
+                <p:inputText style=" height: 50px ; font-size: 20px ; text-align: center" type="text" class="form-control" placeholder="Nombre" id="nombre" binding="#{superNombre}" required="true" />
 
-    <!-- Vendor CSS Files -->
-    <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
-    <link href="resources/vendor/icofont/icofont.min.css" rel="stylesheet"></link>
-    <link href="resources/vendor/remixicon/remixicon.css" rel="stylesheet"></link>
-    <link href="resources/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"></link>
-    <link href="resources/vendor/owl.carousel/resources/owl.carousel.min.css" rel="stylesheet"></link>
-    <link href="resources/vendor/venobox/venobox.css" rel="stylesheet"></link>
-    <link href="resources/vendor/aos/aos.css" rel="stylesheet"></link>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Area</label>
+                        <p:inputText style=" height: 50px ; font-size: 20px ; text-align: center" type="text" class="form-control" placeholder="Area" id="area" binding="#{superArea}" required="true"/>
+                    </div>
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Palabras Clave</label>
+                        <p:inputText style=" height: 50px ; font-size: 20px ; text-align: center" type="text" class="form-control" placeholder="PalabrasClave" id="PalabraClave" binding="#{superPalabraClave}" required="true"/>
+                        <div>
+                            <p:outputLabel for="@previous" value="Cada palabra tiene que ir separada con espacios, ejemplo: 'palabra1 palabra2'" style="color: #6c757d; font-weight: lighter;"/>
+                        </div>
+                    </div>
 
-    <!-- Template Main CSS File -->
-    <link href="resources/css/style.css" rel="stylesheet"></link>
-
-    <!-- Datatables CSS CDN -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,r-2.0.0,sc-1.4.0/datatables.min.css" />
-
-
-
-</h:head>
-<h:body >
-    <header id="header" class="fixed-top d-flex align-items-center">
-        <div class="container d-flex align-items-center">
-
-            <div class="logo mr-auto">
-                <h1 class="text-light"><a href="index.xhtml"><span><span style="color:#3498db;">ECI</span>Bank</span></a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html"><img src="resources/img/logo.png" alt="" class="img-fluid"></a>-->
-            </div>
-
-            <nav class="nav-menu d-none d-lg-block">
-                <ul>
-                    <li class="active"><a href="#header">Home</a></li>
-                    <!--
-                    <li><a href="iniciativas.xhtml">Iniciativas</a></li>
-
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    -->
-                    <li class="drop-down"><a href="">Opciones</a>
-                        <ul>
-                            <li><a href="#">Ver Iniciativas</a></li>
-                        </ul>
-                    </li>
+                </div>
 
 
-                    <li class="get-started">
-                        <form method="POST" jsf:id="formulario" novalidate="">
-                            <a type="submit" jsf:actionListener="#{loginBean.logout()}">Cerrar Sesión</a>
-                        </form>
-                    </li>
-                </ul>
-            </nav><!-- .nav-menu -->
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <br/>
 
+                        <label>Descripción</label>
+                        <p:inputTextarea style=" height: 200px ; font-size: 20px" class="form-control" id="descript" rows="5" cols="30" counter="display" maxlength="360"  counterTemplate="{0} caracteres restantes." autoResize="false" binding="#{superDescripcion}"/>
+                        <h:outputText id="display" />
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group" align="center">
+                    <p:commandButton actionListener="#{iniciativaBean.registrarIniciativa(superNombre.value, superArea.value, usuarioBean.getUsuario(loginBean.email), superDescripcion.value,iniciativaBean.getFecha(),superPalabraClave.value)}" id="registro" update="contactForm" value="Registrar" action="#{iniciativaBean.mensaje(superNombre.value)}"></p:commandButton>
+                    <p:blockUI block="contactForm" trigger="registro">            
+                        <p:graphicImage library="img" name="ajax-loader.gif"/>
+                    </p:blockUI>  
+                </div>
+            </h:form>
         </div>
-    </header><!-- End Header -->
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-        <div class="container">
-
-            <div class="d-flex justify-content-between align-items-center">
-                <h2>Registrar Iniciativa</h2>
-                <ol>
-                    <li><a href="index.xhtml">Home</a></li>
-                    <li>Registrar Iniciativa    </li>
-                </ol>
-            </div>
-
-        </div>
-    </section><!-- End Breadcrumbs -->
-      <div style="margin-top:0px; font-size: 20px ; text-align:center ; align-items: center ; width: 60% ; margin: auto "> 
-          
-          <h:form name="sentMessage" id="contactForm">
-            <br/>
-            <p:messages id="messages" showDetail="true" closable="true">
-              <p:autoUpdate />
-            </p:messages>
-     
-              <label>Nombre</label>
-              <p:inputText style=" height: 50px ; font-size: 20px ; text-align: center" type="text" class="form-control" placeholder="Nombre" id="nombre" binding="#{superNombre}" required="true" />
-   
-          <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-              <label>Area</label>
-              <p:inputText style=" height: 50px ; font-size: 20px ; text-align: center" type="text" class="form-control" placeholder="Area" id="area" binding="#{superArea}" required="true"/>
-            </div>
-              <div class="form-group floating-label-form-group controls">
-                  <label>Palabras Clave</label>
-                  <p:inputText style=" height: 50px ; font-size: 20px ; text-align: center" type="text" class="form-control" placeholder="PalabrasClave" id="PalabraClave" binding="#{superPalabraClave}" required="true"/>
-              </div>
-
-          </div>
-
-
-          <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-              <label>Descripción</label>
-              <p:inputTextarea style=" height: 200px ; font-size: 20px" class="form-control" id="descript" rows="5" cols="30" counter="display" maxlength="360"  counterTemplate="{0} caracteres restantes." autoResize="false" binding="#{superDescripcion}"/>
-              <h:outputText id="display" />
-            </div>
-          </div>
-          <br/>
-          <div class="form-group" align="center">
-            <p:commandButton actionListener="#{iniciativaBean.registrarIniciativa(superNombre.value, superArea.value, usuarioBean.getUsuario(loginBean.email), superDescripcion.value,iniciativaBean.getFecha())}" id="registro" update="contactForm" value="Registrar" action="#{iniciativaBean.mensaje(superNombre.value)}"></p:commandButton>
-             <p:blockUI block="contactForm" trigger="registro">            
-                    <p:graphicImage library="img" name="ajax-loader.gif"/>
-             </p:blockUI>  
-          </div>
-        </h:form>
-    </div>
-
-
- 
-
-
-
-    <!-- Vendor JS Files -->
-    <!--<script src="resources/vendor/jquery/jquery.min.js"></script>-->
-    
-    
-    <script src="resources/vendor/jquery.easing/jquery.easing.min.js"></script>
-    <script src="resources/vendor/php-email-form/validate.js"></script>
-    <script src="resources/vendor/waypoints/jquery.waypoints.min.js"></script>
-    <script src="resources/vendor/counterup/counterup.min.js"></script>
-    <script src="resources/vendor/owl.carousel/owl.carousel.min.js"></script>
-    <script src="resources/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="resources/vendor/venobox/venobox.min.js"></script>
-    <script src="resources/vendor/aos/aos.js"></script>
-    
-
-    <!-- Template Main JS File -->
-    <script src="resources/js/main.js"></script>
-
-    <!-- Datatables JS CDN -->
-    <script src='https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,fh-3.1.0,r-2.0.0,sc-1.4.0/datatables.min.js'></script>
-</h:body>
-
+    </ui:define>
+</ui:composition>
 </html>
-</f:view>

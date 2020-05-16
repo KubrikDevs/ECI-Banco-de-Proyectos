@@ -12,26 +12,48 @@
 lang="es">
 <ui:composition template="WEB-INF/facelets/template.xhtml">
     <h:outputScript name="primefaces/jquery.js"/>
-    <!--
-    <ui:define name="headerButton">
-        <form method="POST" jsf:id="formulario" novalidate="">
-            <a type="submit" jsf:actionListener="#{loginBean.logout()}">Cerrar Sesión</a>
-        </form>
-    </ui:define>
-    -->
-    
-    
-    
-    
-    <ui:define name="breadcumTitle">
-        <h2>Estadisticas</h2>
-    </ui:define>
+
     <ui:define name="bsection">
         <co:bsection sectionName="Estadisticas"/>
     </ui:define>
     <ui:define name="contenido">
-    
-        <p:chart type="bar" model="#{estadisticasBean.barChart}" style="height:300px"/>
+
+        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+<div  class="table-responsive" style="margin-top:0px; font-size: 20px ; text-align:center">
+        <p:tabView>
+            <p:tab title="Por Area" >
+                <h:panelGrid columns="1" cellpadding="100">
+                    <p:chart type="bar" model="#{estadisticasBean.barChart}"/>
+                    <br/>
+                    <p:dataTable  class="table table-bordered table-striped" var="estadistico" value="#{estadisticasBean.estadisticasPorArea()}">
+                        <p:column headerText="Area" width="5%" style="text-align:center">
+                            <h:outputText value="#{estadistico.area}" />
+                        </p:column>
+
+                        <p:column headerText="Iniciativas" width="5%" style="text-align:center">
+                            <h:outputText value="#{estadistico.cantidadDeIniciativas}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGrid>
+            </p:tab>
+            <p:tab title="Por Estado">
+                <h:panelGrid columns="2" cellpadding="50">
+                    <p:chart type="bar" model="#{estadisticasBean.barChartStatus}"/>
+
+                    <p:dataTable class="table table-bordered table-striped" var="estadistico" value="#{estadisticasBean.estadisticasPorEstado()}">
+                        <p:column headerText="Estado" width="20%" style="text-align:center">
+                            <h:outputText value="#{estadistico.estado}" />
+                        </p:column>
+
+                        <p:column headerText="Cantidad de Iniciativas" width="5%" style="text-align:center">
+                            <h:outputText value="#{estadistico.cantidadDeIniciativas}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGrid>
+            </p:tab>
+
+        </p:tabView>
+</div>
     </ui:define>
 </ui:composition>
 </html>

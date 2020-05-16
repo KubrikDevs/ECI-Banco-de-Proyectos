@@ -4,15 +4,14 @@ import java.sql.Date;
 
 public class Comentario {
 
-    private int id;
+    private int id = -1;
     private Usuario autor;
     private String contenido;
     private Date fechaCreacion;
 
     public Comentario(){ }
 
-    public Comentario(int id, Usuario autor, String contenido, Date fechaCreacion) {
-        this.id = id;
+    public Comentario(Usuario autor, String contenido, Date fechaCreacion) {
         this.autor = autor;
         this.contenido = contenido;
         this.fechaCreacion = fechaCreacion;

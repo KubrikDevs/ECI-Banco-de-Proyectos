@@ -55,21 +55,39 @@
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
+                    <li style=" margin:auto 4 ; align-content: center">
+                        <h4>usuario: <br/> #{loginBean.email == null ? 'invitado': loginBean.email} </h4>
+                    </li>
                     <li class="active"><a href="#header">Home</a></li>
                     <li class="drop-down"><a href="">Opciones</a>
                         <ul>
                             <ui:insert name="dropDownHeaderMenu">
-                                <li><a href="#">Ver Iniciativas</a></li>
+                                <li><a href="${pageContext.request.contextPath}/faces/estadisticas.xhtml">Ver Estadisticas</a></li>
+                                <li><a href="${pageContext.request.contextPath}/faces/filtrarPorTags.xhtml">Busqueda Por Tags</a></li>
+                                <li><a href="${pageContext.request.contextPath}/faces/modificarEstadoIniciativa.xhtml">Modificar Estado Iniciativas</a></li>
                             </ui:insert>
                         </ul>
                     </li>
+                    
+                    
+                    <shiro:authenticated>
+                      <li class="get-started">
+                        <li class="get-started">
+                            <form method="POST" jsf:id="formulario" novalidate="">
+                                <a type="submit" jsf:actionListener="#{loginBean.logout()}">Cerrar Sesión</a>
+                            </form>
+                        </li>
+                      </li>
+                    </shiro:authenticated>
+                    <shiro:notAuthenticated>
+                        <li class="get-started">
+                            <ui:insert name="headerButton">
+                                <a href="${pageContext.request.contextPath}/faces/login.xhtml">Iniciar Sesión</a>
+                            </ui:insert>
 
+                        </li>
+                    </shiro:notAuthenticated>
 
-                    <li class="get-started">
-                        <ui:insert name="headerButton">
-                            <a href="${pageContext.request.contextPath}/faces/login.xhtml">Iniciar Sesión</a>
-                        </ui:insert>
-                    </li>
                 </ul>
             </nav><!-- .nav-menu -->
         </div>
@@ -78,6 +96,8 @@
         <ui:insert name="bsection">
 
         </ui:insert>
+        
+        
         <ui:insert name="contenido">
 
         </ui:insert>

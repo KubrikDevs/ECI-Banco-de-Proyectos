@@ -18,7 +18,16 @@ public interface IniciativaDAO {
     void insertarVoto(int id, String correo) throws  PersistenceException;
 
     @Transactional
+    void insertarInteresado(int id, String correo) throws  PersistenceException;
+
+    @Transactional
+    void insertarPalabraClave(int id, String palabraClave)throws PersistenceException;
+
+    @Transactional
     void modificarIniciativa(int id, EstadoIniciativa estado) throws PersistenceException;
+
+    @Transactional
+    void  modificarIniciativa(Iniciativa i) throws PersistenceException;
 
     void borrarVoto(int id, String correo) throws PersistenceException;
 

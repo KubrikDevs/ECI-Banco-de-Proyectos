@@ -3,99 +3,36 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:shiro="http://shiro.apache.org/tags">
-<h:head>
-    <meta charset="utf-8" content=" "/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:co="http://xmlns.jcp.org/jsf/composite/components">
+lang="es">
+<ui:composition template="WEB-INF/facelets/template.xhtml">
+    <h:outputScript name="primefaces/jquery.js"/>
 
-    <title>ECIBank</title>
-    <meta content="" name="descriptison"/>
-    <meta content="" name="keywords"/>
-
-    <!-- Favicons -->
-    <link href="resources/img/tabicon.svg" rel="icon"/>
-    <link href="resources/img/apple-touch-icon.png" rel="apple-touch-icon"/>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-          rel="stylesheet"/>
-
-    <!-- Vendor CSS Files -->
-    <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="resources/vendor/icofont/icofont.min.css" rel="stylesheet"/>
-    <link href="resources/vendor/remixicon/remixicon.css" rel="stylesheet"/>
-    <link href="resources/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"/>
-    <link href="resources/vendor/owl.carousel/owl.carousel.min.js" rel="stylesheet"/>
-    <link href="resources/vendor/venobox/venobox.css" rel="stylesheet"/>
-    <link href="resources/vendor/aos/aos.css" rel="stylesheet"/>
-
-    <!-- Template Main CSS File -->
-    <link href="resources/css/style.css" rel="stylesheet"/>
-
-    <!-- Datatables CSS CDN -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,r-2.0.0,sc-1.4.0/datatables.min.css" />
-
-
-
-</h:head>
-<h:body >
-    <header id="header" class="fixed-top d-flex align-items-center">
-        <div class="container d-flex align-items-center">
-
-            <div class="logo mr-auto">
-                <h1 class="text-light"><a href="index.xhtml"><span><span style="color:#3498db;">ECI</span>Bank</span></a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html"><img src="resources/img/logo.png" alt="" class="img-fluid"></a>-->
-            </div>
-
-            <nav class="nav-menu d-none d-lg-block">
-                <ul>
-                    <li class="active"><a href="#header">Home</a></li>
-                    <!--
-                    <li><a href="iniciativas.xhtml">Iniciativas</a></li>
-
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    -->
-                    <li class="drop-down"><a href="">Opciones</a>
-                        <ul>
-                            <li><a href="#">Ver Iniciativas</a></li>
-                        </ul>
-                    </li>
-
-
-                    <li class="get-started">
-                        <form method="POST" jsf:id="formulario" novalidate="">
-                            <a type="submit" jsf:actionListener="#{loginBean.logout()}">Cerrar Sesión</a>
-                        </form>
-                    </li>
-                </ul>
-            </nav><!-- .nav-menu -->
-
-        </div>
-    </header><!-- End Header -->
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-        <div class="container">
-
-            <div class="d-flex justify-content-between align-items-center">
-                <h2>Iniciativas</h2>
-                <ol>
-                    <li><a href="#header">Home</a></li>
-                    <li>Iniciativas</li>
-                </ol>
-            </div>
-
-        </div>
-    </section><!-- End Breadcrumbs -->
-    <br/>
-        <div style="font-size: 20px ; text-align:center"   >
-            <p:dataTable id="table" style=" background-color: #EAECEE ; width: 90% ; margin: auto" var="iniciativa" value="#{iniciativaBean.iniciativas}" styleClass="thead-dark">
-                    <p:column headerText="ID" sortBy="#{iniciativa.id}">
+    <ui:define name="breadcumTitle">
+        <h2>Mis Iniciativas</h2>
+    </ui:define>
+    <ui:define name="bsection">
+        <co:bsection sectionName="Mis iniciativas"/>
+    </ui:define>
+    <ui:define name="contenido">
+        <div style="font-size: 20px ; text-align:center">
+            <p:dataTable id="table" 
+                         style=" background-color: #EAECEE ; width: 90% ; margin: auto" 
+                         var="iniciativa" 
+                         value="#{iniciativaBean.iniciativas}" 
+                         rows="5"
+                         sortMode="multiple"
+                         paginator="true"
+                         paginatorPosition ="top"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                         currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} Iniciativas"
+                         >
+                <p:column id = "ids" sortBy="#{iniciativa.id}" headerText="ID" >
                         <h:outputText value="#{iniciativa.id}"/>
                     </p:column>
 
@@ -111,34 +48,16 @@
                         <h:outputText value="#{iniciativa.fechaDeInicio}" />
                     </p:column>
                     
-                    <p:column headerText="Descripción">
-                        <h:outputText value="#{iniciativa.descripcion}" style=" overflow-y: auto;  overflow-x: auto; display: block;  " />
+                    <p:column headerText="Estado">
+                        <h:outputText value="#{iniciativa.estado}" style=" overflow-y: auto;  overflow-x: auto; display: block;  " />
                     </p:column>
             </p:dataTable>
+            
+            <p:blockUI block="table" trigger="table">
+                <p:graphicImage library="img" name="ajax-loader.gif"/>
+            </p:blockUI>
 
         </div>
-
-
-
-
-    <!-- Vendor JS Files -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
-    <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-    <script src="resources/vendor/jquery.easing/jquery.easing.min.js" type="text/javascript"></script>
-    <script src="resources/vendor/php-email-form/validate.js" type="text/javascript"></script>
-    <script src="resources/vendor/waypoints/jquery.waypoints.min.js" type="text/javascript"></script>
-    <script src="resources/vendor/counterup/counterup.min.js" type="text/javascript"></script>
-    <script src="resources/vendor/owl.carousel/owl.carousel.min.js" type="text/javascript"></script>
-    <script src="resources/vendor/isotope-layout/isotope.pkgd.min.js" type="text/javascript"></script>
-    <script src="resources/vendor/venobox/venobox.min.js" type="text/javascript"></script>
-    <script src="resources/vendor/aos/aos.js" type="text/javascript"></script>
-    
-
-    <!-- Template Main JS File-->
-    <script src="resources/js/main.js" type="text/javascript"></script>
-
-    <!-- Datatables JS CDN -->
-    <script src='https://cdn.datatables.net/s/ju/dt-1.10.10,b-1.1.0,fc-3.2.0,fh-3.1.0,r-2.0.0,sc-1.4.0/datatables.min.js' type="text/javascript"></script>
-</h:body>
-
+    </ui:define>
+</ui:composition>
 </html>

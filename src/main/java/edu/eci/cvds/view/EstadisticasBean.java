@@ -33,9 +33,8 @@ public class EstadisticasBean extends BasePageBean {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    public List<Estadistico> generarEstadisticas() throws ExcepcionBancoDeProyectos {
-        return serviciosIniciativa.buscarEstadisticasPorArea();
-    }
+
+
 
     private BarChartModel initBarModel() {
         BarChartModel modelo = new BarChartModel();
@@ -64,10 +63,45 @@ public class EstadisticasBean extends BasePageBean {
         barChart.setLegendPosition("ne");
 
         Axis xAxis = barChart.getAxis(AxisType.X);
-        xAxis.setLabel("Iniciativas");
+        xAxis.setLabel("Area");
 
         Axis yAxis = barChart.getAxis(AxisType.Y);
-        yAxis.setLabel("Area");
+        yAxis.setLabel("Iniciativas");
+        yAxis.setMin(0);
+        yAxis.setMax(20);
+    }
+
+    private BarChartModel initBarModelForStatus() {
+        BarChartModel modelo = new BarChartModel();
+        ChartSeries serie= new ChartSeries();
+        serie.setLabel("Número de iniciativas");
+        List<Estadistico> data;
+        try {
+            data = serviciosIniciativa.buscarEstadisticasPorEstado();
+            for(Estadistico estadistico : data) {
+                serie.set(estadistico.getEstado(), estadistico.getCantidadDeIniciativas());
+            }
+
+            modelo.addSeries(serie);
+        } catch (ExcepcionBancoDeProyectos e) {
+            e.printStackTrace();
+        }
+
+        return modelo;
+    }
+
+
+    private void createBarModelForStatus(){
+        barChart = initBarModelForStatus();
+
+        barChart.setTitle("Estadisticas Por Estado");
+        barChart.setLegendPosition("ne");
+
+        Axis xAxis = barChart.getAxis(AxisType.X);
+        xAxis.setLabel("Estado");
+
+        Axis yAxis = barChart.getAxis(AxisType.Y);
+        yAxis.setLabel("Iniciativas");
         yAxis.setMin(0);
         yAxis.setMax(20);
     }
@@ -75,6 +109,20 @@ public class EstadisticasBean extends BasePageBean {
     public BarChartModel getBarChart(){
         createBarModel();
         return barChart;
+    }
+
+    public BarChartModel getBarChartStatus(){
+        createBarModelForStatus();
+        return barChart;
+    }
+
+
+    public List<Estadistico> estadisticasPorArea() throws ExcepcionBancoDeProyectos{
+        return serviciosIniciativa.buscarEstadisticasPorArea();
+    }
+
+    public List<Estadistico> estadisticasPorEstado() throws ExcepcionBancoDeProyectos{
+        return serviciosIniciativa.buscarEstadisticasPorEstado();
     }
 
 }

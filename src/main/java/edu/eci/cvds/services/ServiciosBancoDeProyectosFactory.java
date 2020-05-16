@@ -1,8 +1,10 @@
 package edu.eci.cvds.services;
 
 import com.google.inject.Injector;
+import edu.eci.cvds.persistence.ComentarioDAO;
 import edu.eci.cvds.persistence.IniciativaDAO;
 import edu.eci.cvds.persistence.UsuarioDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisComentarioDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisIniciativaDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisUsuarioDAO;
 import edu.eci.cvds.services.impl.ServiciosIniciativaImpl;
@@ -29,6 +31,7 @@ public class ServiciosBancoDeProyectosFactory {
                 bind(UsuarioDAO.class).to(MyBatisUsuarioDAO.class);
                 bind(ServiciosUsuario.class).to(ServiciosUsuarioImpl.class);
                 bind(IniciativaDAO.class).to(MyBatisIniciativaDAO.class);
+                bind(ComentarioDAO.class).to(MyBatisComentarioDAO.class);
                 bind(ServiciosIniciativa.class).to(ServiciosIniciativaImpl.class);
             }
         });
