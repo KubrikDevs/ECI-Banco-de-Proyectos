@@ -9,21 +9,29 @@ El sistema, más allá de facilitar el registro de las iniciativas e ideas de pr
 Se diseñó una arquitectura de 4 capas, separando la aplicación en componentes que se sitúan en diferentes niveles funcionales.
 ### Capas
 - Capa de Persistencia
-![](persistencia.png)
+
+
+![](persistencia.PNG)
 En esta capa se encuentra todos aquellos componentes cuya funcionalidad está centrada en recuperar y/o almacenar los datos con los que trabaja nuestra aplicación.
 
 - Capa de Negocio (Modelo)
-![](DClases.png)
+
+
+![](DClases.PNG)
 Es la que soporta toda la lógica de negocio. En esta capa encontramos todas aquellas funciones que hacen algún tipo de tratamiento de los datos, se aplica las reglas de negocio, etc.
 
 
 - Capa de Interfaz de Usuario (Vista y Controlador)
-![](vista.png)
+
+
+![](vista.PNG)
 Orientada a soportar la interactividad de los usuarios con las funcionalidades brindadas por la capa de negocio. En esta capa se encuentran los controles visuales, formularios, etc.
 
 
 - Capa de Servicios
-![](servicios.png)
+
+
+![](servicios.PNG)
 Esta capa permite desacoplar la interfaz de usuario del resto de capas, permitiendo que las funcionalidades de nuestra aplicación sean accesible por otras aplicaciones u servicios.
 
 
