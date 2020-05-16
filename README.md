@@ -93,12 +93,18 @@ Se decidió implementar el framework ***SCRUM***, debido a su alta capacidad par
 
 ### Sprints
 __Sprint 1__
+
+
 ![](Sprint1.jpeg)
 
 __Sprint 2__
+
+
 ![](Sprint2.jpeg)
 
 __Sprint 3__
+
+
 ![](Sprint3.jpeg)
 
 
