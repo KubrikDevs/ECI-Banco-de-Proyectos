@@ -93,10 +93,13 @@ Se decidió implementar el framework ***SCRUM***, debido a su alta capacidad par
 
 ### Sprints
 __Sprint 1__
-![](Sprint1.PNG)
+![](Sprint1.jgep)
 
 __Sprint 2__
-![](Sprint2.PNG)
+![](Sprint2.jgep)
+
+__Sprint 3__
+![](Sprint3.jgep)
 
 
 - Reporte de análisis estático de código: [![Codacy Badge](https://app.codacy.com/project/badge/Grade/330bf988ba4642d0a5577bfcd0ac0f67)](https://www.codacy.com/gh/KubrikDevs/ECI-Banco-de-Proyectos?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KubrikDevs/ECI-Banco-de-Proyectos&amp;utm_campaign=Badge_Grade)
