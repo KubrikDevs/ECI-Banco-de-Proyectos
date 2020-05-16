@@ -58,7 +58,7 @@
                     <li style=" margin:auto 4 ; align-content: center">
                         <h4>usuario: <br/> #{loginBean.email == null ? 'invitado': loginBean.email} </h4>
                     </li>
-                    <li class="active"><a href="#header">Home</a></li>
+                    <li class="active"><a href="${pageContext.request.contextPath}/faces/iniciativas.xhtml">Home</a></li>
                     <li class="drop-down"><a href="">Opciones</a>
                         <ul>
                             <ui:insert name="dropDownHeaderMenu">
