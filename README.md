@@ -59,6 +59,18 @@ Esta capa permite desacoplar la interfaz de usuario del resto de capas, permitie
  
  - Enlace al Sistema de Integración Continua: 
  [![CircleCI](https://circleci.com/gh/KubrikDevs/ECI-Banco-de-Proyectos.svg?style=svg)](https://circleci.com/gh/KubrikDevs/ECI-Banco-de-Proyectos)
+ 
+### Stack de tecnologías
+- PrimeFaces
+- Google Guice
+- MyBatis
+- Apache Shiro
+- Bootstrap 4
+- PostgreSQL
+- Java EE
+- JQuery
+- CSS, HTML, XHTML, JS 
+
 
 
 ## Proceso de Desarrollo 
