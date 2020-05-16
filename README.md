@@ -69,6 +69,14 @@ Se decidió implementar el framework ***SCRUM***, debido a su alta capacidad par
 
 - Enlace a Taiga:  https://tree.taiga.io/project/d4v0r-plataforma-banco-de-iniciativas-de-proyectos/backlog
 
+### Sprints
+__Sprint 1__
+![](Sprint1.PNG)
+
+__Sprint 2__
+![](Sprint2.PNG)
+
+
 
 
 
