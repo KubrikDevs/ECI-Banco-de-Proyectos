@@ -19,19 +19,83 @@ lang="es">
         </form>
     </ui:define>
     -->
-    
-    
-    
-    
-    <ui:define name="breadcumTitle">
-        <h2>Estadisticas</h2>
-    </ui:define>
+
     <ui:define name="bsection">
-        <co:bsection sectionName="Estadisticas"/>
+        <co:bsection sectionName="Area"/>
     </ui:define>
     <ui:define name="contenido">
-    
-        <p:chart type="bar" model="#{estadisticasBean.barChart}" style="height:300px"/>
+        <br/>
+        <br/>
+        <div class="row">
+
+            <div class="col-xl-5">
+                <p:chart type="bar" model="#{estadisticasBean.barChart}"/>
+
+            </div>
+            <div class="col-xs-1"/>
+            <div class="col-xs-6">
+                <table id="estadisticasArea" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Area</th>
+                        <th>Cantidad de Iniciativas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <ui:repeat var="estadistico" value="#{estadisticasBean.estadisticasPorArea()}">
+                        <tr>
+                            <td>#{estadistico.area}</td>
+                            <td>#{estadistico.cantidadDeIniciativas}</td>
+                        </tr>
+                    </ui:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <div id="body-content">
+            <section id="breadcrumbs" class="breadcrumbs">
+                <div class="container">
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <h2>Estado</h2>
+                        <ol>
+
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Area</a></li>
+                            <li>Estado</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <br/>
+        <br/>
+        <div class="row">
+            <div class="col-xl-6">
+                <p:chart type="bar" model="#{estadisticasBean.barChartStatus}"/>
+            </div>
+            <div class="col-xs-1"/>
+            <div class="col-xl-5">
+                <table id="estadisticasEstado" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Estado</th>
+                        <th>Cantidad de Iniciativas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <ui:repeat var="estadistico" value="#{estadisticasBean.estadisticasPorEstado()}">
+                        <tr>
+                            <td>#{estadistico.estado}</td>
+                            <td>#{estadistico.cantidadDeIniciativas}</td>
+                        </tr>
+                    </ui:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </ui:define>
 </ui:composition>
 </html>

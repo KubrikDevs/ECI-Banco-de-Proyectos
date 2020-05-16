@@ -67,7 +67,9 @@
 
                     <li class="get-started">
                         <ui:insert name="headerButton">
-                            <a href="${pageContext.request.contextPath}/faces/login.xhtml">Iniciar Sesión</a>
+                            <form method="POST" jsf:id="formulario" novalidate="">
+                                <a type="submit" jsf:actionListener="#{loginBean.logout()}">Cerrar Sesión</a>
+                            </form>
                         </ui:insert>
                     </li>
                 </ul>
