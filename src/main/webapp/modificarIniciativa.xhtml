@@ -12,19 +12,12 @@
 lang="es">
 <ui:composition template="WEB-INF/facelets/template.xhtml">
     <h:outputScript name="primefaces/jquery.js"/>
-    <!--
-    <ui:define name="headerButton">
-        <form method="POST" jsf:id="formulario" novalidate="">
-            <a type="submit" jsf:actionListener="#{loginBean.logout()}">Cerrar Sesión</a>
-        </form>
-    </ui:define>
-    -->
 
     <ui:define name="breadcumTitle">
-        <h2>Modificar Estado Iniciativa</h2>
+        <h2>Modificar Iniciativa</h2>
     </ui:define>
     <ui:define name="bsection">
-        <co:bsection sectionName="Modificar Estado Iniciativa"/>
+        <co:bsection sectionName="Modificar Iniciativa"/>
     </ui:define>
     <ui:define name="contenido">
         <div  class="table-responsive" style="margin-top:0px; font-size: 20px ; text-align:center">
@@ -72,7 +65,7 @@ lang="es">
                     </p:column>
 
                     <f:facet name="footer">
-                        <p:commandButton process="singleDTiniciativa" id="VisualizarBoton" update=":form:iniciativaDetail" value="Visualizar" oncomplete="PF('iniciativaDialog').show()" />
+                        <p:commandButton process="singleDTiniciativa" id="VisualizarBoton" update=":form:iniciativaDetail" value="Modificar iniciativa" oncomplete="PF('iniciativaDialog').show()" />
                         <p:blockUI block="form" trigger="VisualizarBoton">            
                             <p:graphicImage library="img" name="ajax-loader.gif"/>
                         </p:blockUI>  
@@ -84,11 +77,11 @@ lang="es">
 
                             <h:outputText value="ID:" />
                             <h:outputText value="#{iniciativaBean.iniciativa.id}" />
-                            <h:outputText value="Nombre:" />
-                            <h:outputText value="#{iniciativaBean.iniciativa.nombre}" />               
+                            <h:outputText value="Nombre:" /> 
+                            <p:inputText style=" text-align: center" type="text" class="form-control" value="#{iniciativaBean.iniciativa.nombre}" id="nombre" binding="#{superNombre}" required="true"/>
 
                             <h:outputText value="Area:" />
-                            <h:outputText value="#{iniciativaBean.iniciativa.area}" />
+                            <p:inputText style="text-align: center " type="text" class="form-control" value="#{iniciativaBean.iniciativa.area}" id="area" binding="#{superArea}" required="true"/>
 
                             <h:outputText value="Estado Actual:" />
                             <h:outputText value="#{iniciativaBean.iniciativa.estado}" />
@@ -100,26 +93,11 @@ lang="es">
                             <h:outputText value="#{iniciativaBean.iniciativa.fechaDeInicio}" />
 
                             <h:outputText value="Descripción:"  />
-                            <h:outputText value="#{iniciativaBean.iniciativa.descripcion}"  style="overflow-y: auto;  overflow-x: auto; width: 200px; display:block;" />
-
-
-                            <h:outputText value="Modificar Estado:" />
-
-                            <p:selectOneMenu id="estado" value="#{iniciativaBean.iniciativa.estado}" style="{width:200px position: absolute}" >
-                                <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-                                <f:selectItem itemLabel="ESPERA" itemValue="ESPERA"/>
-                                <f:selectItem itemLabel="REVISION" itemValue="REVISION" />
-                                <f:selectItem itemLabel="PROYECTO" itemValue="PROYECTO" />
-                                <f:selectItem itemLabel="SOLUCIONADO" itemValue="SOLUCIONADO" />
-
-                            </p:selectOneMenu>
-
-
-
+                            <p:inputText style="text-align: center " type="text" class="form-control" value="#{iniciativaBean.iniciativa.descripcion}" id="descripcion" binding="#{superDescripcion}" required="true"/>
 
                         </p:panelGrid>
                         <p></p>
-                        <p:commandButton value ="Guardar" actionListener="#{iniciativaBean.modificarIniciativa(iniciativaBean.iniciativa.id, iniciativaBean.iniciativa.estado)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{iniciativaBean.mensaje(iniciativaBean.iniciativa.nombre)}"/>
+                        <p:commandButton value ="Guardar" actionListener="#{iniciativaBean.modificarIniciativa(iniciativaBean.iniciativa,superNombre.value,superArea.value,superDescripcion.value)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{iniciativaBean.mensaje(iniciativaBean.iniciativa.nombre)}"/>
                         <p:blockUI block="iniciativaDetail" trigger="iconOnly">            
                             <p:graphicImage library="img" name="ajax-loader.gif"/>
                         </p:blockUI>            

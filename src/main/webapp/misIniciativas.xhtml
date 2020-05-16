@@ -21,24 +21,24 @@ lang="es">
     -->
 
     <ui:define name="breadcumTitle">
-        <h2>Modificar Estado Iniciativa</h2>
+        <h2>Mis Iniciativas</h2>
     </ui:define>
     <ui:define name="bsection">
-        <co:bsection sectionName="Modificar Estado Iniciativa"/>
+        <co:bsection sectionName="Mis iniciativas"/>
     </ui:define>
     <ui:define name="contenido">
         <div  class="table-responsive" style="margin-top:0px; font-size: 20px ; text-align:center">
             <h:form id="form" class="" >
                 <p:growl id="msgs" showDetail="true"   />
-                <p:dataTable  style=" background-color: #EAECEE ; width: 90% ; margin: auto" 
-                              id="singleDTiniciativa" 
-                              var="iniciativa" 
-                              value="#{iniciativaBean.iniciativas}" 
-                              selectionMode="single" 
-                              selection="#{iniciativaBean.iniciativa}" 
-                              rowKey="#{iniciativa.id}" 
-                              widgetVar="iniciativasTable1" 
-                              emptyMessage="No se encontraron coincidencias" 
+                <p:dataTable  style=" background-color: #EAECEE ; width: 90% ; margin: auto ; font-size: 18px"
+                              id="singleDTiniciativa"
+                              var="iniciativa"
+                              value="#{iniciativaBean.getIniciativasPorUsuario(loginBean.email)}"
+                              selectionMode="single"
+                              selection="#{iniciativaBean.iniciativa}"
+                              rowKey="#{iniciativa.id}"
+                              widgetVar="iniciativasTable1"
+                              emptyMessage="Usted no ha registrado iniciativas"
                               rows="5"
                               sortMode="multiple"
                               paginator="true"
@@ -50,7 +50,7 @@ lang="es">
                         TABLA DE INICIATIVAS
                     </f:facet>
 
-                    <p:column headerText="Id" width="5%" style="text-align:center">
+                    <p:column headerText="Id" width="5%" style="text-align:center" sortBy="#{iniciativa.id}">
                         <h:outputText value="#{iniciativa.id}" />
                     </p:column>
 
@@ -72,13 +72,13 @@ lang="es">
                     </p:column>
 
                     <f:facet name="footer">
-                        <p:commandButton process="singleDTiniciativa" id="VisualizarBoton" update=":form:iniciativaDetail" value="Visualizar" oncomplete="PF('iniciativaDialog').show()" />
+                        <p:commandButton process="singleDTiniciativa" id="VisualizarBoton" update=":form:iniciativaDetail" value="Ver Detalles Iniciativa" oncomplete="PF('iniciativaDialog').show()" />
                         <p:blockUI block="form" trigger="VisualizarBoton">            
                             <p:graphicImage library="img" name="ajax-loader.gif"/>
                         </p:blockUI>  
                     </f:facet>
                 </p:dataTable>
-                <p:dialog header="Edicion de Iniciativa" widgetVar="iniciativaDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:dialog style="align-content: center" header="Detalles de Iniciativa" widgetVar="iniciativaDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                     <p:outputPanel id="iniciativaDetail">
                         <p:panelGrid  columns="2" rendered="#{not empty iniciativaBean.iniciativa}" >
 
@@ -102,34 +102,14 @@ lang="es">
                             <h:outputText value="Descripción:"  />
                             <h:outputText value="#{iniciativaBean.iniciativa.descripcion}"  style="overflow-y: auto;  overflow-x: auto; width: 200px; display:block;" />
 
-
-                            <h:outputText value="Modificar Estado:" />
-
-                            <p:selectOneMenu id="estado" value="#{iniciativaBean.iniciativa.estado}" style="{width:200px position: absolute}" >
-                                <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-                                <f:selectItem itemLabel="ESPERA" itemValue="ESPERA"/>
-                                <f:selectItem itemLabel="REVISION" itemValue="REVISION" />
-                                <f:selectItem itemLabel="PROYECTO" itemValue="PROYECTO" />
-                                <f:selectItem itemLabel="SOLUCIONADO" itemValue="SOLUCIONADO" />
-
-                            </p:selectOneMenu>
-
-
-
-
                         </p:panelGrid>
-                        <p></p>
-                        <p:commandButton value ="Guardar" actionListener="#{iniciativaBean.modificarIniciativa(iniciativaBean.iniciativa.id, iniciativaBean.iniciativa.estado)}" id="iconOnly" update="form" style="margin-right:20px;" styleClass="ui-priority-primary" action="#{iniciativaBean.mensaje(iniciativaBean.iniciativa.nombre)}"/>
-                        <p:blockUI block="iniciativaDetail" trigger="iconOnly">            
-                            <p:graphicImage library="img" name="ajax-loader.gif"/>
-                        </p:blockUI>            
+                        <p></p>         
                     </p:outputPanel>
-                    <p:blockUI  block="singleDTiniciativa" trigger="singleDTiniciativa">
-                        <p:graphicImage library="img" name="ajax-loader.gif"/>
-                    </p:blockUI>
                 </p:dialog>
+                <p:blockUI  block="singleDTiniciativa" trigger="singleDTiniciativa">
+                    <p:graphicImage library="img" name="ajax-loader.gif"/>
+                </p:blockUI>
             </h:form>
-
         </div>
     </ui:define>
 </ui:composition>

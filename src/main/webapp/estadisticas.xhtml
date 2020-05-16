@@ -12,90 +12,48 @@
 lang="es">
 <ui:composition template="WEB-INF/facelets/template.xhtml">
     <h:outputScript name="primefaces/jquery.js"/>
-    <!--
-    <ui:define name="headerButton">
-        <form method="POST" jsf:id="formulario" novalidate="">
-            <a type="submit" jsf:actionListener="#{loginBean.logout()}">Cerrar Sesión</a>
-        </form>
-    </ui:define>
-    -->
 
     <ui:define name="bsection">
-        <co:bsection sectionName="Area"/>
+        <co:bsection sectionName="Estadisticas"/>
     </ui:define>
     <ui:define name="contenido">
-        <br/>
-        <br/>
-        <div class="row">
 
-            <div class="col-xl-5">
-                <p:chart type="bar" model="#{estadisticasBean.barChart}"/>
+        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+<div  class="table-responsive" style="margin-top:0px; font-size: 20px ; text-align:center">
+        <p:tabView>
+            <p:tab title="Por Area" >
+                <h:panelGrid columns="1" cellpadding="100">
+                    <p:chart type="bar" model="#{estadisticasBean.barChart}"/>
+                    <br/>
+                    <p:dataTable  class="table table-bordered table-striped" var="estadistico" value="#{estadisticasBean.estadisticasPorArea()}">
+                        <p:column headerText="Area" width="5%" style="text-align:center">
+                            <h:outputText value="#{estadistico.area}" />
+                        </p:column>
 
-            </div>
-            <div class="col-xs-1"/>
-            <div class="col-xs-6">
-                <table id="estadisticasArea" class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th>Area</th>
-                        <th>Cantidad de Iniciativas</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <ui:repeat var="estadistico" value="#{estadisticasBean.estadisticasPorArea()}">
-                        <tr>
-                            <td>#{estadistico.area}</td>
-                            <td>#{estadistico.cantidadDeIniciativas}</td>
-                        </tr>
-                    </ui:repeat>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <div id="body-content">
-            <section id="breadcrumbs" class="breadcrumbs">
-                <div class="container">
-                    <div class="d-flex justify-content-between align-items-center">
+                        <p:column headerText="Iniciativas" width="5%" style="text-align:center">
+                            <h:outputText value="#{estadistico.cantidadDeIniciativas}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGrid>
+            </p:tab>
+            <p:tab title="Por Estado">
+                <h:panelGrid columns="2" cellpadding="50">
+                    <p:chart type="bar" model="#{estadisticasBean.barChartStatus}"/>
 
-                        <h2>Estado</h2>
-                        <ol>
+                    <p:dataTable class="table table-bordered table-striped" var="estadistico" value="#{estadisticasBean.estadisticasPorEstado()}">
+                        <p:column headerText="Estado" width="20%" style="text-align:center">
+                            <h:outputText value="#{estadistico.estado}" />
+                        </p:column>
 
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Area</a></li>
-                            <li>Estado</li>
-                        </ol>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <br/>
-        <br/>
-        <div class="row">
-            <div class="col-xl-6">
-                <p:chart type="bar" model="#{estadisticasBean.barChartStatus}"/>
-            </div>
-            <div class="col-xs-1"/>
-            <div class="col-xl-5">
-                <table id="estadisticasEstado" class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th>Estado</th>
-                        <th>Cantidad de Iniciativas</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <ui:repeat var="estadistico" value="#{estadisticasBean.estadisticasPorEstado()}">
-                        <tr>
-                            <td>#{estadistico.estado}</td>
-                            <td>#{estadistico.cantidadDeIniciativas}</td>
-                        </tr>
-                    </ui:repeat>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                        <p:column headerText="Cantidad de Iniciativas" width="5%" style="text-align:center">
+                            <h:outputText value="#{estadistico.cantidadDeIniciativas}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGrid>
+            </p:tab>
+
+        </p:tabView>
+</div>
     </ui:define>
 </ui:composition>
 </html>

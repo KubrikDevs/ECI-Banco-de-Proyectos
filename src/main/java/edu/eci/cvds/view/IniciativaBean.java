@@ -141,7 +141,17 @@ public class IniciativaBean extends BasePageBean {
         }
     }
     
-      
+        public List<Iniciativa> getIniciativasPorUsuario(String correo) throws Exception{
+            List<Iniciativa> listaIniUsuario = new ArrayList<>();
+            if (iniciativas == null) {
+                try{
+                    listaIniUsuario = serviciosIniciativa.buscarIniciativasUsuario(correo);
+                }catch (ExcepcionBancoDeProyectos e){
+                    throw e;
+                }
+            }
+            return listaIniUsuario;
+        }     
     
         public List<Iniciativa> getIniciativasPorPalabraClave(String palabrasClave) throws  Exception{
                     
@@ -159,11 +169,26 @@ public class IniciativaBean extends BasePageBean {
             return al2;
     }
     
-    
+    //por id
     public void modificarIniciativa(int id, String estadoIniciativa) throws  Exception{
             EstadoIniciativa estadoI = EstadoIniciativa.valueOf(estadoIniciativa);
         try{
             serviciosIniciativa.modificarIniciativa(id, estadoI);
+            this.operacion = "modificada";
+        }catch (ExcepcionBancoDeProyectos e){
+            this.mensaje = "Error al modificar Iniciativa";
+            this.operacion = "error";
+            throw e;
+        }
+    }
+    // por nombre, area y decripcion
+    public void modificarIniciativa(Iniciativa ini, String nombre, String area, String descripcion) throws  Exception{
+            ini.setNombre(nombre);
+            ini.setArea(area);
+            ini.setDescripcion(descripcion);
+            //System.out.println(" ---- "+ini.getArea() +" "+ini.getNombre() +" "+ini.getDescripcion());
+        try{
+            serviciosIniciativa.modificarIniciativa(ini);
             this.operacion = "modificada";
         }catch (ExcepcionBancoDeProyectos e){
             this.mensaje = "Error al modificar Iniciativa";
